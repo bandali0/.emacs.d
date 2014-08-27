@@ -1,0 +1,5 @@
+*.orig
+*.py[co]
+*.sublime-workspace
+*~
+.DS_Store

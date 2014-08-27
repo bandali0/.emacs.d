@@ -1,0 +1,12 @@
+# `.zshenv' is sourced on all invocations of the shell, unless the -f option
+# is set. It should contain commands to set the command search path, plus
+# other important environment variables. `.zshenv' should not contain commands
+# that produce output or assume the shell is attached to a tty.
+
+# Source Prezto defaults.
+source ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshenv
+
+# Source `zshenv.d/*.zsh` scripts.
+for filename in ${ZDOTDIR:-$HOME}/zshenv.d/*.zsh(N); do
+	source $filename
+done
