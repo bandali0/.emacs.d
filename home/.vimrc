@@ -19,12 +19,13 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Yggdroot/indentLine'
 "Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
 call vundle#end()            " required
 " ==== </Vundle> ====
 
 " Use the Solarized Dark theme
 set background=dark
-"colorscheme solarized
+colorscheme solarized
 
 " Make Vim more useful
 set nocompatible
