@@ -31,7 +31,7 @@ function take() {
 }
 
 function y() {
-  cd ~/Music
+  cd ~/misc/tmp-music
   youtube-dl -f bestaudio $1
   for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 "${f%.m4a}.mp3"; rm "$f"; done
 }
