@@ -20,6 +20,7 @@ Plugin 'Yggdroot/indentLine'
 "Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'terryma/vim-multiple-cursors'
 call vundle#end()            " required
 " ==== </Vundle> ====
 
