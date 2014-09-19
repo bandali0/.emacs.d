@@ -1,5 +1,5 @@
 # ls.
-alias ls='ls -FG'
+alias ls='ls -FG --color'
 
 # ps.
 alias ps='ps -o pid,rss,pcpu,command'
