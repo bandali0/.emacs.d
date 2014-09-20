@@ -1,3 +1,5 @@
+(setq evil-want-C-u-scroll t)
+
 (package-initialize)
 (require 'evil)
 (evil-mode 1)
