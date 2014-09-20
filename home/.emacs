@@ -7,6 +7,9 @@
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
+(define-key evil-motion-state-map ";" 'evil-ex)
+(define-key evil-motion-state-map ":" 'evil-repeat-find-char)
+
 (require 'package)
   (push '("marmalade" . "http://marmalade-repo.org/packages/")
         package-archives )
