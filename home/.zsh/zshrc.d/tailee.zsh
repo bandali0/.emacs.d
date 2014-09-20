@@ -35,3 +35,9 @@ function y() {
   youtube-dl -f bestaudio $1
   for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 "${f%.m4a}.mp3"; rm "$f"; done
 }
+
+case $- in *i*)
+      if [ -z "$TMUX" ]; then exec tmux -2; fi;;
+esac
+
+export LS_COLORS=$LS_COLORS:"di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:"
