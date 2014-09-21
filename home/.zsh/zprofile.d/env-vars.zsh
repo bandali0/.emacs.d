@@ -3,3 +3,5 @@ export MT_RELEASE_KEY_ALIAS="release"
 
 export EDITOR="emacs -nw"
 export VISUAL=$EDITOR
+
+export `gnome-keyring-daemon --start`
