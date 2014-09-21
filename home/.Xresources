@@ -16,6 +16,8 @@ URxvt.urlLauncher: firefox
 URxvt.matcher.button: 1
 URxvt.geometry: 84x21
 URxvt.iconFile: /usr/share/icons/Moka/96x96/apps/utilities-terminal.png
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
 
 !! drop in Solarized colorscheme for Xresources/Xdefaults
 
