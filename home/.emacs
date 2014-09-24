@@ -1,3 +1,9 @@
+(require 'package)
+  (push '("marmalade" . "http://marmalade-repo.org/packages/")
+        package-archives )
+  (push '("melpa" . "http://melpa.milkbox.net/packages/")
+        package-archives)
+
 (setq evil-want-C-u-scroll t)
 
 (package-initialize)
@@ -9,10 +15,4 @@
 
 (define-key evil-motion-state-map ";" 'evil-ex)
 (define-key evil-motion-state-map ":" 'evil-repeat-find-char)
-
-(require 'package)
-  (push '("marmalade" . "http://marmalade-repo.org/packages/")
-        package-archives )
-  (push '("melpa" . "http://melpa.milkbox.net/packages/")
-        package-archives)
 
