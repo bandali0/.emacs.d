@@ -25,6 +25,10 @@ echo "Cloning Homeshick castles."
 echo "Linking Homeshick castles."
 homeshick link
 
+echo "Creating vim dirs"
+mkdir "$HOME/.vim"
+mkdir "$HOME/.vim/{backups,swaps,undo}"
+
 cat <<EOF
 
 Installed. Open a new terminal window or tab.
