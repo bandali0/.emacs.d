@@ -1,0 +1,11 @@
+# copy to /usr/lib/systemd/system/ (at least on Arch Linux)
+
+[Unit]
+Description=KernGPE66
+
+[Service]
+ExecStart=/bin/sh -c "echo disable > /sys/firmware/acpi/interrupts/gpe66"
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
