@@ -1,0 +1,9 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 1.5
+total_run_times 0
+use_spacer none
+
+TEXT
+S %{F\#ffcf0f38}${exec cat /tmp/spkicon} %{F\#fffefdfb}${exec cat /tmp/volinfo}%%   %{F\#ffcf0f38}⮏ %{F\#fffefdfb}${execi 30 cat /sys/class/power_supply/BAT0/capacity}%%   %{F\#ffcf0f38}⮖ %{F\#fffefdfb}${time %H:%M}

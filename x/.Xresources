@@ -1,0 +1,12 @@
+URxvt.scrollBar:	false
+URxvt.font: -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
+URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
+
+URxvt.perl-ext-common:      default,clipboard,url-select
+URxvt.url-select.launcher:  firefox
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.iso14755 : false
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
