@@ -1,6 +1,9 @@
-database
-log
-pid
-state
-sticker.sql
-error.log
+# mpd files
+mpd/*/*/database
+mpd/*/*/log
+mpd/*/*/pid
+mpd/*/*/state
+mpd/*/*/sticker.sql
+
+# ncmpcpp
+ncmpcpp/*/error.log
