@@ -84,7 +84,7 @@ super + Return
 	urxvt
 
 super + space
-	dmenu_run -fn "-*-termsyn-medium-r-normal-*-13-*-*-*-c-*-*-1" -h 20 -nb \#2f2b30 -nf \#fefdfb -sb \#cf0f38 -sf \#fefdfb
+	dmenu_run -fn "-*-termsyn-medium-r-normal-*-13-*-*-*-c-*-*-1" -h 31 -nb \#2f2b30 -nf \#fefdfb -sb \#cf0f38 -sf \#fefdfb
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -102,18 +102,18 @@ XF86KbdBrightnessDown
 XF86KbdBrightnessUp
 	kbdlight up
 
-XF86AudioRaiseVolume
-	pamixer --increase 5;\
-	pamixer --get-volume > /tmp/volinfo
+#XF86AudioRaiseVolume
+#	pamixer --increase 5;\
+#	pamixer --get-volume > /tmp/volinfo
 
-XF86AudioLowerVolume
-	pamixer --decrease 5;\
-        pamixer --get-volume > /tmp/volinfo
+#XF86AudioLowerVolume
+#	pamixer --decrease 5;\
+#        pamixer --get-volume > /tmp/volinfo
 
-XF86AudioMute
-	pamixer --toggle-mute;\
-        if $(pamixer --get-mute) ; then;\
-        echo ⮝ > /tmp/spkicon;\
-        else;\
-        echo ⮟ > /tmp/spkicon;\
-        fi
+#XF86AudioMute
+#	pamixer --toggle-mute;\
+#        if $(pamixer --get-mute) ; then;\
+#        echo ⮝ > /tmp/spkicon;\
+#        else;\
+#        echo ⮟ > /tmp/spkicon;\
+#        fi

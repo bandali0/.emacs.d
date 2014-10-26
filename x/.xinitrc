@@ -13,7 +13,7 @@ fi
 
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr &  # set the cursor icon
-feh --bg-scale ~/Pictures/the-witcher-3-wild-hunt-10.jpg
+#feh --bg-scale ~/Pictures/the-witcher-3-wild-hunt-10.jpg
 xset +fp /usr/share/fonts/local
 xset +fp ~/.fonts
 xset fp rehash
@@ -26,6 +26,7 @@ synclient TapButton3=2
 synclient HorizTwoFingerScroll=1
 synclient VertScrollDelta=-237
 synclient HorizScrollDelta=-237
+sxhkd &
 
 # screen powersave
 xset +dpms
@@ -33,9 +34,9 @@ xset dpms 0 0 300
 
 # exec gnome-session
 # exec startkde
-# exec startxfce4
+exec startxfce4
 # ...or the Window Manager of your choice
 
 sxhkd &
 source ~/.profile
-exec bspwm
+#exec bspwm
