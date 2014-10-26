@@ -5,3 +5,14 @@ BASE16_SHELL="$HOME/.theme/base16-$BASE16_SCHEME.dark.sh"
 
 PATH="$HOME/.local/bin:$PATH"
 
+# take
+function take() {
+ mkdir -p $1
+ cd $1
+}
+
+function y() {
+ cd ~/music
+ youtube-dl -f bestaudio $1
+ for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 "${f%.m4a}.mp3"; rm "$f"; done
+}
