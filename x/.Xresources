@@ -1,6 +1,12 @@
 URxvt.scrollBar:	false
-URxvt.font: -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
-URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
+!URxvt.font: -*-termsyn-medium-*-*-*-14-*-*-*-*-*-*-*
+!URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
+
+!! Sauce Code Pro
+URxvt.font: xft:Source Code Pro for Powerline-9:hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:medium;antialias=False,xft:WenQuanYi Zen Hei-10:medium;antialias=True,xft:HanaMinA-10:medium;antialias:True,xft:HanaMinB-10:medium;antialias:True,xft:HanaMinPlus-10:medium;antialias:True
+URxvt.boldFont: xft:Source Code Pro for Powerline-9:bold;hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:bold;antialias=False,xft:WenQuanYi Zen Hei-10:bold;antialias=True,xft:HanaMinA-10:bold;antialias:True,xft:HanaMinB-10:bold;antialias:True,xft:HanaMinPlus-10:bold;antialias:True
+URxvt.letterSpace: -1
+
 
 URxvt.perl-ext-common:      default,clipboard,url-select
 URxvt.url-select.launcher:  firefox
@@ -10,3 +16,6 @@ URxvt.iso14755 : false
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
+
+!URxvt.iconFile: /usr/share/icons/Numix-Circle/scalable/apps/utilities-terminal.svg
+URxvt.iconFile: /home/amin/.icons/Moka/96x96/apps/utilities-terminal.png
