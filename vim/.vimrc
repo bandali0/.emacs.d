@@ -21,6 +21,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'airblade/vim-gitgutter'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'elzr/vim-json'
 call vundle#end()            " required
 " ==== </Vundle> ====
 
@@ -237,3 +238,6 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 set pastetoggle=<leader>t
 
+set conceallevel=0
+let g:vim_json_syntax_conceal = 0
+let g:indentLine_noConcealCursor=""
