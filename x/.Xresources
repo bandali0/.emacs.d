@@ -8,7 +8,7 @@ URxvt.boldFont: xft:Source Code Pro for Powerline-9:bold;hinting=True;antialias:
 URxvt.letterSpace: -1
 
 
-URxvt.perl-ext-common:      default,clipboard,url-select
+URxvt.perl-ext-common:      default,clipboard,url-select,font-size
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
@@ -19,3 +19,11 @@ URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
 
 !URxvt.iconFile: /usr/share/icons/Numix-Circle/scalable/apps/utilities-terminal.svg
 URxvt.iconFile: /home/amin/.icons/Moka/96x96/apps/utilities-terminal.png
+
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+!URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+!URxvt.keysym.C-S-Down: perl:font-size:decglobal
+!URxvt.iso14755: false
+!URxvt.iso14755_52: false
+
