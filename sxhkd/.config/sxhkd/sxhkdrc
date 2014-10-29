@@ -114,6 +114,15 @@ XF86AudioLowerVolume
 XF86AudioMute
     pulseaudio-ctl mute
 
+XF86AudioPlay
+    mpc toggle
+
+XF86AudioPrev
+    mpc prev
+
+XF86AudioNext
+    mpc next
+
 #XF86AudioRaiseVolume
 #	pamixer --increase 5;\
 #	pamixer --get-volume > /tmp/volinfo
