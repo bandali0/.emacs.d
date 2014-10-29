@@ -14,6 +14,5 @@ function take() {
 
 function y() {
  cd ~/music
- youtube-dl -f bestaudio $1
- for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 "${f%.m4a}.mp3"; rm "$f"; done
+ youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 $1
 }
