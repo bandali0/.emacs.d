@@ -4,6 +4,7 @@ BASE16_SHELL="$HOME/.theme/base16-$BASE16_SCHEME.dark.sh"
 [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 
 PATH="$HOME/.local/bin:$PATH"
+PATH="`ruby -e 'print Gem.user_dir'`/bin:$PATH"
 
 # take
 function take() {
