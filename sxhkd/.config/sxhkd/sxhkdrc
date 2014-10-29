@@ -84,7 +84,10 @@ super + Return
 	urxvt
 
 super + space
-	dmenu_run -fn "Source Code Pro for Powerline:bold:pixelsize=10" -h 31 -nb \#2f2b30 -nf \#fefdfb -sb \#cf0f38 -sf \#fefdfb
+	dmenu_run -fn "Source Code Pro for Powerline:bold:pixelsize=10" -h 28 -nb \#2f2b30 -nf \#fefdfb -sb \#cf0f38 -sf \#fefdfb
+
+super + x
+    slimlock
 
 # make sxhkd reload its configuration files:
 super + Escape
