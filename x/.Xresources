@@ -3,8 +3,8 @@ URxvt.scrollBar:	false
 !URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
 
 !! Sauce Code Pro
-URxvt.font: xft:Source Code Pro for Powerline-9:hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:medium;antialias=False,xft:WenQuanYi Zen Hei-10:medium;antialias=True,xft:HanaMinA-10:medium;antialias:True,xft:HanaMinB-10:medium;antialias:True,xft:HanaMinPlus-10:medium;antialias:True
-URxvt.boldFont: xft:Source Code Pro for Powerline-9:bold;hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:bold;antialias=False,xft:WenQuanYi Zen Hei-10:bold;antialias=True,xft:HanaMinA-10:bold;antialias:True,xft:HanaMinB-10:bold;antialias:True,xft:HanaMinPlus-10:bold;antialias:True
+URxvt.font: xft:Source Code Pro for Powerline-11:hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:medium;antialias=False,xft:WenQuanYi Zen Hei-10:medium;antialias=True,xft:HanaMinA-10:medium;antialias:True,xft:HanaMinB-10:medium;antialias:True,xft:HanaMinPlus-10:medium;antialias:True
+URxvt.boldFont: xft:Source Code Pro for Powerline-11:bold;hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:bold;antialias=False,xft:WenQuanYi Zen Hei-10:bold;antialias=True,xft:HanaMinA-10:bold;antialias:True,xft:HanaMinB-10:bold;antialias:True,xft:HanaMinPlus-10:bold;antialias:True
 URxvt.letterSpace: -1
 
 

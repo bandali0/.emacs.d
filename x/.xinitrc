@@ -11,6 +11,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+# Enable this for non-reparenting window managers
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr &  # set the cursor icon
 #feh --bg-scale ~/Pictures/the-witcher-3-wild-hunt-10.jpg
