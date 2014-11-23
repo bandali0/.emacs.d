@@ -15,12 +15,12 @@ bspc control --subscribe > "$PANEL_FIFO" &
 #xtitle -sf 'T%s' > "$PANEL_FIFO" &
 #clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 
-#pamixer --get-volume > /tmp/volinfo
-#if $(pamixer --get-mute) ; then
+pamixer --get-volume > /tmp/volinfo
+if $(pamixer --get-mute) ; then
     echo ⮝ > /tmp/spkicon
-#else
-#    echo ⮟ > /tmp/spkicon
-#fi
+else
+    echo ⮟ > /tmp/spkicon
+fi
 conky > "$PANEL_FIFO" &
 
 . panel_colors
