@@ -124,11 +124,11 @@ XF86AudioNext
     mpc next
 
 XF86AudioRaiseVolume
-	pamixer --increase 5;\
+	pamixer --allow-boost --increase 5;\
 	pamixer --get-volume > /tmp/volinfo
 
 XF86AudioLowerVolume
-	pamixer --decrease 5;\
+	pamixer  --allow-boost --decrease 5;\
         pamixer --get-volume > /tmp/volinfo
 
 XF86AudioMute
