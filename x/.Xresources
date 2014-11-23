@@ -3,9 +3,14 @@ URxvt.scrollBar:	false
 !URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
 
 !! Sauce Code Pro
-URxvt.font: xft:Source Code Pro for Powerline-11:hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:medium;antialias=False,xft:WenQuanYi Zen Hei-10:medium;antialias=True,xft:HanaMinA-10:medium;antialias:True,xft:HanaMinB-10:medium;antialias:True,xft:HanaMinPlus-10:medium;antialias:True
-URxvt.boldFont: xft:Source Code Pro for Powerline-11:bold;hinting=True;antialias:True,xft:WenQuanYi Bitmap Song-10:bold;antialias=False,xft:WenQuanYi Zen Hei-10:bold;antialias=True,xft:HanaMinA-10:bold;antialias:True,xft:HanaMinB-10:bold;antialias:True,xft:HanaMinPlus-10:bold;antialias:True
+URxvt.font: xft:Sauce Code Powerline-11:hinting=True;antialias:True,xft:Meslo LG M for Powerline-10:medium;antialias=False,xft:DejaVu Sans Mono for Powerline-10:medium;antialias=True,xft:HanaMinA-10:medium;antialias:True,xft:HanaMinB-10:medium;antialias:True,xft:HanaMinPlus-10:medium;antialias:True
+URxvt.boldFont: xft:Sauce Code Powerline-11:bold;hinting=True;antialias:True,xft:Meslo LG M for Powerline-10:bold;antialias=False,xft:DejaVu Sans Mono for Powerline-10:bold;antialias=True,xft:HanaMinA-10:bold;antialias:True,xft:HanaMinB-10:bold;antialias:True,xft:HanaMinPlus-10:bold;antialias:True
 URxvt.letterSpace: -1
+!-*-{ Xft settings
+Xft*dpi:              96
+Xft*antialias:        True
+Xft*hinting:          Full
+!-*-}
 
 
 URxvt.perl-ext-common:      default,clipboard,url-select,font-size
@@ -18,7 +23,7 @@ URxvt.keysym.M-v: perl:clipboard:paste
 URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
 
 !URxvt.iconFile: /usr/share/icons/Numix-Circle/scalable/apps/utilities-terminal.svg
-URxvt.iconFile: /home/amin/.icons/Moka/96x96/apps/utilities-terminal.png
+!URxvt.iconFile: /home/amin/.icons/Moka/96x96/apps/utilities-terminal.png
 
 URxvt.keysym.C-Up:     perl:font-size:increase
 URxvt.keysym.C-Down:   perl:font-size:decrease
@@ -27,3 +32,59 @@ URxvt.keysym.C-Down:   perl:font-size:decrease
 !URxvt.iso14755: false
 !URxvt.iso14755_52: false
 
+
+! base16 Atelier Heath
+! Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/heath)
+
+#define base00 #2a2a2a
+#define base01 #292329
+#define base02 #695d69
+#define base03 #776977
+#define base04 #9e8f9e
+#define base05 #ab9bab
+#define base06 #d8cad8
+#define base07 #f7f3f7
+#define base08 #cf0f38
+#define base09 #a65926
+#define base0A #bb8a35
+#define base0B #379a37
+#define base0C #159393
+#define base0D #516aec
+#define base0E #7b59c0
+#define base0F #cc33cc
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
+
+! Xcursor --------------------------------------------------------------------
+
+Xcursor.theme: Vanilla-DMZ-AA
+Xcursor.size:  22
