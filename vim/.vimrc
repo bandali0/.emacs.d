@@ -9,20 +9,20 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'hsanson/vim-android'
+"Plugin 'hsanson/vim-android'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
+"Plugin 'kien/ctrlp.vim'
+"Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Yggdroot/indentLine'
 "Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'elzr/vim-json'
-Plugin 'lervag/vim-latex'
+"Plugin 'elzr/vim-json'
+"Plugin 'lervag/vim-latex'
 call vundle#end()            " required
 " ==== </Vundle> ====
 
@@ -239,6 +239,6 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 set pastetoggle=<leader>t
 
-set conceallevel=0
-let g:vim_json_syntax_conceal = 0
-let g:indentLine_noConcealCursor=""
+"set conceallevel=0
+"let g:vim_json_syntax_conceal = 0
+"let g:indentLine_noConcealCursor=""
