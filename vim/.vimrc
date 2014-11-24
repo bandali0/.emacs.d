@@ -23,6 +23,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'elzr/vim-json'
 "Plugin 'lervag/vim-latex'
+Plugin 'tpope/vim-surround'
 call vundle#end()            " required
 " ==== </Vundle> ====
 
