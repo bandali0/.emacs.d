@@ -31,6 +31,9 @@ synclient VertScrollDelta=-237
 synclient HorizScrollDelta=-237
 sxhkd &
 
+# MPD daemon start (if no other instance exists)
+[ -z $(pidof mpd) ] && mpd &
+
 # screen powersave
 xset +dpms
 xset dpms 0 0 300
