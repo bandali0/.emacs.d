@@ -49,3 +49,8 @@ song_list_format = "{$7%a $1• $6}{%t}"
   titles_visibility = "no"
   mouse_support = "no"
   discard_colors_if_item_is_selected = "yes"
+
+user_interface = "alternative"
+alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
+alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
+
