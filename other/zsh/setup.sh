@@ -1,7 +1,7 @@
-#! /bin/bash
+#! /bin/zsh
 
 # clone my prezto fork
-git clone https://git.aminb.org/prezto $HOME/.zprezto
+git clone --recursive https://git.aminb.org/prezto $HOME/.zprezto
 
 # setup the symlinks
 setopt EXTENDED_GLOB
