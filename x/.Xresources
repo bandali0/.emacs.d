@@ -86,5 +86,5 @@ URxvt.keysym.C-Down:   perl:font-size:decrease
 
 ! Xcursor --------------------------------------------------------------------
 
-Xcursor.theme: Vanilla-DMZ-AA
-Xcursor.size:  22
+!Xcursor.theme: Vanilla-DMZ-AA
+!Xcursor.size:  22

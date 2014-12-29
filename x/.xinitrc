@@ -15,21 +15,20 @@ fi
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 xrdb -merge ~/.Xresources
-xsetroot -cursor_name left_ptr &  # set the cursor icon
+#xsetroot -cursor_name left_ptr &  # set the cursor icon
 feh --bg-scale ~/pics/fall.jpg
 xset +fp /usr/share/fonts/local
 xset +fp ~/.fonts
 xset fp rehash
 xset b off
 #xrdb -merge ~/.theme/base16-thewildhunt.dark.xresources
-compton &
+#compton &
 xbacklight -set 50
 synclient TapButton2=3
 synclient TapButton3=2
 synclient HorizTwoFingerScroll=1
 synclient VertScrollDelta=-237
 synclient HorizScrollDelta=-237
-sxhkd &
 
 # MPD daemon start (if no other instance exists)
 [ -z $(pidof mpd) ] && mpd &
@@ -42,8 +41,4 @@ xset dpms 0 0 300
 # exec startkde
 #exec startxfce4
 # ...or the Window Manager of your choice
-
-sxhkd &
-source ~/.profile
-panel &
-exec bspwm
+exec i3
