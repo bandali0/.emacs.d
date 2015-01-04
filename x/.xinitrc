@@ -41,4 +41,5 @@ xset dpms 0 0 300
 # exec startkde
 #exec startxfce4
 # ...or the Window Manager of your choice
+source ~/.profile
 exec i3
