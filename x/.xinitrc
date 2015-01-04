@@ -36,6 +36,7 @@ synclient HorizScrollDelta=-237
 # screen powersave
 xset +dpms
 xset dpms 0 0 300
+xautolock -time 5 -locker i3lock-wrapper &
 
 # exec gnome-session
 # exec startkde
