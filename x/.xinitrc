@@ -16,7 +16,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 xrdb -merge ~/.Xresources
 #xsetroot -cursor_name left_ptr &  # set the cursor icon
-feh --bg-scale ~/pics/fall.jpg
+sh ~/.fehbg &
 xset +fp /usr/share/fonts/local
 xset +fp ~/.fonts
 xset fp rehash
