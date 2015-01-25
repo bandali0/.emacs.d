@@ -42,10 +42,10 @@ set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
 
-set $default_gaps_inner 10
-set $default_gaps_outer 0
-gaps inner $default_gaps_inner
-gaps outer $default_gaps_outer
+# set $default_gaps_inner 10
+# set $default_gaps_outer 0
+# gaps inner $default_gaps_inner
+# gaps outer $default_gaps_outer
 #smart_borders on
 
 # start a terminal
