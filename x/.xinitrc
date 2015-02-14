@@ -15,14 +15,14 @@ fi
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 xrdb -merge ~/.Xresources
-#xsetroot -cursor_name left_ptr &  # set the cursor icon
+xsetroot -cursor_name left_ptr &  # set the cursor icon
 sh ~/.fehbg &
 xset +fp /usr/share/fonts/local
 xset +fp ~/.fonts
 xset fp rehash
 xset b off
 #xrdb -merge ~/.theme/base16-thewildhunt.dark.xresources
-#compton &
+compton &
 xbacklight -set 50
 synclient TapButton2=3
 synclient TapButton3=2
@@ -43,4 +43,12 @@ xautolock -time 5 -locker i3lock-wrapper &
 #exec startxfce4
 # ...or the Window Manager of your choice
 source ~/.profile
-exec i3
+sxhkd &
+panel &
+
+DEFAULTSESSION=bspwm
+case "$1" in
+    i3) exec i3;;
+     bspwm) exec bspwm;;
+     *) exec $DEFAULTSESSION ;;
+esac

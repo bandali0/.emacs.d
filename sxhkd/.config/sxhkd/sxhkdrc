@@ -84,7 +84,7 @@ super + Return
 	urxvt
 
 super + space
-	dmenu_run -fn "-*-termsyn-medium-r-normal-*-13-*-*-*-c-*-*-1" -h 20 -nb \#2f2b30 -nf \#fefdfb -sb \#cf0f38 -sf \#fefdfb
+	dmenu_run -fn "-*-termsyn-medium-r-normal-*-13-*-*-*-c-*-*-1" -h 24 -nb \#2f2b30 -nf \#fefdfb -sb \#cf0f38 -sf \#fefdfb
 
 super + x
     slimlock
