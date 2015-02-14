@@ -13,7 +13,7 @@ bspc config focus_by_distance   true
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 bspc rule -a Firefox desktop=^2 focus=on
-bspc rule -a Thunderbird desktop=^3 focus=on
 bspc rule -a apvlv desktop=^5 focus=on
+bspc rule -a emacs desktop=^3 focus=on
 
 # panel &
