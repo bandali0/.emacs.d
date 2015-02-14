@@ -29,6 +29,7 @@ synclient TapButton3=2
 synclient HorizTwoFingerScroll=1
 synclient VertScrollDelta=-237
 synclient HorizScrollDelta=-237
+setxkbmap -option caps:swapescape
 
 # MPD daemon start (if no other instance exists)
 [ -z $(pidof mpd) ] && mpd &
