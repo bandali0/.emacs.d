@@ -10,7 +10,7 @@
  ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load.
- dotspacemacs-configuration-layers '(mu4e evil git haskell c-c++ auctex)
+ dotspacemacs-configuration-layers '(mu4e evil git haskell c-c++ auctex html)
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '()
 )
@@ -27,7 +27,7 @@
  ;; List of themes, the first of the list is loaded when spacemacs starts.
  ;; Press <SPC> T n to cycle to the next theme in the list (works great
  ;; with 2 themes variants, one dark and one light)
- dotspacemacs-themes '(solarized-light solarized-dark)
+ dotspacemacs-themes '(zenburn)
  ;; The leader key
  dotspacemacs-leader-key "SPC"
  ;; Major mode leader key is a shortcut key which is the equivalent of
