@@ -6,6 +6,9 @@
 let g:smooziee_scroll_amount="100"
 let g:smooziee_scroll_interval="10"
 
+" Use <Down> and <Up> so we can get smooth scrolling for free (if enabled)
+noremap j <Down>
+noremap k <Up>
 
 " swap ; and :
  nnoremap ; :
