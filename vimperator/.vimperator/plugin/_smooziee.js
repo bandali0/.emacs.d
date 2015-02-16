@@ -81,7 +81,7 @@ var INFO = xml`
 let self = liberator.plugins.smooziee = (function(){
 
   // Mappings  {{{
-  mappings.addUserMap(
+/*  mappings.addUserMap(
     [modes.NORMAL],
     ["j"],
     "Smooth scroll down",
@@ -103,6 +103,7 @@ let self = liberator.plugins.smooziee = (function(){
       count: true
     }
   );
+*/
 
   mappings.addUserMap(
     [modes.NORMAL],

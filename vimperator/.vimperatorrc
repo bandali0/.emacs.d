@@ -28,4 +28,4 @@ noremap X u
 " noremap d <C-d>
 " noremap u <C-u>
 
-colorscheme seaweed
+colorscheme indigo
