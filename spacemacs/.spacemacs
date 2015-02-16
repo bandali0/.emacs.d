@@ -87,6 +87,7 @@ This function is called at the very end of Spacemacs initialization."
   (setq powerline-default-separator nil)
   (setq TeX-PDF-mode t
         Tex-command-default 'TeX)
+  (spacemacs/set-evil-cursor-color 'normal "#FFFFEF")
 )
 
 ;; Custom variables
