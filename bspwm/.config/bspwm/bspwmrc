@@ -10,10 +10,11 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config focus_by_distance   true
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV V
 
 bspc rule -a Firefox desktop=^2 focus=on
-bspc rule -a apvlv desktop=^5 focus=on
 bspc rule -a emacs desktop=^3 focus=on
+bspc rule -a apvlv desktop=^5 focus=on
+bspc rule -a evince desktop=^5 focus=on
 
 # panel &
