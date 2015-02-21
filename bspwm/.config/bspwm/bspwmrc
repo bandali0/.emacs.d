@@ -3,17 +3,17 @@
 bspc config border_width        5
 bspc config window_gap         	10
 
-bspc config top_padding 20
+bspc config top_padding 24
 
 bspc config split_ratio         0.5
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config focus_by_distance   true
 
-bspc monitor -d I II III IV V
+bspc monitor -d web code term misc1 misc2
 
-bspc rule -a Firefox desktop=^2 focus=on
-bspc rule -a emacs desktop=^3 focus=on
+bspc rule -a Firefox desktop=^1 focus=on
+bspc rule -a emacs desktop=^2 focus=on
 bspc rule -a apvlv desktop=^5 focus=on
 bspc rule -a evince desktop=^5 focus=on
 
