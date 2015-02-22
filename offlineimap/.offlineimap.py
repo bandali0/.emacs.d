@@ -10,6 +10,15 @@ def mailpasswd(acct):
     except subprocess.CalledProcessError:
         return ""
 
+def mailuser(acct):
+    acct = os.path.basename(acct)
+    path = "/home/amin/.passwd/%s" % acct
+    args = ["cat", path]
+    try:
+        return subprocess.check_output(args).strip()
+    except subprocess.CalledProcessError:
+        return ""
+
 def prime_gpg_agent():
   ret = False
   i = 1
