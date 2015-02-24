@@ -71,6 +71,8 @@
  ;; specified with an installed package.
  ;; Not used for now.
  dotspacemacs-default-package-repository nil
+ ;; Disable setting the cursor color according to states
+ dotspacemacs-colorize-cursor-according-to-state nil
  )
 
 ;; Initialization Hooks
@@ -87,7 +89,6 @@ This function is called at the very end of Spacemacs initialization."
   (setq powerline-default-separator nil)
   (setq TeX-PDF-mode t
         Tex-command-default 'TeX)
-  (spacemacs/set-evil-cursor-color 'normal "#FFFFEF")
 )
 
 ;; Custom variables
