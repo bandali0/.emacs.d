@@ -1,4 +1,4 @@
-# copy to /usr/lib/systemd/system/ (at least on Arch Linux)
+# copy to /etc/systemd/system/ (at least on Arch Linux)
 
 [Unit]
 Description=Load/Save Screen Backlight Brightness of backlight:mba6x_backlight
