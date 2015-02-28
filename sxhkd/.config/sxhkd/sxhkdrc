@@ -124,17 +124,10 @@ XF86AudioNext
     mpc next
 
 XF86AudioRaiseVolume
-	pamixer --allow-boost --increase 5;\
-	pamixer --get-volume > /tmp/volinfo
+	pamixer --allow-boost --increase 5
 
 XF86AudioLowerVolume
-	pamixer  --allow-boost --decrease 5;\
-        pamixer --get-volume > /tmp/volinfo
+	pamixer  --allow-boost --decrease 5
 
 XF86AudioMute
-	pamixer --toggle-mute;\
-        if $(pamixer --get-mute) ; then;\
-        echo ⮝ > /tmp/spkicon;\
-        else;\
-        echo ⮟ > /tmp/spkicon;\
-        fi
+	pamixer --toggle-mute
