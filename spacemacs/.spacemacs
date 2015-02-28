@@ -10,7 +10,7 @@
  ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load.
- dotspacemacs-configuration-layers '(mu4e evil git haskell c-c++ auctex html)
+ dotspacemacs-configuration-layers '(mu4e evil git c-c++ auctex html)
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '()
 )
@@ -73,6 +73,12 @@
  dotspacemacs-default-package-repository nil
  ;; Disable setting the cursor color according to states
  dotspacemacs-colorize-cursor-according-to-state nil
+ ;; font
+ dotspacemacs-default-font '("Source Code Pro for Powerline"
+                                          :size 14
+                                          :weight normal
+                                          :width normal
+                                          :powerline-scale 1.1)
  )
 
 ;; Initialization Hooks
