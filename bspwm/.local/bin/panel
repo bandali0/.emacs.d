@@ -25,6 +25,6 @@ conky > "$PANEL_FIFO" &
 
 . panel_colors
 
-cat "$PANEL_FIFO" | panel_bar | bar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY1","$PANEL_FONT_FAMILY2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+cat "$PANEL_FIFO" | panel_bar | bar-aint-recursive -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY1","$PANEL_FONT_FAMILY2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
 wait
