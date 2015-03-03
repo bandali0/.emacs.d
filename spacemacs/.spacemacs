@@ -10,7 +10,7 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '()
+   dotspacemacs-configuration-layers '(mu4e evil git c-c++ auctex html clojure)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -29,21 +29,17 @@ before layers configuration."
    ;; banner with the corresponding index is used, if the value is `random'
    ;; then the banner is chosen randomly among the available banners, if
    ;; the value is nil then no banner is displayed.
-   dotspacemacs-startup-banner 'random
+   dotspacemacs-startup-banner 001
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn)
+   dotspacemacs-themes '(zenburn)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -95,7 +91,9 @@ before layers configuration."
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now.
-   dotspacemacs-default-package-repository nil)
+   dotspacemacs-default-package-repository nil
+   ;; Disable setting the cursor color according to states
+   dotspacemacs-colorize-cursor-according-to-state nil)
   ;; User initialization goes here
   )
 
@@ -103,7 +101,31 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (setq powerline-default-separator nil)
+  (setq TeX-PDF-mode t
+        Tex-command-default 'TeX)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ac-ispell-requires 4)
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(ring-bell-function (quote ignore) t)
+ '(send-mail-function (quote smtpmail-send-it)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
