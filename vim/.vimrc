@@ -243,3 +243,5 @@ set pastetoggle=<leader>t
 "set conceallevel=0
 "let g:vim_json_syntax_conceal = 0
 "let g:indentLine_noConcealCursor=""
+" latex mode settings
+let g:Tex_DefaultTargetFormat = "pdf"
