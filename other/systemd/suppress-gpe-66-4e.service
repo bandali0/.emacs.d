@@ -4,7 +4,7 @@
 Description=KernGPE66
 
 [Service]
-ExecStart=/bin/sh -c "echo disable > /sys/firmware/acpi/interrupts/gpe66"
+ExecStart=/bin/sh -c "echo disable > /sys/firmware/acpi/interrupts/gpe66 && echo disable > /sys/firmware/acpi/interrupts/gpe4E"
 Type=oneshot
 
 [Install]
