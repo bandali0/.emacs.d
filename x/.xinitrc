@@ -59,13 +59,13 @@ xautolock -time 5 -locker "dm-tool lock" &
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
-# source ~/.profile
-# sxhkd &
-# panel &
+source ~/.profile
+sxhkd &
+panel &
 
-# DEFAULTSESSION=bspwm
-# case "$1" in
-#     i3) exec i3;;
-#      bspwm) exec bspwm;;
-#      *) exec $DEFAULTSESSION ;;
-# esac
+DEFAULTSESSION=bspwm
+case "$1" in
+    i3) exec i3;;
+     bspwm) exec bspwm;;
+     *) exec $DEFAULTSESSION ;;
+esac
