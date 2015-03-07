@@ -52,7 +52,7 @@ xset +dpms
 xset dpms 0 0 300
 
 # lock the screen using lightdm after 5 minutes
-xautolock -time 5 -locker "dm-tool lock" &
+xautolock -time 5 -locker "slimlock" &
 
 
 # exec gnome-session

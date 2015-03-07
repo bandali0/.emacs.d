@@ -14,7 +14,6 @@ bspc monitor -d web code term misc1 misc2
 
 bspc rule -a Firefox desktop=^1 focus=on
 bspc rule -a emacs desktop=^2 focus=on
-bspc rule -a apvlv desktop=^5 focus=on
-bspc rule -a evince desktop=^5 focus=on
+bspc rule -a zathura desktop=^5 focus=on
 
 # panel &
