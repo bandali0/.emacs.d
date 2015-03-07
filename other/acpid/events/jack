@@ -1,0 +1,3 @@
+# Pass all events to our one handler script
+event=jack/*
+action=/etc/acpi/jack.sh %e

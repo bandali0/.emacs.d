@@ -1,5 +1,5 @@
 if $(pamixer --get-mute) ; then
 echo ⮝
 else
-echo ⮟
+cat /tmp/spkicon
 fi
