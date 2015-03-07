@@ -1,0 +1,9 @@
+#!/bin/bash
+
+lang="$(setxkbmap -print | grep xkb_symbols | cut -d'+' -f 2)"
+
+if [ "$lang" = "us" ]; then
+    setxkbmap ir
+else
+    setxkbmap us
+fi

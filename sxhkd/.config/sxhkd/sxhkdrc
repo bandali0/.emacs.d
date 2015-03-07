@@ -137,3 +137,6 @@ XF86AudioLowerVolume
 
 XF86AudioMute
 	pamixer --toggle-mute
+
+XF86LaunchA
+  toggle-layout
