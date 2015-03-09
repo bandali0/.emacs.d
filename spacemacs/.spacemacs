@@ -104,6 +104,12 @@ layers configuration."
   (setq powerline-default-separator nil)
   (setq TeX-PDF-mode t
         Tex-command-default 'TeX)
+  (setq undo-tree-auto-save-history t
+        undo-tree-history-directory-alist
+        `(("." . ,(concat spacemacs-cache-directory "undo"))))
+  (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
+    (make-directory (concat spacemacs-cache-directory "undo")))
+
   (setq TeX-view-program-selection
         '(((output-dvi style-pstricks)
           "dvips and gv")
