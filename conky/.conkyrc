@@ -6,4 +6,4 @@ total_run_times 0
 use_spacer none
 
 TEXT
-S %{F\#ffcc6666}⮠ %{F\#ffffffff}${wireless_essid wlp3s0}   %{F\#ffcc6666}${exec ~/.local/bin/spk-icon} %{F\#ffffffff}${exec pamixer --get-volume}%%   %{F\#ffcc6666}⮏ %{F\#ffffffff}${execi 30 cat /sys/class/power_supply/BAT0/capacity}%% (${execi 30 acpi | grep '[0-9]\{2\}:[0-9]\{2\}' -o})   %{F\#ffcc6666}⮖ %{F\#ffffffff}${time %H:%M}
+S %{F\#ffcc6666}⮢ %{F\#ffffffff}${exec setxkbmap -print | grep xkb_symbols | cut -d'+' -f 2}   %{F\#ffcc6666}⮷ %{F\#ffffffff}${wireless_essid wlp3s0}   %{F\#ffcc6666}${exec ~/.local/bin/spk-icon} %{F\#ffffffff}${exec pamixer --get-volume}%%   %{F\#ffcc6666}⮏ %{F\#ffffffff}${execi 30 cat /sys/class/power_supply/BAT0/capacity}%% (${execi 30 acpi | grep '[0-9]\{2\}:[0-9]\{2\}' -o})   %{F\#ffcc6666}⮖ %{F\#ffffffff}${time %H:%M}
