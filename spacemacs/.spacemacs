@@ -104,6 +104,19 @@ layers configuration."
   (setq powerline-default-separator nil)
   (setq TeX-PDF-mode t
         Tex-command-default 'TeX)
+  (setq TeX-view-program-selection
+        '(((output-dvi style-pstricks)
+          "dvips and gv")
+         (output-dvi "xdvi")
+         (output-pdf "zathura")
+         (output-html "xdg-open")))
+
+  (setq TeX-view-program-list
+        '(("zathura"
+           ("zathura" (mode-io-correlate "-sync.sh")
+            " "
+            (mode-io-correlate "%n:1:%t ")
+            "%o"))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
