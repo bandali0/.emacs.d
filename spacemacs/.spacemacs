@@ -123,6 +123,10 @@ layers configuration."
             " "
             (mode-io-correlate "%n:1:%t ")
             "%o"))))
+
+  (advice-add #'magit-key-mode-popup-committing :after
+              (lambda ()
+                (magit-key-mode-toggle-option (quote committing) "--verbose")))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
