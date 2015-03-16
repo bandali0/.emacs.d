@@ -3,7 +3,7 @@
 bspc config border_width        5
 bspc config window_gap         	10
 
-bspc config top_padding 24
+bspc config top_padding 30
 
 bspc config split_ratio         0.5
 bspc config borderless_monocle  true
@@ -15,5 +15,6 @@ bspc monitor -d web code term misc1 misc2
 bspc rule -a Firefox desktop=^1 focus=on
 bspc rule -a emacs desktop=^2 focus=on
 bspc rule -a zathura desktop=^5 focus=on
+bspc rule -a xfce4-appfinder floating=on
 
 # panel &

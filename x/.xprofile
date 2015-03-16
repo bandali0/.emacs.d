@@ -18,16 +18,16 @@ xrdb -merge ~/.Xresources
 xrdb -merge ~/.base16-tomorrow.dark.256.xresources
 
 # set the cursor icon
-xsetroot -cursor_name left_ptr &
+# xsetroot -cursor_name left_ptr &
 
 # set the wallpaper
-sh ~/.fehbg &
+# sh ~/.fehbg &
 
 # font stuff
-xset +fp /usr/share/fonts/local
-xset +fp ~/.fonts
-xset fp rehash
-xset b off
+# xset +fp /usr/share/fonts/local
+# xset +fp ~/.fonts
+# xset fp rehash
+# xset b off
 
 # the compositor
 compton &
@@ -48,24 +48,27 @@ setxkbmap -option caps:swapescape
 [ -z $(pidof mpd) ] && mpd &
 
 # screen powersave
-xset +dpms
-xset dpms 0 0 300
+# xset +dpms
+# xset dpms 0 0 300
 
 # lock the screen using lightdm after 5 minutes
-xautolock -time 5 -locker "slimlock" &
+# xautolock -time 5 -locker "slimlock" &
 
 
 # exec gnome-session
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
-source ~/.profile
+# source ~/.profile
+# bspwm &
 sxhkd &
-panel &
+sleep 1 && pnmixer &
+# panel &
 
-DEFAULTSESSION=bspwm
-case "$1" in
-    i3) exec i3;;
-     bspwm) exec bspwm;;
-     *) exec $DEFAULTSESSION ;;
-esac
+# DEFAULTSESSION=bspwm
+# case "$1" in
+#     i3) exec i3;;
+#      bspwm) exec bspwm;;
+#      *) exec $DEFAULTSESSION ;;
+# esac
+

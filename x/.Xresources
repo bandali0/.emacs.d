@@ -22,7 +22,7 @@ URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
 
-!URxvt.iconFile: /usr/share/icons/Numix-Circle/scalable/apps/utilities-terminal.svg
+URxvt.iconFile: /usr/share/icons/Moka/96x96/apps/utilities-terminal.png
 !URxvt.iconFile: /home/amin/.icons/Moka/96x96/apps/utilities-terminal.png
 
 URxvt.keysym.C-Up:     perl:font-size:increase
