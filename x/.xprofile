@@ -60,7 +60,7 @@ setxkbmap -option caps:swapescape
 # exec startxfce4
 # ...or the Window Manager of your choice
 # source ~/.profile
-# bspwm &
+bspwm &
 sxhkd &
 sleep 1 && pnmixer &
 # panel &
