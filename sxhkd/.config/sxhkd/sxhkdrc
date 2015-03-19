@@ -140,3 +140,6 @@ XF86AudioMute
 
 XF86LaunchA
   toggle-layout
+
+XF86LaunchB
+  toggle-mouse

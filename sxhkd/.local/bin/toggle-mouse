@@ -1,0 +1,11 @@
+#!/bin/bash
+
+touchpad_off="$(synclient -l | grep TouchpadOff | cut -d'=' -f 2 | xargs)"
+
+if [ "$touchpad_off" = "0" ]; then
+    synclient TouchpadOff=1
+    unclutter -idle 1 &
+else
+    synclient TouchpadOff=0
+    killall unclutter
+fi
