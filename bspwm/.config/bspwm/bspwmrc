@@ -10,7 +10,7 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config focus_by_distance   true
 
-bspc monitor -d web code term misc1 misc2
+bspc monitor -d web code term iv v vi vii viii ix x
 
 bspc rule -a Firefox desktop=^1 focus=on
 bspc rule -a emacs desktop=^2 focus=on
