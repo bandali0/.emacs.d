@@ -1,5 +1,5 @@
 favorites=exo-terminal-emulator.desktop,exo-file-manager.desktop,exo-mail-reader.desktop,exo-web-browser.desktop
-recent=emacs.desktop,chromium.desktop,Thunar.desktop,android-studio.desktop,firefox.desktop,xfce4-power-manager-settings.desktop,xfce-session-settings.desktop,android-sdk.desktop,exo-preferred-applications.desktop,xfce4-taskmanager.desktop
+recent=Thunar.desktop,chromium.desktop,firefox.desktop,xfce-settings-manager.desktop,xfce4-taskmanager.desktop,emacs.desktop,android-studio.desktop,xfce4-power-manager-settings.desktop,xfce-session-settings.desktop,android-sdk.desktop
 button-title=Applications
 button-icon=distributor-logo-archlinux
 button-single-row=false
