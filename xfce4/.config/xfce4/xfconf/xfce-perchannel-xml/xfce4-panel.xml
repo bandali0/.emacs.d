@@ -17,7 +17,7 @@
         <value type="int" value="6"/>
         <value type="int" value="8"/>
         <value type="int" value="7"/>
-        <value type="int" value="5"/>
+        <value type="int" value="1"/>
       </property>
       <property name="autohide-behavior" type="uint" value="0"/>
       <property name="background-style" type="uint" value="0"/>
@@ -39,10 +39,6 @@
       <property name="rows" type="uint" value="1"/>
       <property name="miniature-view" type="bool" value="true"/>
     </property>
-    <property name="plugin-5" type="string" value="clock">
-      <property name="digital-format" type="string" value="%I:%M %p"/>
-      <property name="mode" type="uint" value="2"/>
-    </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="names-visible" type="array">
         <value type="string" value="pnmixer"/>
@@ -56,5 +52,6 @@
     <property name="plugin-8" type="string" value="power-manager-plugin"/>
     <property name="plugin-9" type="string" value="xkb-plugin"/>
     <property name="plugin-11" type="string" value="whiskermenu"/>
+    <property name="plugin-1" type="string" value="xfce4-orageclock-plugin"/>
   </property>
 </channel>
