@@ -10,7 +10,7 @@
     <property name="power-button-action" type="uint" value="3"/>
     <property name="critical-power-level" type="uint" value="3"/>
     <property name="inactivity-sleep-mode-on-battery" type="uint" value="1"/>
-    <property name="inactivity-on-battery" type="uint" value="15"/>
+    <property name="inactivity-on-battery" type="uint" value="14"/>
     <property name="inactivity-on-ac" type="uint" value="20"/>
     <property name="brightness-on-battery" type="uint" value="9"/>
     <property name="blank-on-battery" type="int" value="5"/>
