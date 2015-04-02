@@ -22,9 +22,9 @@
       <property name="autohide-behavior" type="uint" value="0"/>
       <property name="background-style" type="uint" value="0"/>
       <property name="background-color" type="array">
-        <value type="uint" value="9252"/>
-        <value type="uint" value="9252"/>
-        <value type="uint" value="9252"/>
+        <value type="uint" value="13364"/>
+        <value type="uint" value="13364"/>
+        <value type="uint" value="13364"/>
         <value type="uint" value="65535"/>
       </property>
       <property name="background-alpha" type="uint" value="100"/>
