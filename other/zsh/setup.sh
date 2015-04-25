@@ -2,7 +2,7 @@
 
 # clone my prezto fork
 git clone --recursive https://github.com/aminb/prezto.git $HOME/.zprezto
-cd .zprezto
+cd $HOME/.zprezto
 git remote set-url origin git@github.com:aminb/prezto.git
 
 # setup the symlinks
