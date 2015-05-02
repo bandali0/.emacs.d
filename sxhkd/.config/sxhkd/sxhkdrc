@@ -37,7 +37,7 @@ super + m
 super + {_,shift + }{h,j,k,l}
 	bspc window -{f,s} {left,down,up,right}
 
-super + {_,shift + }c
+super + {_,shift + }slash
 	bspc window -f {next,prev}
 
 super + {comma,period}
@@ -94,6 +94,9 @@ super + e
 
 super + r
     firefox
+
+super + c
+    chromium
 
 # make sxhkd reload its configuration files:
 super + Escape
