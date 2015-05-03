@@ -29,7 +29,7 @@
      auctex
      html
      clojure
-     (haskell :variables '(haskell-enable-hindent-style "johan-tibell"
+     (haskell :variables '(haskell-enable-hindent-style "chris-done"
                                                         haskell-enable-shm-support t))
      themes-megapack
      )
