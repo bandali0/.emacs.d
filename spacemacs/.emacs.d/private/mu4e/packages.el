@@ -45,6 +45,10 @@ which require an initialization must be listed explicitly in the list.")
     mu4e-drafts-folder "/aminb/Drafts"
     mu4e-trash-folder "/aminb/Trash"
     user-mail-address (get-passwd-file "aminb-mail")
+    mu4e-compose-signature
+    (concat
+     "Amin Bandali\n"
+     "<aminb.org>\n")
     smtpmail-default-smtp-server "mail.aminb.org"
     smtpmail-local-domain "aminb.org"
     smtpmail-smtp-server "mail.aminb.org"
