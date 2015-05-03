@@ -46,9 +46,6 @@ synclient HorizScrollDelta=-237
 # swap caps lock and esc
 setxkbmap -option caps:swapescape
 
-# fix the tilde key on MacBook Air
-xmodmap ~/.Xmodmap
-
 # MPD daemon start (if no other instance exists)
 [ -z $(pidof mpd) ] && mpd &
 
