@@ -3,20 +3,28 @@ URxvt.scrollBar:	false
 !URxvt.boldFont: -*-termsyn-bold-*-*-*-14-*-*-*-*-*-*-*
 
 !! Sauce Code Pro
-URxvt.font: xft:Source Code Pro-10:hinting=True;antialias:True,xft:Meslo LG M for Powerline-10:medium;antialias=False,xft:DejaVu Sans Mono for Powerline-10:medium;antialias=True,xft:Unifont-10:medium;antialias:True
-URxvt.boldFont: xft:Source Code Pro-10:bold;hinting=True;antialias:True,xft:Meslo LG M for Powerline-10:bold;antialias=False,xft:DejaVu Sans Mono for Powerline-10:bold;antialias=True,xft:Unifont-10:bold;antialias:True
-!URxvt.letterSpace: -1
+URxvt.font: xft:Source Code Pro-11:hinting=True;antialias:True,xft:Meslo LG M for Powerline-10:medium;antialias=False,xft:DejaVu Sans Mono for Powerline-10:medium;antialias=True,xft:Unifont-10:medium;antialias:True
+URxvt.boldFont: xft:Source Code Pro-11:bold;hinting=True;antialias:True,xft:Meslo LG M for Powerline-10:bold;antialias=False,xft:DejaVu Sans Mono for Powerline-10:bold;antialias=True,xft:Unifont-10:bold;antialias:True
+URxvt.letterSpace: -1
 !-*-{ Xft settings
 Xft*dpi:              96
 Xft*antialias:        True
 Xft*hinting:          Full
 !-*-}
 
+URxvt.depth:                32
+URxvt.loginShell:           true
+URxvt.saveLines:            1000
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+URxvt.scrollStyle:          rxvt
 
 URxvt.perl-ext-common:      default,clipboard,url-select,font-size
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
 URxvt.iso14755 : false
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
