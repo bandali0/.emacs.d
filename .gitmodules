@@ -1,0 +1,3 @@
+[submodule "pentadactyl/.pentadactyl/colors/pentadactyl-solarized"]
+	path = pentadactyl/.pentadactyl/colors/pentadactyl-solarized
+	url = https://github.com/claytron/pentadactyl-solarized

@@ -4,7 +4,7 @@ loadplugins '\.(js|penta)$'
 group user
 set cdpath=''
 
-colorscheme zenburn
+colorscheme solarized-dark
 
 "" scroll more
 nmap -builtin j 5j
