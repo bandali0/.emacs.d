@@ -58,4 +58,8 @@ nmap -builtin : ;
 "" duckduckgo
 set defsearch=duckduckgo
 
+"" passthrough keys
+set passkeys+=reddit.com:jkiufnp<CR>
+set passkeys+=youtube.com:jklm
+
 " vim: set ft=pentadactyl:
