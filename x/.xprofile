@@ -67,7 +67,7 @@ setxkbmap -option caps:swapescape
 # source ~/.profile
 bspwm &
 sxhkd &
-sleep 1 && pnmixer &
+sleep 2 && pnmixer &
 # panel &
 
 # DEFAULTSESSION=bspwm
