@@ -31,6 +31,8 @@
      clojure
      (haskell :variables '(haskell-enable-hindent-style "chris-done"
                                                         haskell-enable-shm-support t))
+     emacs-lisp
+     rust
      themes-megapack
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
