@@ -1,31 +1,28 @@
-" ==== <Vundle> ====
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"set nocompatible              " be iMproved, required
+"filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-"Plugin 'hsanson/vim-android'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-"Plugin 'kien/ctrlp.vim'
-"Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'Raimondi/delimitMate'
-Plugin 'Yggdroot/indentLine'
-"Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-"Plugin 'altercation/vim-colors-solarized'
-Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'elzr/vim-json'
-"Plugin 'lervag/vim-latex'
-Plugin 'tpope/vim-surround'
-call vundle#end()            " required
-" ==== </Vundle> ====
+Plug 'kien/rainbow_parentheses.vim'
+"Plug 'hsanson/vim-android'
+Plug 'scrooloose/nerdcommenter'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'kien/ctrlp.vim'
+"Plug 'tacahiroy/ctrlp-funky'
+Plug 'Raimondi/delimitMate'
+Plug 'Yggdroot/indentLine'
+"Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'terryma/vim-multiple-cursors'
+"Plug 'elzr/vim-json'
+"Plug 'lervag/vim-latex'
+Plug 'tpope/vim-surround'
+Plug 'rust-lang/rust.vim'
+Plug 'phildawes/racer'
+
+call plug#end()
+
 
 " Use the Solarized Dark theme
 set background=dark
@@ -245,3 +242,7 @@ set pastetoggle=<leader>t
 "let g:indentLine_noConcealCursor=""
 " latex mode settings
 let g:Tex_DefaultTargetFormat = "pdf"
+
+set hidden
+let g:racer_cmd = "racer"
+let $RUST_SRC_PATH=expand('~/misc/rs/rust/src/')
