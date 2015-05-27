@@ -16,11 +16,11 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 xrdb -merge ~/.Xresources
 # xrdb -merge ~/.base16-tomorrow.dark.256.xresources
-# xrdb -merge ~/.gotham.xresources
+xrdb -merge ~/.gotham.xresources
 # xrdb -merge ~/.hybrid.xresources
 # xrdb -merge ~/.dawn.xresources
 # xrdb -merge ~/.zenburn.xresources
-xrdb -merge ~/.solarized-dark.xresources
+# xrdb -merge ~/.solarized-dark.xresources
 
 # set the cursor icon
 # xsetroot -cursor_name left_ptr &

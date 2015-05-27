@@ -20,13 +20,14 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
 Plug 'phildawes/racer'
+Plug 'whatyouhide/vim-gotham'
 
 call plug#end()
 
 
 " Use the Solarized Dark theme
 set background=dark
-"colorscheme solarized
+colorscheme gotham
 
 " Make Vim more useful
 set nocompatible
