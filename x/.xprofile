@@ -59,6 +59,8 @@ setxkbmap -option caps:swapescape
 # lock the screen using lightdm after 5 minutes
 # xautolock -time 5 -locker "slimlock" &
 
+# adjust the keypress delays
+xset r rate 200 20
 
 # exec gnome-session
 # exec startkde
