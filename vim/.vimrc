@@ -104,10 +104,10 @@ set title
 " Show the (partial) command as it’s being typed
 set showcmd
 " Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
+"if exists("&relativenumber")
+	"set relativenumber
+	"au BufReadPost * set relativenumber
+"endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -140,15 +140,6 @@ endif
  vnoremap ; :
  vnoremap : ;
 
-" relative line number stuff
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <leader>n :call NumberToggle()<cr>
 ":au FocusLost * :set number
 ":au FocusGained * :set relativenumber
 autocmd InsertEnter * :set number
