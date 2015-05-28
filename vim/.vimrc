@@ -177,8 +177,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 set shiftwidth=4
 set expandtab
 
-"let g:ctrlp_map = '<space>'
-let g:ctrlp_map = '<leader>p'
+let g:ctrlp_map = '<space>'
+"let g:ctrlp_map = '<leader>p'
 set wildignore+=*/build/**
 let g:android_sdk_path= '/Applications/Android\ Studio.app/sdk/'
 let g:android_adb_tool= '/Applications/Android\ Studio.app/sdk/platform-tools/adb'
@@ -236,7 +236,7 @@ let g:indentLine_char = '¦'
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-set pastetoggle=<leader>t
+set pastetoggle=<leader>p
 
 "set conceallevel=0
 "let g:vim_json_syntax_conceal = 0
