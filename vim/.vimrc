@@ -224,8 +224,14 @@ let g:indentLine_char = '¦'
 "
 
 " change cursor shape based on mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if &term =~ "xterm\\|rxvt"
+  " use a solid vertical bar in insert mode
+  let &t_SI .= "\<Esc>[6 q"
+  " use a solid block otherwise
+  let &t_EI .= "\<Esc>[2 q"
+endif
+" eliminite the delay when switching modes
+set ttimeoutlen=0
 
 set pastetoggle=<leader>p
 
