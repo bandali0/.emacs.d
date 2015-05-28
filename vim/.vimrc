@@ -120,8 +120,8 @@ function! StripWhitespace()
 	call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" Save a file as root (,w)
+noremap <leader>w :w !sudo tee % > /dev/null<CR>
 
 " Automatic commands
 if has("autocmd")
