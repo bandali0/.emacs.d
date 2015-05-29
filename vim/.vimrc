@@ -21,6 +21,7 @@ Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
 Plug 'phildawes/racer'
 Plug 'whatyouhide/vim-gotham'
+"Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
 
 call plug#end()
 
@@ -244,3 +245,6 @@ let g:Tex_DefaultTargetFormat = "pdf"
 set hidden
 let g:racer_cmd = "racer"
 let $RUST_SRC_PATH=expand('~/misc/rs/rust/src/')
+
+noremap \ :q<CR>
+
