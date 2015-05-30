@@ -33,6 +33,8 @@
                                                         haskell-enable-shm-support t))
      emacs-lisp
      rust
+     rust-lang
+     shell
      themes-megapack
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
