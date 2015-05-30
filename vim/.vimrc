@@ -143,9 +143,9 @@ endif
 
 ":au FocusLost * :set number
 ":au FocusGained * :set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertEnter * :set norelativenumber
-autocmd InsertLeave * :set relativenumber
+"autocmd InsertEnter * :set number
+"autocmd InsertEnter * :set norelativenumber
+"autocmd InsertLeave * :set relativenumber
 "autocmd InsertLeave * :set nonumber
 
 " Rainbow Parantheses
