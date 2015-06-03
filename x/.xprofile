@@ -67,6 +67,9 @@ xset r rate 200 20
 # exec startxfce4
 # ...or the Window Manager of your choice
 # source ~/.profile
+xfsettingsd &
+xfdesktop --disable-wm-check &
+xfce4-panel --disable-wm-check &
 bspwm &
 sxhkd &
 sleep 2 && pnmixer &
