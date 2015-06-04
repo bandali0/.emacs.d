@@ -84,7 +84,7 @@ super + Return
 	urxvt
 
 super + space
-	xfce4-popup-whiskermenu
+	rofi -show run
 
 super + x
     slimlock
