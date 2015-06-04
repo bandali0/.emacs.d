@@ -62,4 +62,7 @@ set defsearch=duckduckgo
 set passkeys+=reddit.com:jkifpaz<CR>
 set passkeys+=youtube.com:jklm
 
+"" show toolbar
+set go+=T
+
 " vim: set ft=pentadactyl:
