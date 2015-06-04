@@ -35,7 +35,7 @@ xrdb -merge ~/.gotham.xresources
 # xset b off
 
 # the compositor
-compton &
+#compton &
 
 # xbacklight -set 50
 
