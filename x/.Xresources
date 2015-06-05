@@ -12,7 +12,7 @@ Xft*antialias:        True
 Xft*hinting:          Full
 !-*-}
 
-URxvt.depth:                32
+URxvt.depth:                0
 URxvt.loginShell:           true
 URxvt.saveLines:            1000
 URxvt.internalBorder:       3
