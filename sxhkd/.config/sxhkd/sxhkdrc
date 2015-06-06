@@ -84,7 +84,7 @@ super + Return
 	urxvt
 
 super + space
-	rofi -show run
+	rofi -show run -font "Source Code Pro 11" -fg "#195465" -bg "#0A0F14" -hlfg "#EDB54B" -hlbg "#0A0F14" -o 85
 
 super + x
     slimlock
