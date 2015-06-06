@@ -37,7 +37,10 @@ nmap -builtin p P
 nmap -builtin P p
 
 "" private mode
-nmap -builtin ,p <C-S-p>
+nmap -builtin ,pp <C-S-p>
+
+"" toggle pinned state
+nmap -builtin ,pi :pin!<CR>
 
 "" open addons manager
 nmap -builtin ,a :dialog addons<CR>
