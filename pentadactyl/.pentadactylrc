@@ -9,6 +9,8 @@ colorscheme solarized-dark
 "" scroll more
 nmap -builtin j 5j
 nmap -builtin k 5k
+nmap -builtin h 5h
+nmap -builtin l 5l
 
 "" w/e switch tabs
 nmap -builtin J <C-p>
