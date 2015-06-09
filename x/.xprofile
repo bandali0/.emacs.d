@@ -72,6 +72,7 @@ xfdesktop --disable-wm-check &
 xfce4-panel --disable-wm-check &
 bspwm &
 sxhkd &
+emacs --daemon &
 sleep 2 && pnmixer &
 # panel &
 
@@ -81,4 +82,3 @@ sleep 2 && pnmixer &
 #      bspwm) exec bspwm;;
 #      *) exec $DEFAULTSESSION ;;
 # esac
-
