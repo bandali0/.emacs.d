@@ -5,5 +5,10 @@ mpd/*/*/pid
 mpd/*/*/state
 mpd/*/*/sticker.sql
 
+# ranger files
+ranger/*/*/history
+ranger/*/*/bookmarks
+ranger/*/*/tagged
+
 # ncmpcpp
 ncmpcpp/*/error.log
