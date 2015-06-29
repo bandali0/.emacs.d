@@ -93,7 +93,7 @@ super + x
     slimlock
 
 super + e
-    em
+    emacs
 
 super + r
     firefox
