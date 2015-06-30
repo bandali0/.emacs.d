@@ -13,8 +13,8 @@ nmap -builtin h 5h
 nmap -builtin l 5l
 
 "" w/e switch tabs
-nmap -builtin J <C-p>
-nmap -builtin K <C-n>
+nmap -builtin K <C-p>
+nmap -builtin J <C-n>
 
 "" U list closed tabs
 nmap -builtin U :undo<Space>
@@ -69,5 +69,8 @@ set passkeys+=youtube.com:jklm
 
 "" show toolbar
 set go+=T
+
+"" hide tabline
+set showtabline=never
 
 " vim: set ft=pentadactyl:
