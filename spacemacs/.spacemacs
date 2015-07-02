@@ -32,7 +32,7 @@
      latex
      ;; (haskell :variables '(haskell-enable-hindent-style "chris-done"
      ;;                                                    haskell-enable-shm-support t))
-     (rcirc :variables rcirc-enable-authinfo-support t)
+     erc
      version-control
      )
    ;; List of additional packages that will be installed wihout being
@@ -207,20 +207,6 @@ layers configuration."
 
   ;; enable when using zenburn
   ;; (custom-set-faces '(evil-search-highlight-persist-highlight-face ((t (:background "#5F5F5F")))))
-
-  ;; rcirc znc config
-  (setq rcirc-server-alist
-        ;; This will replace :auth with the correct thing, see the doc for that function
-        '(("aminb.org"
-           :host "aminb.org"
-           :port "6697"
-           :encryption tls
-           :auth "aminb/freenode")
-          ("aminb.org"
-           :host "aminb.org"
-           :port "6697"
-           :encryption tls
-           :auth "aminb/mozilla")))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
