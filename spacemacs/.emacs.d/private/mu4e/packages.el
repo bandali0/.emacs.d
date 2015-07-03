@@ -38,8 +38,12 @@ which require an initialization must be listed explicitly in the list.")
 
 (require 'mu4e)
 (require 'smtpmail)
+
+;; path to our Maildir directory
+(setq mu4e-maildir "/home/amin/.mail")
+
 (setq
-    mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
+    mu4e-get-mail-command "mbsync -aq"   ;; or fetchmail, or ...
     mu4e-update-interval 300              ;; update every 5 minutes
     mu4e-sent-folder "/aminb/Sent"
     mu4e-drafts-folder "/aminb/Drafts"
@@ -68,11 +72,11 @@ which require an initialization must be listed explicitly in the list.")
      (smtpmail-smtp-server "mail.aminb.org")
      (smtpmail-stream-type ssl)
      (smtpmail-smtp-service 465))
-    ("Gmail"
-     (mu4e-sent-folder   "/Gmail/[Gmail].Sent Mail")
-     (mu4e-drafts-folder "/Gmail/[Gmail].Drafts")
-     (mu4e-trash-folder  "/Gmail/[Gmail].Trash")
      (user-mail-address (get-passwd-file "gmail-mail"))
+    ("gmail"
+     (mu4e-sent-folder   "/gmail/[Gmail].Sent Mail")
+     (mu4e-drafts-folder "/gmail/Drafts")
+     (mu4e-trash-folder  "/gmail/Trash")
      (user-full-name "Amin Bandali")
      (smtpmail-default-smtp-server "smtp.gmail.com")
      (smtpmail-local-domain "gmail.com")

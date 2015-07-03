@@ -1,0 +1,44 @@
+# Global defaults
+CopyArrivalDate yes
+
+######
+IMAPAccount aminb
+Host mail.aminb.org
+User REDACTED
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.passwd/aminb.gpg"
+SSLType IMAPS
+
+IMAPStore aminb-remote
+Account aminb
+
+MaildirStore aminb-local
+Path ~/.mail/aminb/
+Inbox ~/.mail/aminb/Inbox
+
+Channel aminb
+Master :aminb-remote:
+Slave :aminb-local:
+Patterns * !dovecot*
+Create Slave
+SyncState *
+
+######
+IMAPAccount gmail
+Host imap.gmail.com
+User REDACTED
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.passwd/gmail.gpg"
+SSLType IMAPS
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail"
+Create Slave
+SyncState *
