@@ -192,9 +192,6 @@ layers configuration."
             (mode-io-correlate "%n:1:%t ")
             "%o"))))
 
-  (advice-add #'magit-key-mode-popup-committing :after
-              (lambda ()
-                (magit-key-mode-toggle-option (quote committing) "--verbose")))
 
   ;; Suppress ad-handle-definition warnings
   ;; (annoying "`tramp-read-passwd' got redefined" warning on startup)
@@ -260,7 +257,8 @@ layers configuration."
     (company-auctex auctex company-c-headers cmake-mode clang-format toc-org smeargle shell-pop org-repo-todo org-present org-pomodoro org-bullets multi-term mmm-mode markdown-toc magit-svn magit-gitflow htmlize helm-gitignore helm-flyspell helm-c-yasnippet gitconfig-mode gitattributes-mode git-timemachine git-messenger flycheck-pos-tip evil-org company-statistics company-quickhelp auto-yasnippet ac-ispell auto-complete company flycheck yasnippet request gitignore-mode magit git-rebase-mode git-commit-mode markdown-mode alert log4e gntp zenburn-theme monokai-theme macrostep elisp-slime-nav diff-hl window-numbering volatile-highlights vi-tilde-fringe use-package smooth-scrolling rfringe rainbow-delimiters powerline popup pcre2el paradox page-break-lines open-junk-file neotree move-text linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-anything highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-descbinds helm-ag guide-key-tip google-translate golden-ratio gh-md fringe-helper flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-terminal-cursor-changer evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu clean-aindent-mode buffer-move auto-highlight-symbol auto-dictionary aggressive-indent adaptive-wrap ace-window ace-link ace-jump-mode)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
- '(ring-bell-function (quote ignore))
+ '(ring-bell-function (quote ignore) t)
+ '(send-mail-function (quote smtpmail-send-it))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
