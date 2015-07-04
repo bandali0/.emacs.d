@@ -193,6 +193,8 @@ layers configuration."
             (mode-io-correlate "%n:1:%t ")
             "%o"))))
 
+  ;; set the erc nick completion postfix to ": "
+  (setq erc-pcomplete-nick-postfix ": ")
 
   ;; Suppress ad-handle-definition warnings
   ;; (annoying "`tramp-read-passwd' got redefined" warning on startup)
