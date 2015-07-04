@@ -33,6 +33,7 @@
      ;; (haskell :variables '(haskell-enable-hindent-style "chris-done"
      ;;                                                    haskell-enable-shm-support t))
      erc
+     irc
      version-control
      )
    ;; List of additional packages that will be installed wihout being
