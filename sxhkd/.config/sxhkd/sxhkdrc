@@ -101,7 +101,7 @@ super + r
     firefox
 
 super + c
-    chromium
+    chromium -incognito
 
 # make sxhkd reload its configuration files:
 super + Escape
