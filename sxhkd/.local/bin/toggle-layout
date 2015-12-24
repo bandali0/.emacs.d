@@ -6,4 +6,5 @@ if [ "$lang" = "us" ]; then
     setxkbmap ir
 else
     setxkbmap us
+    xmodmap $HOME/.Xmodmap
 fi
