@@ -403,7 +403,7 @@ def_key ";"
 #def_key "g"
 #  jump_to_position_in_song
 #
-def_key "ctrl_l"
+def_key "ctrl-l"
   show_lyrics
 #
 #def_key "v"
