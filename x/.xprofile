@@ -40,8 +40,11 @@ xrdb -merge ~/.gotham.xresources
 # xbacklight -set 50
 
 # synaptics (touchpad) configs
-synclient TapButton2=3
-synclient TapButton3=2
+#synclient TapButton2=3
+#synclient TapButton3=2
+synclient TapButton1=1
+synclient TapButton2=0
+synclient TapButton3=0
 synclient HorizTwoFingerScroll=1
 synclient VertScrollDelta=-237
 synclient HorizScrollDelta=-237
@@ -72,7 +75,7 @@ xfdesktop --disable-wm-check &
 xfce4-panel --disable-wm-check &
 bspwm &
 sxhkd &
-emacs --daemon &
+#emacs --daemon &
 sleep 2 && pnmixer &
 # panel &
 
