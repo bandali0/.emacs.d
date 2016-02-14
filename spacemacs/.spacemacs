@@ -27,17 +27,19 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      spacemacs-helm
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
+     git
+     latex
+     markdown
+     org
+     rust
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     spell-checking
+     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -239,6 +241,8 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
+   ;; Disable setting the cursor color according to states
+   ;; dotspacemacs-colorize-cursor-according-to-state nil
    ))
 
 (defun dotspacemacs/user-init ()
@@ -253,7 +257,52 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (setq powerline-default-separator 'slant)
+
+  ;; (setq undo-tree-auto-save-history t
+  ;;       undo-tree-history-directory-alist
+  ;;       `(("." . ,(concat spacemacs-cache-directory "undo"))))
+  ;; (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
+  ;;   (make-directory (concat spacemacs-cache-directory "undo")))
+
+  ;; Use pdflatex instead of latex
+  (setq TeX-PDF-mode t)
+
+  ;; Support zathura in TeX mode
+  (setq TeX-view-program-selection
+        '(((output-dvi style-pstricks)
+           "dvips and gv")
+          (output-dvi "xdvi")
+          (output-pdf "zathura")
+          (output-html "xdg-open")))
+  (setq TeX-view-program-list
+        '(("zathura"
+           ("zathura" (mode-io-correlate "-sync.sh")
+            " "
+            (mode-io-correlate "%n:1:%t ")
+            "%o"))))
+
+  ;; Swap : and ;
+  (define-key evil-motion-state-map ";" 'evil-ex)
+  (define-key evil-motion-state-map ":" 'evil-repeat-find-char)
+
+  ;; Set the erc nick completion postfix to ", "
+  ;; (setq erc-pcomplete-nick-postfix ", ")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (toml-mode rustfmt racer flycheck-rust company-auctex auctex-latexmk auctex xterm-color toc-org shell-pop org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets multi-term mmm-mode markdown-toc markdown-mode htmlize helm-flyspell helm-company helm-c-yasnippet gnuplot gh-md flycheck-pos-tip flycheck eshell-z eshell-prompt-extras esh-help company-statistics company-quickhelp company auto-yasnippet auto-dictionary ac-ispell smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger evil-magit ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline smooth-scrolling restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery f expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
