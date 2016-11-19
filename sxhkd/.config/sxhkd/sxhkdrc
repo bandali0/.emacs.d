@@ -1,153 +1,170 @@
 #
-# bspwm hotkeys
-#
-
-super + alt + Escape
-	bspc quit
-
-super + w
-	bspc window -c
-
-super + t
-	bspc desktop -l next
-
-super + b
-	bspc desktop -B
-
-super + {p,s,f}
-	state={pseudo_tiled,floating,fullscreen}; \
-	bspc query -W -w "focused.$\{state\}" && state=tiled; \
-	bspc window -t "$state"
-
-super + {grave,Tab}
-	bspc {window,desktop} -f last
-
-super + apostrophe
-	bspc window -s last
-
-super + {o,i}
-	bspc control --record-history off; \
-	bspc window {older,newer} -f; \
-	bspc control --record-history on
-
-super + y
-	bspc window -w last.manual
-
-super + m
-	bspc window -s biggest
-
-super + {_,shift + }{h,j,k,l}
-	bspc window -{f,s} {left,down,up,right}
-
-super + {_,shift + }slash
-	bspc window -f {next,prev}
-
-super + {comma,period}
-	bspc desktop -C {backward,forward}
-
-super + bracket{left,right}
-	bspc desktop -f {prev,next}
-
-super + shift + bracket{left,right}
-	bspc window -d {prev,next}
-
-super + ctrl + {h,j,k,l}
-	bspc window -p {left,down,up,right}
-
-super + ctrl + {_,shift + }space
-	bspc {window -p cancel,desktop -c}
-
-super + alt + {h,j,k,l}
-	bspc window -e {left -10,down +10,up -10,right +10}
-
-super + alt + shift + {h,j,k,l}
-	bspc window -e {right -10,up +10,down -10,left +10}
-
-super + ctrl + {1-9}
-	bspc window -r 0.{1-9}
-
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,window -d} ^{1-9,10}
-
-~button1
-	bspc pointer -g focus
-
-super + button{1-3}
-	bspc pointer -g {move,resize_side,resize_corner}
-
-super + !button{1-3}
-	bspc pointer -t %i %i
-
-super + @button{1-3}
-	bspc pointer -u
-
-#
 # wm independent hotkeys
 #
 
+# terminal emulator
 super + Return
 	urxvt
 
+# program launcher
 super + space
-	rofi -show run -font "Source Code Pro 11" -fg "#195465" -bg "#0A0F14" -hlfg "#EDB54B" -hlbg "#0A0F14" -o 85
+	rofi -show run -font "Inconsolata 13"
 
-super + x
-    slimlock
+super + z ; t
+	urxvt
 
+super + z ; f
+	firefox-nightly
+
+# firefox
+#super + r
+#	firefox
+
+# chromium
+#super + c
+#	chromium
+
+# emacs
 super + e
-    emacs
+	emacs
 
-super + r
-    firefox
+# stalonetray
+#super + minus
+#	toggle_tray&
 
-super + c
-    chromium -incognito
+# volume up
+XF86AudioRaiseVolume
+	pamixer --allow-boost --increase 5
+
+# volume down
+XF86AudioLowerVolume
+	pamixer  --allow-boost --decrease 5
+
+# mute
+XF86AudioMute
+	pamixer --toggle-mute
+
+# monitor brightness
+#XF86MonBrightness{Up,Down}
+#	xbacklight -time 0 {+5,-5}
+
+# keyboard brightness
+#XF86KbdBrightness{Up,Down}
+#	kbdlight {up,down}
+
+XF86LaunchA
+  toggle-layout
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
-#XF86MonBrightnessDown
-#	xbacklight -dec 5
+#
+# bspwm hotkeys
+#
 
-#XF86MonBrightnessUp
-#	xbacklight -inc 5
+# quit bspwm normally
+super + alt + Escape
+	bspc quit
 
-# XF86KbdBrightnessDown
-	#kbdlight down
+# close and kill
+super + {w,q}
+	bspc node -{c,k}
 
-# XF86KbdBrightnessUp
-	#kbdlight up
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
 
-#XF86AudioRaiseVolume
-#    pulseaudio-ctl up
+# if the current node is automatic, send it to the last manual, otherwise pull the last leaf
+super + y
+	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
 
-#XF86AudioLowerVolume
-#    pulseaudio-ctl down
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
 
-#XF86AudioMute
-#    pulseaudio-ctl mute
+#
+# state/flags
+#
 
-XF86AudioPlay
-    mpc toggle
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-XF86AudioPrev
-    mpc prev
+# set the node flags
+super + ctrl + {x,y,z}
+	bspc node -g {locked,sticky,private}
 
-XF86AudioNext
-    mpc next
+#
+# focus/swap
+#
 
-XF86AudioRaiseVolume
-	pamixer --allow-boost --increase 5
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
 
-XF86AudioLowerVolume
-	pamixer  --allow-boost --decrease 5
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
 
-XF86AudioMute
-	pamixer --toggle-mute
+# focus the next/previous node
+super + {_,shift + }slash
+	bspc node -f {next,prev}
 
-XF86LaunchA
-  toggle-layout
+# focus the next/previous desktop
+super + bracket{left,right}
+	bspc desktop -f {prev,next}
 
-XF86LaunchB
-  toggle-mouse
+# send to next/prev desktop
+super + shift + bracket{left,right}
+	bspc node -d {prev,next}
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}

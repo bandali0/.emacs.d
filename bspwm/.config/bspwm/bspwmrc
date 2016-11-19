@@ -1,24 +1,21 @@
 #! /bin/sh
 
-bspc config border_width        3
-bspc config window_gap         	10
+sxhkd &
 
-bspc config top_padding 30
+bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc config split_ratio         0.6
-bspc config borderless_monocle  true
-bspc config gapless_monocle     true
-bspc config focus_by_distance   true
+bspc config border_width         2
+bspc config window_gap          12
+#bspc config bottom_padding         32
 
-bspc monitor -d web code term iv v vi vii viii ix x
+# bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config click_to_focus       true
+bspc config gapless_monocle      true
 
-bspc config normal_border_color '#1d1f21'
-bspc config focused_border_color '#093748'
-
-# bspc rule -a Firefox desktop=^1 focus=on
-# bspc rule -a emacs desktop=^2 focus=on
-# bspc rule -a Chromium desktop=^3 focus=on
-# bspc rule -a zathura desktop=^5 focus=on
-bspc rule -a xfce4-appfinder floating=on
-
-# panel &
+bspc rule -a Firefox desktop='^1' follow=on
+bspc rule -a Emacs desktop='^2' state=tiled follow=on
+bspc rule -a Chromium desktop='^4' follow=on
+bspc rule -a Termite state=floating
+bspc rule -a URxvt state=floating
+bspc rule -a qterminal state=floating
