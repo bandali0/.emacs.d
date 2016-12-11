@@ -1,3 +1,8 @@
 [user]
 	email = amin@aminb.org
 	name = Amin Bandali
+	signingkey = 4E05246AB0BF7FFB
+[commit]
+	gpgsign = true
+[format]
+	signoff = true

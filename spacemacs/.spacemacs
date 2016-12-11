@@ -318,7 +318,8 @@ you should place your code here."
 
   (setq powerline-default-separator 'slant)
 
-  (setq magit-commit-arguments '("--gpg-sign=4E05246AB0BF7FFB"))
+  (setq magit-commit-arguments '("--signoff"
+                                 "--gpg-sign=4E05246AB0BF7FFB"))
 
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist
