@@ -1,6 +1,3 @@
 [submodule "pentadactyl/.pentadactyl/colors/pentadactyl-solarized"]
 	path = pentadactyl/.pentadactyl/colors/pentadactyl-solarized
 	url = https://github.com/claytron/pentadactyl-solarized
-[submodule "spacemacs/.emacs.d/private/ZNC.el"]
-	path = spacemacs/.emacs.d/private/ZNC.el
-	url = https://github.com/sshirokov/ZNC.el
