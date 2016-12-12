@@ -141,7 +141,7 @@ erc-modified-channels-alist. Should be executed on window change."
     :config
     (progn
       (setq mu4e-maildir "~/mail"
-            mu4e-get-mail-command "mbsync -aq"   ;; or fetchmail, or ...
+            mu4e-get-mail-command "mbsync -a"    ;; or fetchmail, or ...
             mu4e-update-interval 300             ;; update every 5 minutes
             mu4e-view-show-addresses t
             mu4e-headers-include-related t
@@ -159,6 +159,7 @@ erc-modified-channels-alist. Should be executed on window change."
             mu4e-drafts-folder "/amin/Drafts"
             mu4e-trash-folder "/amin/Trash"
             user-mail-address "amin@aminb.org"
+            mu4e-context-policy 'pick-first
             mu4e-contexts
               (list (make-mu4e-context
                      :name "amin"
