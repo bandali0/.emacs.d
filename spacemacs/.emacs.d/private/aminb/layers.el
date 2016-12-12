@@ -11,4 +11,4 @@
 
 ;; Prerequisites
 
-(configuration-layer/declare-layer 'erc)
+(configuration-layer/declare-layers '(erc mu4e))

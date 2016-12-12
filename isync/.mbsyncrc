@@ -2,43 +2,43 @@
 CopyArrivalDate yes
 
 ######
-IMAPAccount aminb
-Host mail.aminb.org
 User REDACTED
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.passwd/aminb.gpg"
+IMAPAccount amin
+Host nix.aminb.org
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/amin.gpg"
 SSLType IMAPS
 
-IMAPStore aminb-remote
-Account aminb
+IMAPStore amin-remote
+Account amin
 
-MaildirStore aminb-local
-Path ~/.mail/aminb/
-Inbox ~/.mail/aminb/Inbox
+MaildirStore amin-local
+Path ~/mail/amin/
+Inbox ~/mail/amin/Inbox
 
-Channel aminb
-Master :aminb-remote:
-Slave :aminb-local:
+Channel amin
+Master :amin-remote:
+Slave :amin-local:
 Patterns * !dovecot*
-Create Slave
+Create Both
 SyncState *
 
 ######
 IMAPAccount gmail
 Host imap.gmail.com
 User REDACTED
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.passwd/gmail.gpg"
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/gmail.gpg"
 SSLType IMAPS
 
 IMAPStore gmail-remote
 Account gmail
 
 MaildirStore gmail-local
-Path ~/.mail/gmail/
-Inbox ~/.mail/gmail/Inbox
+Path ~/mail/gmail/
+Inbox ~/mail/gmail/Inbox
 
 Channel gmail
 Master :gmail-remote:
 Slave :gmail-local:
 Patterns * ![Gmail]* "[Gmail]/Sent Mail"
-Create Slave
+Create Both
 SyncState *

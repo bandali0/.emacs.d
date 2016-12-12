@@ -17,7 +17,13 @@
 ;;; Code:
 
 (defconst aminb-packages
-  '(crux writeroom-mode znc)
+  '(crux writeroom-mode znc
+         ;; mu4e has to be installed manually,
+         ;; and make sure it's in load-path
+         (mu4e :location site)
+         (mu4e-contrib :location site)
+         smtpmail
+         )
   "The list of Lisp packages required by the aminb layer.")
 
 (defun aminb/init-crux ()
@@ -128,5 +134,118 @@ erc-modified-channels-alist. Should be executed on window change."
                                                 (erc-bar-update-overlay)))))
 
       )))
+
+(defun aminb/post-init-mu4e ()
+  (use-package mu4e
+    :defer t
+    :config
+    (progn
+      (setq mu4e-maildir "~/mail"
+            mu4e-get-mail-command "mbsync -aq"   ;; or fetchmail, or ...
+            mu4e-update-interval 300             ;; update every 5 minutes
+            mu4e-view-show-addresses t
+            mu4e-headers-include-related t
+            mu4e-compose-signature-auto-include t
+            mu4e-compose-signature
+            (concat
+             "Amin Bandali\n"
+             "<aminb.org>\n")
+            ;; don't keep message buffers around
+            message-kill-buffer-on-exit t
+            mu4e-attachment-dir "~/dls"
+            mu4e-sent-folder "/amin/Sent"
+            mu4e-drafts-folder "/amin/Drafts"
+            mu4e-trash-folder "/amin/Trash"
+            user-mail-address "amin@aminb.org")
+
+      (defvar my-mu4e-account-alist
+        '(("amin"
+           (mu4e-sent-folder "/amin/Sent")
+           (mu4e-drafts-folder "/amin/Drafts")
+           (mu4e-trash-folder  "/amin/Trash")
+           (user-mail-address "amin@aminb.org")
+           (user-full-name "Amin Bandali")
+           (smtpmail-default-smtp-server "nix.aminb.org")
+           (smtpmail-local-domain "aminb.org")
+           (smtpmail-smtp-user "amin@aminb.org")
+           (smtpmail-smtp-server "nix.aminb.org")
+           (smtpmail-stream-type 'starttls)
+           (smtpmail-smtp-service 587))
+          ("gmail"
+           (mu4e-sent-folder   "/gmail/[Gmail].Sent Mail")
+           (mu4e-drafts-folder "/gmail/[Gmail].Drafts")
+           (mu4e-trash-folder  "/gmail/[Gmail].Trash")
+           (user-mail-address "amin.bandali@gmail.com")
+           (user-full-name "Amin Bandali")
+           (smtpmail-default-smtp-server "smtp.gmail.com")
+           (smtpmail-local-domain "gmail.com")
+           (smtpmail-smtp-user "amin.bandali@gmail.com")
+           (smtpmail-smtp-server "smtp.gmail.com")
+           (smtpmail-stream-type ssl)
+           (smtpmail-smtp-service 465))))
+
+      (defun my-mu4e-set-account ()
+        "Set the account for composing a message."
+        (let* ((account
+                (if mu4e-compose-parent-message
+                    (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                      (string-match "/\\(.*?\\)/" maildir)
+                      (match-string 1 maildir))
+                  (completing-read (format "Compose with account: (%s) "
+                                           (mapconcat #'(lambda (var) (car var))
+                                                      my-mu4e-account-alist "/"))
+                                   (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                                   nil t nil nil (caar my-mu4e-account-alist))))
+               (account-vars (cdr (assoc account my-mu4e-account-alist))))
+          (if account-vars
+              (mapc #'(lambda (var)
+                        (set (car var) (cadr var)))
+                    account-vars)
+            (error "No email account found"))))
+      (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)))
+
+  (use-package gnus-dired
+    ;; A special version of the gnus-dired-mail-buffers function
+    ;; that understands mu4e buffers as well
+    :defer t
+    :config
+    (progn
+      ;; make the `gnus-dired-mail-buffers' function also work on
+      ;; message-mode derived modes, such as mu4e-compose-mode
+      (defun gnus-dired-mail-buffers ()
+        "Return a list of active message buffers."
+        (let (buffers)
+          (save-current-buffer
+            (dolist (buffer (buffer-list t))
+              (set-buffer buffer)
+              (when (and (derived-mode-p 'message-mode)
+                         (null message-sent-message-via))
+                (push (buffer-name buffer) buffers))))
+          (nreverse buffers)))
+      (setq gnus-dired-mail-mode 'mu4e-user-agent)
+      (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
+    )
+
+  (spacemacs/set-leader-keys
+    "am" 'mu4e)
+  )
+
+(defun aminb/init-mu4e-contrib ()
+  (use-package mu4e-contrib
+    :defer t
+    :config
+    (setq mu4e-html2text-command 'mu4e-shr2text
+          mu4e-view-html-plaintext-ratio-heuristic 10
+          mu4e-view-prefer-html t)))
+
+(defun aminb/init-smtpmail ()
+  (use-package smtpmail
+    :defer t
+    :config
+    (setq smtpmail-default-smtp-server "nix.aminb.org"
+          smtpmail-local-domain "aminb.org"
+          smtpmail-smtp-server "nix.aminb.org"
+          smtpmail-stream-type 'starttls
+          smtpmail-smtp-service 587)))
 
 ;;; packages.el ends here
