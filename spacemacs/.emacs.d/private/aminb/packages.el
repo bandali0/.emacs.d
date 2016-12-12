@@ -17,14 +17,18 @@
 ;;; Code:
 
 (defconst aminb-packages
-  '(crux writeroom-mode znc
-         ;; mu4e has to be installed manually,
-         ;; and make sure it's in load-path
-         (mu4e :location site)
-         (mu4e-contrib :location site)
-         smtpmail
-         )
+  '(creamsody-theme
+    crux
+    ;; mu4e has to be installed manually,
+    ;; and make sure it's in load-path
+    (mu4e :location site)
+    (mu4e-contrib :location site)
+    smtpmail
+    writeroom-mode
+    znc)
   "The list of Lisp packages required by the aminb layer.")
+
+(defun aminb/init-creamsody-theme ())
 
 (defun aminb/init-crux ()
     (use-package crux
