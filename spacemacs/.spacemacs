@@ -351,9 +351,6 @@ you should place your code here."
 
   ;; Use emacs mode for eshell
   ;; (evil-set-initial-state 'eshell-mode 'emacs)
-
-  ;; Set the erc nick completion postfix to ", "
-  ;; (setq erc-pcomplete-nick-postfix ", ")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

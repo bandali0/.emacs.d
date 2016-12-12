@@ -42,6 +42,12 @@
       "aiz" 'znc-erc)
     :config
     (progn
+      ;; Set the erc nick completion postfix to ", "
+      (setq erc-pcomplete-nick-postfix ", ")
+
+      ;; Restore channel buffers from logs
+      (setq erc-log-insert-log-on-open t)
+
       (defun vbe:znc-add-server (server port user networks)
         "Add a server to the list of ZNC servers.
 We use SSL inconditionaly. Moreover, we don't store the password
@@ -79,6 +85,48 @@ the appropriate network slug that we extract from the nick."
       ;; Define networks
       (vbe:znc-add-server "nix.aminb.org" 6669 "amin"
                           '(freenode mozilla))
+
+      ;; https://www.emacswiki.org/emacs/ErcBar
+      ;; Display a bar before unread messages
+      (eval-after-load 'erc-track
+        '(progn
+           (defun erc-bar-move-back (n)
+             "Moves back n message lines. Ignores wrapping, and server messages."
+             (interactive "nHow many lines ? ")
+             (re-search-backward "^.*<.*>" nil t n))
+
+           (defun erc-bar-update-overlay ()
+             "Update the overlay for current buffer, based on the content of
+erc-modified-channels-alist. Should be executed on window change."
+             (interactive)
+             (let* ((info (assq (current-buffer) erc-modified-channels-alist))
+                    (count (cadr info)))
+               (if (and info (> count erc-bar-threshold))
+                   (save-excursion
+                     (end-of-buffer)
+                     (when (erc-bar-move-back count)
+                       (let ((inhibit-field-text-motion t))
+                         (move-overlay erc-bar-overlay
+                                       (line-beginning-position)
+                                       (line-end-position)
+                                       (current-buffer)))))
+                 (delete-overlay erc-bar-overlay))))
+
+           (defvar erc-bar-threshold 1
+             "Display bar when there are more than erc-bar-threshold unread messages.")
+           (defvar erc-bar-overlay nil
+             "Overlay used to set bar")
+           (setq erc-bar-overlay (make-overlay 0 0))
+           (overlay-put erc-bar-overlay 'face '(:underline "purple"))
+           ;;put the hook before erc-modified-channels-update
+           (defadvice erc-track-mode (after erc-bar-setup-hook
+                                            (&rest args) activate)
+             ;;remove and add, so we know it's in the first place
+             (remove-hook 'window-configuration-change-hook 'erc-bar-update-overlay)
+             (add-hook 'window-configuration-change-hook 'erc-bar-update-overlay))
+           (add-hook 'erc-send-completed-hook (lambda (str)
+                                                (erc-bar-update-overlay)))))
+
       )))
 
 ;;; packages.el ends here
