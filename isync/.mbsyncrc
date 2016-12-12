@@ -2,7 +2,7 @@
 CopyArrivalDate yes
 
 ######
-User REDACTED
+User amin@aminb.org
 IMAPAccount amin
 Host nix.aminb.org
 PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/amin.gpg"
@@ -25,7 +25,7 @@ SyncState *
 ######
 IMAPAccount gmail
 Host imap.gmail.com
-User REDACTED
+User amin.bandali@gmail.com
 PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/gmail.gpg"
 SSLType IMAPS
 
@@ -36,9 +36,26 @@ MaildirStore gmail-local
 Path ~/mail/gmail/
 Inbox ~/mail/gmail/Inbox
 
-Channel gmail
+Channel gmail-default
 Master :gmail-remote:
 Slave :gmail-local:
-Patterns * ![Gmail]* "[Gmail]/Sent Mail"
+Patterns "INBOX" "Self Notes" "Trash"
 Create Both
 SyncState *
+
+Channel gmail-drafts
+Master :gmail-remote:"[Gmail]/Drafts"
+Slave :gmail-local:Drafts
+Create Both
+SyncState *
+
+Channel gmail-sent
+Master :gmail-remote:"[Gmail]/Sent Mail"
+Slave :gmail-local:Sent
+Create Both
+SyncState *
+
+Group gmail
+Channel gmail-default
+Channel gmail-drafts
+Channel gmail-sent

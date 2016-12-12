@@ -156,53 +156,38 @@ erc-modified-channels-alist. Should be executed on window change."
             mu4e-sent-folder "/amin/Sent"
             mu4e-drafts-folder "/amin/Drafts"
             mu4e-trash-folder "/amin/Trash"
-            user-mail-address "amin@aminb.org")
-
-      (defvar my-mu4e-account-alist
-        '(("amin"
-           (mu4e-sent-folder "/amin/Sent")
-           (mu4e-drafts-folder "/amin/Drafts")
-           (mu4e-trash-folder  "/amin/Trash")
-           (user-mail-address "amin@aminb.org")
-           (user-full-name "Amin Bandali")
-           (smtpmail-default-smtp-server "nix.aminb.org")
-           (smtpmail-local-domain "aminb.org")
-           (smtpmail-smtp-user "amin@aminb.org")
-           (smtpmail-smtp-server "nix.aminb.org")
-           (smtpmail-stream-type 'starttls)
-           (smtpmail-smtp-service 587))
-          ("gmail"
-           (mu4e-sent-folder   "/gmail/[Gmail].Sent Mail")
-           (mu4e-drafts-folder "/gmail/[Gmail].Drafts")
-           (mu4e-trash-folder  "/gmail/[Gmail].Trash")
-           (user-mail-address "amin.bandali@gmail.com")
-           (user-full-name "Amin Bandali")
-           (smtpmail-default-smtp-server "smtp.gmail.com")
-           (smtpmail-local-domain "gmail.com")
-           (smtpmail-smtp-user "amin.bandali@gmail.com")
-           (smtpmail-smtp-server "smtp.gmail.com")
-           (smtpmail-stream-type ssl)
-           (smtpmail-smtp-service 465))))
-
-      (defun my-mu4e-set-account ()
-        "Set the account for composing a message."
-        (let* ((account
-                (if mu4e-compose-parent-message
-                    (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                      (string-match "/\\(.*?\\)/" maildir)
-                      (match-string 1 maildir))
-                  (completing-read (format "Compose with account: (%s) "
-                                           (mapconcat #'(lambda (var) (car var))
-                                                      my-mu4e-account-alist "/"))
-                                   (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                                   nil t nil nil (caar my-mu4e-account-alist))))
-               (account-vars (cdr (assoc account my-mu4e-account-alist))))
-          (if account-vars
-              (mapc #'(lambda (var)
-                        (set (car var) (cadr var)))
-                    account-vars)
-            (error "No email account found"))))
-      (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)))
+            user-mail-address "amin@aminb.org"
+            mu4e-contexts
+              (list (make-mu4e-context
+                     :name "amin"
+                     :enter-func (lambda () (mu4e-message "Switch to the amin context"))
+                     :match-func (lambda (msg)
+                                   (when msg
+                                     (s-prefix? "/amin/" (mu4e-message-field msg :maildir))))
+                     :vars '((user-mail-address . "amin@aminb.org")
+                             (mu4e-sent-folder . "/amin/Sent")
+                             (mu4e-drafts-folder . "/amin/Drafts")
+                             (mu4e-trash-folder . "/amin/Trash")
+                             (mu4e-sent-messages-behavior . sent)
+                             (smtpmail-default-smtp-server . "nix.aminb.org")
+                             (smtpmail-smtp-server . "nix.aminb.org")
+                             (smtpmail-stream-type . starttls)
+                             (smtpmail-smtp-service . 587)))
+                    (make-mu4e-context
+                     :name "gmail"
+                     :enter-func (lambda () (mu4e-message "Switch to the gmail context"))
+                     :match-func (lambda (msg)
+                                   (when msg
+                                     (s-prefix? "/gmail/" (mu4e-message-field msg :maildir))))
+                     :vars '((user-mail-address . "amin.bandali@gmail.com")
+                             (mu4e-sent-folder . "/gmail/Sent")
+                             (mu4e-drafts-folder . "/gmail/Drafts")
+                             (mu4e-trash-folder . "/gmail/Trash")
+                             (mu4e-sent-messages-behavior . delete)
+                             (smtpmail-default-smtp-server . "smtp.gmail.com")
+                             (smtpmail-smtp-server . "smtp.gmail.com")
+                             (smtpmail-stream-type . starttls)
+                             (smtpmail-smtp-service . 587)))))))
 
   (use-package gnus-dired
     ;; A special version of the gnus-dired-mail-buffers function
