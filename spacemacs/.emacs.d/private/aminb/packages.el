@@ -145,6 +145,8 @@ erc-modified-channels-alist. Should be executed on window change."
             mu4e-update-interval 300             ;; update every 5 minutes
             mu4e-view-show-addresses t
             mu4e-headers-include-related t
+            mu4e-enable-notifications t
+            mu4e-enable-mode-line t
             mu4e-compose-signature-auto-include t
             mu4e-compose-signature
             (concat
@@ -187,7 +189,10 @@ erc-modified-channels-alist. Should be executed on window change."
                              (smtpmail-default-smtp-server . "smtp.gmail.com")
                              (smtpmail-smtp-server . "smtp.gmail.com")
                              (smtpmail-stream-type . starttls)
-                             (smtpmail-smtp-service . 587)))))))
+                             (smtpmail-smtp-service . 587)))))
+      (with-eval-after-load 'mu4e-alert
+        ;; Enable Desktop notifications
+        (mu4e-alert-set-default-style 'notifications))))
 
   (use-package gnus-dired
     ;; A special version of the gnus-dired-mail-buffers function

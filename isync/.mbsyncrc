@@ -2,9 +2,9 @@
 CopyArrivalDate yes
 
 ######
-User amin@aminb.org
 IMAPAccount amin
 Host nix.aminb.org
+User amin@aminb.org
 PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/amin.gpg"
 SSLType IMAPS
 
