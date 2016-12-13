@@ -12,3 +12,6 @@ ranger/*/*/tagged
 
 # ncmpcpp
 ncmpcpp/*/error.log
+
+# getmail oldmail file
+oldmail-*

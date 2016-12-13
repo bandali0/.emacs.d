@@ -326,6 +326,7 @@ you should place your code here."
   ;; (setq magit-commit-arguments '("--signoff"
   ;;                                "--gpg-sign=4E05246AB0BF7FFB"))
 
+  ;; Persistent undo across restarts
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist
         `(("." . ,(concat spacemacs-cache-directory "undo"))))

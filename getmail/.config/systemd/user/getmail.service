@@ -1,8 +1,8 @@
 [Unit]
-Description=mbsync service
+Description=getmail service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mbsync -Va
+ExecStart=/usr/bin/getmail
 StandardOutput=syslog
 StandardError=syslog

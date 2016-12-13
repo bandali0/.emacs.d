@@ -1,8 +1,8 @@
 [Unit]
-Description=Mailbox synchronization timer
+Description=mbsync timer
 
 [Timer]
-OnCalendar=*:0/5
+OnCalendar=*:0/15
 Persistent=true
 Unit=mbsync.service
 

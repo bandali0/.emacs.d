@@ -1,0 +1,10 @@
+[Unit]
+Description=getmail timer
+
+[Timer]
+OnCalendar=0/1:00:00
+Persistent=true
+Unit=getmail.service
+
+[Install]
+WantedBy=timers.target

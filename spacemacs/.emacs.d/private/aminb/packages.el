@@ -140,13 +140,14 @@ erc-modified-channels-alist. Should be executed on window change."
       )))
 
 (defun aminb/post-init-mu4e ()
+  (setq maildir "~/mail")
   (use-package mu4e
     :defer t
     :config
     (progn
-      (setq mu4e-maildir "~/mail"
-            mu4e-get-mail-command "mbsync -a"    ;; or fetchmail, or ...
-            mu4e-update-interval 300             ;; update every 5 minutes
+      (setq mu4e-maildir maildir
+            mu4e-get-mail-command "mbsync -a"
+            mu4e-update-interval nil
             mu4e-view-show-addresses t
             mu4e-headers-include-related t
             mu4e-enable-notifications t
@@ -156,8 +157,7 @@ erc-modified-channels-alist. Should be executed on window change."
             (concat
              "Amin Bandali\n"
              "<aminb.org>\n")
-            ;; don't keep message buffers around
-            message-kill-buffer-on-exit t
+            message-kill-buffer-on-exit t ; don't keep message buffers around
             mu4e-attachment-dir "~/dls"
             mu4e-sent-folder "/amin/Sent"
             mu4e-drafts-folder "/amin/Drafts"
@@ -167,8 +167,8 @@ erc-modified-channels-alist. Should be executed on window change."
             mu4e-context-policy 'pick-first
             mu4e-contexts
               (list (make-mu4e-context
-                     :name "amin"
-                     :enter-func (lambda () (mu4e-message "Switch to the amin context"))
+                     :name "Personal"
+                     :enter-func (lambda () (mu4e-message "Switch to the Personal context"))
                      :match-func (lambda (msg)
                                    (when msg
                                      (s-prefix? "/amin/" (mu4e-message-field msg :maildir))))
@@ -182,8 +182,8 @@ erc-modified-channels-alist. Should be executed on window change."
                              (smtpmail-stream-type . starttls)
                              (smtpmail-smtp-service . 587)))
                     (make-mu4e-context
-                     :name "gmail"
-                     :enter-func (lambda () (mu4e-message "Switch to the gmail context"))
+                     :name "BB"
+                     :enter-func (lambda () (mu4e-message "Switch to the BB context"))
                      :match-func (lambda (msg)
                                    (when msg
                                      (s-prefix? "/gmail/" (mu4e-message-field msg :maildir))))
@@ -192,10 +192,27 @@ erc-modified-channels-alist. Should be executed on window change."
                              (mu4e-drafts-folder . "/gmail/Drafts")
                              (mu4e-trash-folder . "/gmail/Trash")
                              (mu4e-sent-messages-behavior . delete)
+                             (mu4e-compose-signature . nil)
                              (smtpmail-default-smtp-server . "smtp.gmail.com")
                              (smtpmail-smtp-server . "smtp.gmail.com")
                              (smtpmail-stream-type . starttls)
-                             (smtpmail-smtp-service . 587)))))
+                             (smtpmail-smtp-service . 587)))
+                     (make-mu4e-context
+                      :name "GNU"
+                      :enter-func (lambda () (mu4e-message "Switch to the GNU context"))
+                      :match-func (lambda (msg)
+                                    (when msg
+                                      (s-prefix? "/gnu/" (mu4e-message-field msg :maildir))))
+                      :vars '((user-mail-address . "aminb@gnu.org")
+                              (mu4e-sent-folder . "/gnu/Sent")
+                              (mu4e-drafts-folder . "/gnu/Drafts")
+                              (mu4e-trash-folder . "/gnu/Trash")
+                              (mu4e-get-mail-command . "getmail")
+                              (mu4e-sent-messages-behavior . sent)
+                              (smtpmail-default-smtp-server . "fencepost.gnu.org")
+                              (smtpmail-smtp-server . "fencepost.gnu.org")
+                              (smtpmail-stream-type . starttls)
+                              (smtpmail-smtp-service . 587)))))
       (with-eval-after-load 'mu4e-alert
         ;; Enable Desktop notifications
         (mu4e-alert-set-default-style 'notifications))))
@@ -221,6 +238,12 @@ erc-modified-channels-alist. Should be executed on window change."
       (setq gnus-dired-mail-mode 'mu4e-user-agent)
       (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
     )
+
+  ;; Exclude the files in maildir from recents
+  (use-package recentf
+    :defer t
+    :config
+    (add-to-list 'recentf-exclude (expand-file-name maildir)))
 
   (spacemacs/set-leader-keys
     "am" 'mu4e)

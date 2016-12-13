@@ -1,0 +1,14 @@
+[retriever]
+type = SimplePOP3SSLRetriever
+server = fencepost.gnu.org
+username = aminb
+port = 995
+use_apop = True
+
+[destination]
+type = Maildir
+path = ~/mail/gnu/Inbox/
+
+[options]
+read_all = False
+# delete = True
