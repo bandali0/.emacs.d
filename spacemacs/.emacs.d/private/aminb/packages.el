@@ -162,6 +162,7 @@ erc-modified-channels-alist. Should be executed on window change."
             mu4e-sent-folder "/amin/Sent"
             mu4e-drafts-folder "/amin/Drafts"
             mu4e-trash-folder "/amin/Trash"
+            user-full-name "Amin Bandali"
             user-mail-address "amin@aminb.org"
             mu4e-context-policy 'pick-first
             mu4e-contexts
@@ -241,6 +242,7 @@ erc-modified-channels-alist. Should be executed on window change."
           smtpmail-local-domain "aminb.org"
           smtpmail-smtp-server "nix.aminb.org"
           smtpmail-stream-type 'starttls
-          smtpmail-smtp-service 587)))
+          smtpmail-smtp-service 587
+          send-mail-function 'smtpmail-send-it)))
 
 ;;; packages.el ends here
