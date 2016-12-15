@@ -146,8 +146,8 @@ erc-modified-channels-alist. Should be executed on window change."
     :config
     (progn
       (setq mu4e-maildir maildir
-            mu4e-get-mail-command "mbsync -a"
-            mu4e-update-interval nil
+            mu4e-get-mail-command "true"
+            mu4e-update-interval 300
             mu4e-view-show-addresses t
             mu4e-headers-include-related t
             mu4e-enable-notifications t
@@ -207,7 +207,6 @@ erc-modified-channels-alist. Should be executed on window change."
                               (mu4e-sent-folder . "/gnu/Sent")
                               (mu4e-drafts-folder . "/gnu/Drafts")
                               (mu4e-trash-folder . "/gnu/Trash")
-                              (mu4e-get-mail-command . "getmail")
                               (mu4e-sent-messages-behavior . sent)
                               (smtpmail-default-smtp-server . "fencepost.gnu.org")
                               (smtpmail-smtp-server . "fencepost.gnu.org")

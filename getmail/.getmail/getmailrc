@@ -10,5 +10,4 @@ type = Maildir
 path = ~/mail/gnu/Inbox/
 
 [options]
-read_all = False
-# delete = True
+delete = True

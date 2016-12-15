@@ -2,7 +2,7 @@
 Description=getmail timer
 
 [Timer]
-OnCalendar=0/1:00:00
+OnCalendar=*:0/30
 Persistent=true
 Unit=getmail.service
 
