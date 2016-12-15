@@ -17,16 +17,28 @@
 ;;; Code:
 
 (defconst aminb-packages
-  '(creamsody-theme
+  '(counsel
+    creamsody-theme
     crux
     ;; mu4e has to be installed manually,
     ;; and make sure it's in load-path
     (mu4e :location site)
-    (mu4e-contrib :location site)
     smtpmail
     writeroom-mode
     znc)
   "The list of Lisp packages required by the aminb layer.")
+
+(defun aminb/post-init-counsel ()
+  (use-package counsel
+    :defer t
+    :config
+    (progn
+      (spacemacs/set-leader-keys-for-major-mode 'eshell-mode
+        "," 'counsel-esh-history)
+      (add-hook 'eshell-mode-hook
+                '(lambda () (define-key eshell-mode-map
+                              (kbd "M-l") 'counsel-esh-history)))
+      )))
 
 (defun aminb/init-creamsody-theme ())
 
@@ -164,6 +176,7 @@ erc-modified-channels-alist. Should be executed on window change."
             mu4e-trash-folder "/amin/Trash"
             user-full-name "Amin Bandali"
             user-mail-address "amin@aminb.org"
+            mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum
             mu4e-context-policy 'pick-first
             mu4e-contexts
               (list (make-mu4e-context
@@ -218,7 +231,10 @@ erc-modified-channels-alist. Should be executed on window change."
 
   (use-package gnus-dired
     ;; A special version of the gnus-dired-mail-buffers function
-    ;; that understands mu4e buffers as well
+    ;; that understands mu4e buffers as well.
+    ;; Usage: mark the file(s) in dired and press C-c RET C-a,
+    ;; then will be asked whether to attach them to an existing
+    ;; message, or create a new one.
     :defer t
     :config
     (progn
@@ -247,14 +263,6 @@ erc-modified-channels-alist. Should be executed on window change."
   (spacemacs/set-leader-keys
     "am" 'mu4e)
   )
-
-(defun aminb/init-mu4e-contrib ()
-  (use-package mu4e-contrib
-    :defer t
-    :config
-    (setq mu4e-html2text-command 'mu4e-shr2text
-          mu4e-view-html-plaintext-ratio-heuristic 10
-          mu4e-view-prefer-html t)))
 
 (defun aminb/init-smtpmail ()
   (use-package smtpmail
