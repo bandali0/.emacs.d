@@ -5,10 +5,20 @@
 # terminal emulator
 super + Return
 	urxvt
+super + shift + Return
+	urxvt -name tiled
 
 # program launcher
 super + space
 	rofi -show run -font "Inconsolata 13"
+
+# rofi-pass
+super + shift + space
+	rofi-pass
+
+# teiler
+super + shift + s
+	teiler
 
 super + z ; t
 	urxvt
@@ -27,6 +37,7 @@ super + z ; f
 # emacs
 super + e
 	emacs
+#	emacs -Q -l src/elisp/oremacs/init.el
 
 # stalonetray
 #super + minus
@@ -53,7 +64,7 @@ XF86AudioMute
 #	kbdlight {up,down}
 
 XF86LaunchA
-  toggle-layout
+  /home/amin/.local/bin/toggle-layout
 
 # make sxhkd reload its configuration files:
 super + Escape
