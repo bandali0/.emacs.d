@@ -70,6 +70,38 @@
       ;; Restore channel buffers from logs
       (setq erc-log-insert-log-on-open t)
 
+      ;;; (BEGIN) work around log restoration bug
+      ;;  taken from https://www.emacswiki.org/emacs/ErcLogging
+
+      ;; ;;; Original version in the Emacs sources:
+      ;; (defun erc-log-all-but-server-buffers (buffer)
+      ;;   "Returns t if logging should be enabled in BUFFER.
+      ;; Returns nil if `erc-server-buffer-p' returns t."
+      ;;   (save-excursion
+      ;;     (save-window-excursion
+      ;;       (set-buffer buffer)
+      ;;       (not (erc-server-buffer-p)))))
+
+      ;; My version:
+      (defun erc-log-all-but-server-buffers (buffer)
+        (with-current-buffer buffer
+          (not (erc-server-buffer-p))))
+      ;;
+      ;; ;;; Anyway, a more direct modification also works fine:
+      ;; (defun erc-log-all-but-server-buffers (buffer)
+      ;;  (set-buffer buffer)
+      ;;  (not (erc-server-buffer-p)))
+      ;;; (END)
+
+      (require 'notifications)
+      (defun erc-global-notify (match-type nick message)
+        "Notify when a message is recieved."
+        (notifications-notify
+         :title nick
+         :body message
+         ;; :app-icon (concat spacemacs-assets-directory "spacemacs.svg")
+         :urgency 'normal))
+
       (defun vbe:znc-add-server (server port user networks)
         "Add a server to the list of ZNC servers.
 We use SSL inconditionaly. Moreover, we don't store the password
