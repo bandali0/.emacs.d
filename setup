@@ -17,9 +17,8 @@ makepkg -si
 pacaur -S reflector
 sudo reflector --sort rate --save /etc/pacman.d/mirrorlist -c "Canada" -f 5 -l 5
 
-# dkms and broadcom-wl driver
+# dkms
 pacaur -S linux-headers dkms
-pacaur -S broadcom-wl-dkms
 
 # X, drivers, lightdm, Xfce
 pacaur -S mesa-libgl libva-intel-driver xorg-{xprop,server{,-utils}} vulkan-intel
