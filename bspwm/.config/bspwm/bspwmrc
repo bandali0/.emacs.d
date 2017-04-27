@@ -1,17 +1,17 @@
 #! /bin/sh
 
 sxhkd &
-xfce4-panel -d &
+sh ~/.fehbg &
+launch-polybar
 connman-gtk &
 pnmixer &
-sh ~/.fehbg &
 compton &
 
 bspc monitor eDP-1 -d I II III IV V
 bspc monitor HDMI-1 -d VI VII VIII IX X
 
 bspc config border_width         2
-bspc config window_gap          12
+bspc config window_gap           8
 
 bspc config top_padding 28
 
@@ -24,10 +24,10 @@ bspc rule -a Firefox desktop='^1' follow=on
 bspc rule -a Emacs desktop='^2' state=tiled follow=on
 bspc rule -a Chromium desktop='^4' follow=on
 bspc rule -a URxvt state=floating
-bspc rule -a URxvt:tiled state=tiled       
+bspc rule -a URxvt:tiled state=tiled
 bspc rule -a Connman-gtk state=floating
 bspc rule -a Xfce4-panel state=floating
-bspc rule -a TelegramDesktop state=floating      
+bspc rule -a TelegramDesktop state=floating
 bspc rule -a Ec state=floating
 bspc rule -a Pavucontrol state=floating
 bspc rule -a Eog state=floating
