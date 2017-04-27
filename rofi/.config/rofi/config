@@ -1,0 +1,7 @@
+rofi.font: Ubuntu Mono 10.5
+! rofi.font: Inconsolata 12
+rofi.modi: run,window
+rofi.width: 520
+rofi.monitor: -1
+
+#include "/usr/share/rofi/themes//gruvbox-light.theme"
