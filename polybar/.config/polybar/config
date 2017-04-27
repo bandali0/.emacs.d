@@ -45,10 +45,11 @@ module-margin-right = 2
 font-0 = Ubuntu:fontformat=truetype:antialias=true:pixelsize=9;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wuncon Siji:pixelsize=10;1
+font-3 = FontAwesome:pixelsize=10;1
 
 modules-left = bspwm
 modules-center = xwindow
-modules-right = volume filesystem xkeyboard memory cpu battery temperature date powermenu
+modules-right = volume filesystem mail xkeyboard memory cpu battery temperature date powermenu
 
 tray-position = right
 ;tray-padding = 2
@@ -352,6 +353,15 @@ menu-2-0 = power off
 menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+[module/mail]
+type = custom/script
+interval = 300
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #0a6cf5
+exec = notmuch count tag:unread
 
 [settings]
 screenchange-reload = true

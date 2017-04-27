@@ -2,7 +2,7 @@
 
 sxhkd &
 sh ~/.fehbg &
-launch-polybar
+polybar-launch
 connman-gtk &
 pnmixer &
 compton &
