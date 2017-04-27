@@ -1,5 +1,5 @@
 [global]
-font = Inconsolata 11
+font = Ubuntu Mono 10.5
 
 # Path to default icons.
 icon_folders = /usr/share/icons/Moka/16x16/status/:/usr/share/icons/Moka/16x16/devices/:/usr/share/icons/Faba-Mono/16x16/status/:/usr/share/icons/Faba-Mono/16x16/devices/:/usr/share/icons/Moka/16x16/actions/:/usr/share/icons/Moka/16x16/categories/:/usr/share/icons/Moka/16x16/mimetypes/:/usr/share/icons/Moka/16x16/apps/:/usr/share/icons/Moka/16x16/places/:/usr/share/icons/Paper/16x16/status/
@@ -9,7 +9,7 @@ icon_position = left
 # <i>italic</i>
 # <s>strikethrough<s/>
 # <u>underline</u>
-allow_markup = yes
+markup = full
 # The format of the message. Possible variables are:
 #   %a  appname
 #   %s  summary
@@ -70,7 +70,7 @@ monitor = 0
 #
 # If this option is set to mouse or keyboard, the monitor option will be
 # ignored.
-follow = mouse
+follow = keyboard
 # should a notification popped up from history be sticky or
 # timeout as if it would normally do.
 sticky_history = yes
@@ -100,7 +100,8 @@ separator_color = foreground
 # automatically after a crash.
 startup_notification = false
 # dmenu path
-dmenu = /usr/bin/dmenu -p dunst:
+#dmenu = /usr/bin/dmenu -p dunst:
+dmenu = /usr/bin/rofi -dmenu -p dunst:
 # browser for opening urls in context menu
 browser = /usr/bin/firefox -new-tab
 [frame]
