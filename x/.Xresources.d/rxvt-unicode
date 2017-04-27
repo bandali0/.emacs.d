@@ -1,0 +1,85 @@
+URxvt.xftAntialias:     true
+URxvt.letterSpace: 0
+
+! Fira Mono
+! URxvt.font:             xft:Fira Mono:pixelsize=15:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+! URxvt.boldFont:         xft:Fira Mono:pixelsize=15:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+! URxvt.italicFont:       xft:Fira Mono:pixelsize=15:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+! URxvt.bolditalicFont:   xft:Fira Mono:pixelsize=15:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+! Inconsolata
+! URxvt.font:             xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true
+! URxvt.boldFont:         xft:inconsolata:pixelsize=14:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bold
+! URxvt.italicFont:       xft:inconsolata:pixelsize=14:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:italic
+! URxvt.bolditalicFont:   xft:inconsolata:pixelsize=14:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bolditalic
+
+! Ubuntu Mono
+! URxvt.font:             xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+! URxvt.boldFont:         xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+! URxvt.italicFont:       xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+! URxvt.bolditalicFont:   xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+! Ubuntu Mono
+URxvt.font:             xft:ubuntu mono-10.5:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+URxvt.boldFont:         xft:ubuntu mono-10.5:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+URxvt.italicFont:       xft:ubuntu mono-10.5:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+URxvt.bolditalicFont:   xft:ubuntu mono-10.5:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+! Iosevka
+!URxvt.font:             xft:iosevka-11:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+!URxvt.boldFont:         xft:iosevka-11:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+!URxvt.italicFont:       xft:iosevka-11:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+!URxvt.bolditalicFont:   xft:iosevka-11:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+!URxvt.font:             xft:iosevka-12:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+!URxvt.boldFont:         xft:iosevka-12:pixelsize=14:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+!URxvt.italicFont:       xft:iosevka-12:pixelsize=14:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+!URxvt.bolditalicFont:   xft:iosevka-12:pixelsize=14:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+! DejaVu Sans Mono
+! URxvt.font:             xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+! URxvt.boldFont:         xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+! URxvt.italicFont:       xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+! URxvt.bolditalicFont:   xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+! Source Code Pro
+! URxvt.font:             xft:source code pro:pixelsize=15:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+! URxvt.boldFont:         xft:source code pro:pixelsize=15:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+! URxvt.italicFont:       xft:source code pro:pixelsize=15:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+! URxvt.bolditalicFont:   xft:source code pro:pixelsize=15:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+URxvt.depth:                0
+URxvt.loginShell:           true
+URxvt.saveLines:            100000
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+URxvt.scrollBar:            false
+URxvt.scrollStyle:          rxvt
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+URxvt.keysym.Shift-Up:      command:\033]720;1\007
+URxvt.keysym.Shift-Down:    command:\033]721;1\007
+
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,font-size
+URxvt.url-select.launcher:  firefox
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.url-launcher:         /usr/bin/firefox
+URxvt.matcher.button:       1
+URxvt.iso14755:             false
+URxvt.iso14755_53:          false
+URxvt.keysym.M-c:           perl:clipboard:copy
+URxvt.keysym.M-v:           perl:clipboard:paste
+URxvt.keysym.C-A-V:         perl:clipboard:paste_escaped
+URxvt.keysym.C-Up:          font-size:increase
+URxvt.keysym.C-Down:        font-size:decrease
+URxvt.keysym.C-S-Up:        font-size:incglobal
+URxvt.keysym.C-S-Down:      font-size:decglobal
+URxvt.keysym.C-equal:       font-size:reset
+URxvt.keysym.C-question:    font-size:show
+
+! URxvt.iconFile:             /usr/share/icons/Moka/96x96/apps/utilities-terminal.png
+URxvt.iconFile:             /usr/share/icons/elementary-xfce/apps/128/utilities-terminal.svg

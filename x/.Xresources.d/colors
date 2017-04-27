@@ -1,0 +1,3 @@
+#include "gruvbox-light.xresources"
+! #include "gruvbox-dark.xresources"
+#include "gruvbox-urxvt256.xresources"

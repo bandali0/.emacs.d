@@ -1,0 +1,15 @@
+! Emacs stuff
+Emacs.menuBar: off
+Emacs.toolBar: off
+Emacs.verticalScrollBars: off
+Emacs.cursorBlink: off
+Emacs.FontBackend: xft,x
+Emacs.font: Ubuntu Mono-10.5
+! Emacs.font: Ubuntu Mono-12
+! Emacs.font: Iosevka-11
+
+! Emacs.font: Fira Mono:size=15
+! Emacs.font: DejaVu Sans Mono:size=15
+! Emacs.font: Inconsolata:size=17
+! Emacs.font: Source Code Pro-10
+! Emacs.font: Iosevka:size=16

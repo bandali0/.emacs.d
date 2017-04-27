@@ -3,28 +3,20 @@
 #
 
 # terminal emulator
-super + Return
-	urxvt
-super + shift + Return
-	urxvt -name tiled
+super + {_,shift} + Return
+	urxvt{_, -name tiled}
 
 # program launcher
 super + space
-	rofi -show run -font "Inconsolata 13"
+	rofi -show run
 
-# rofi-pass
+# window finder
+super + backslash
+	rofi -show window
+
+# password manager
 super + shift + space
 	rofi-pass
-
-# teiler
-super + shift + s
-	teiler
-
-super + z ; t
-	urxvt
-
-super + z ; f
-	firefox-nightly
 
 # firefox
 #super + r
@@ -32,43 +24,43 @@ super + z ; f
 
 # chromium
 #super + c
-#	chromium
+#	chromium -incognito
 
 # emacs
 super + e
 	emacs
-#	emacs -Q -l src/elisp/oremacs/init.el
 
-# stalonetray
-#super + minus
-#	toggle_tray&
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
 
-# volume up
-XF86AudioRaiseVolume
-	pamixer --allow-boost --increase 5
-
-# volume down
-XF86AudioLowerVolume
-	pamixer  --allow-boost --decrease 5
+# volume {up,down}
+XF86Audio{Raise,Lower}Volume
+	pamixer --allow-boost --{in,de}crease 5
 
 # mute
 XF86AudioMute
 	pamixer --toggle-mute
 
+# Xfce log out
+super + shift + q
+	xfce4-session-logout
+
+# Toggle keyboard layout
+XF86LaunchA
+	toggle-layout
+
+# Toggle Xfce presentation mode
+XF86LaunchB
+	toggle-presentation-mode
+
 # monitor brightness
 #XF86MonBrightness{Up,Down}
-#	xbacklight -time 0 {+5,-5}
+#	light -s mba6x_backlight -{A,U} 10
 
 # keyboard brightness
 #XF86KbdBrightness{Up,Down}
 #	kbdlight {up,down}
-
-XF86LaunchA
-  /home/amin/.local/bin/toggle-layout
-
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
 
 #
 # bspwm hotkeys
@@ -118,13 +110,13 @@ super + {_,shift + }{h,j,k,l}
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous node
-super + {_,shift + }slash
-	bspc node -f {next,prev}
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
 
-# focus the next/previous desktop
+# focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev,next}
+	bspc desktop -f {prev,next}.local
 
 # send to next/prev desktop
 super + shift + bracket{left,right}
