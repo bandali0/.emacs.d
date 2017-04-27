@@ -1,0 +1,113 @@
+#!/bin/bash
+
+sudo systemctl start dhcpcd
+
+# install cower & pacaur
+mkdir -p usr/build
+cd $_
+git clone https://aur.archlinux.org/cower.git
+git clone https://aur.archlinux.org/pacaur.git
+cd cower
+gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
+makepkg -si
+cd ../pacaur
+makepkg -si
+
+# mirrors
+pacaur -S reflector
+sudo reflector --sort rate --save /etc/pacman.d/mirrorlist -c "Canada" -f 5 -l 5
+
+# dkms and broadcom-wl driver
+pacaur -S linux-headers dkms
+pacaur -S broadcom-wl-dkms
+
+# X, drivers, lightdm, Xfce
+pacaur -S mesa-libgl libva-intel-driver xorg-{xprop,server{,-utils}} vulkan-intel
+pacaur -S pulseaudio pulseaudio-alsa
+pacaur -S lightdm{,-gtk-greeter}
+sudo systemctl enable lightdm
+pacaur -S xfce4{,-screenshoter}
+
+# other essentials
+pacaur -S wget openssh
+pacaur -S thunar-volman gvfs{,-mtp}
+pacaur -S ntfs-3g
+pacaur -S mba6x_bl-dkms
+pacaur -S firefox chromium
+pacaur -S unrar mpv youtube-dl
+pacaur -S feh sxiv-git
+pacaur -S p{a,n}mixer-gi
+pacaur -S pavucontrol
+pacaur -S rxvt-unicode-pixbuf urxvt-perls urxvt-font-size-git
+pacaur -S dunst-git
+pacaur -S light-git kbdlight
+pacaur -S pass
+pacaur -S rofi{,-pass}-git
+pacaur -S teiler
+pacaur -S ncdu
+pacaur -S w3m neofetch-git
+pacaur -S gnome-keyring seahorse
+pacaur -S meld
+pacaur -S ttf-symbola
+pacaur -S stow
+
+# tlp and powertop
+pacaur -S tlp powertop
+# TODO: create powertop service
+sudo vi /etc/systemd/system/powertop.service
+sudo systemctl enable powertop.service
+sudo systemctl disable systemd-rfkill
+# TODO: copy tlp config
+sudo systemctl enable tlp tlp-sleep
+
+# fonts
+pacaur -S ttf-liberation ttf-ubuntu-font-family
+pacaur -S ttf-inconsolata adobe-source-code-pro-fonts
+pacaur -S ttf-roboto cantarell-fonts
+
+pacaur -S elementary-xfce-icons
+pacaur -S xfce-theme-greybird
+
+# LibreOffice & TeX
+pacaur -S hunspell{,-en}
+pacaur -S libreoffice
+pacaur -S tex{info,live-{bin,core,{fonts,formats,generic,latex,plain}extra,htmlxml,humanities,pictures,publishers,science}}
+
+# macfanctld
+pacaur -S macfanctld
+sudo systemctl enable macfanctld.service
+sudo systemctl start macfanctld.service
+
+# stack
+gpg --recv-keys --keyserver hkp://pgp.mit.edu 702353E0F7E48EDB
+pacaur -S ncurses5-compat-libs stack
+
+# fix ` and ~
+sudo vi /etc/modprobe.d/hid_apple.conf
+# TODO: copy file
+sudo mkinitcpio -p linux
+
+# window manager
+pacaur -S {bspwm,sxhkd}-git
+
+
+# connman
+pacaur -S wpa_supplicant connman{,-gtk}
+
+sudo systemctl stop dhcpcd
+sudo systemctl enable connman
+
+# stow
+cd $HOME/dotfiles
+stow bspwm
+stow sxhkd
+stow compton
+stow rofi
+stow rofi-pass
+stow dunst
+stow fontconfig
+stow gtk
+stow x
+stow xdg
+stow latexmk
+stow zathura
