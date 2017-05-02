@@ -42,6 +42,10 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
 	pamixer --toggle-mute
 
+# playback control
+XF86Audio{Play,Prev,Next}
+	mpc {toggle,prev,next}
+
 # Xfce log out
 super + shift + q
 	xfce4-session-logout
