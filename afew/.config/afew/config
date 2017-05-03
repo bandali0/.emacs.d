@@ -1,0 +1,8 @@
+# This is the default filter chain
+[SpamFilter]
+#[ClassifyingFilter]
+[KillThreadsFilter]
+[ListMailsFilter]
+[ArchiveSentMailsFilter]
+sent_tag = sent
+[InboxFilter]

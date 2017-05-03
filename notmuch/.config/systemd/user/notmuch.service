@@ -1,0 +1,8 @@
+[Unit]
+Description=notmuch service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notmuch new
+StandardOutput=syslog
+StandardError=syslog
