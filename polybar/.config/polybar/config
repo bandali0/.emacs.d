@@ -356,7 +356,7 @@ menu-2-1-exec = menu-open-0
 
 [module/mail]
 type = custom/script
-interval = 300
+interval = 60
 format = <label>
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
