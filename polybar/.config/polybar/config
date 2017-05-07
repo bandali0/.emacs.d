@@ -49,10 +49,10 @@ font-3 = FontAwesome:pixelsize=10;1
 
 modules-left = bspwm xwindow
 modules-center = 
-modules-right = volume filesystem mail xkeyboard memory cpu temperature date
+modules-right = volume filesystem mail xkeyboard memory cpu temperature date powermenu
 
 tray-position = right
-;tray-padding = 2
+tray-padding = 1
 ;tray-transparent = true
 ;tray-background = #0063ff
 tray-maxsize = 18
