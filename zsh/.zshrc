@@ -24,3 +24,8 @@ ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
 #ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold' 
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# aliases
+alias mpv="mpv --ytdl-format mp4"
+alias mv="mv -iv"
+alias cp="cp -iv"
