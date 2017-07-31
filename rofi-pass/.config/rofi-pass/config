@@ -3,11 +3,19 @@
 
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
-    rofi -kb-accept-entry "!Return" -i -no-levenshtein-sort "$@"
+    rofi -no-auto-select -kb-accept-entry "!Return" -i -no-levenshtein-sort "$@"
 }
 
-# keyboard layout (set this to your actual layout. E.g. keyboard="de us"
-#keyboard=us
+# xdotool needs the keyboard layout to be set using setxkbmap
+# You can do this in your autostart scripts (e.g. xinitrc)
+
+# If for some reason, you cannot do this, you can set the command here.
+# and set fix_layout to true
+fix_layout=false
+
+layout_cmd () {
+  setxkbmap us
+}
 
 # fields to be used
 URL_field='url'
