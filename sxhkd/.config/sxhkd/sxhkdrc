@@ -10,6 +10,9 @@ super + {_,shift} + Return
 super + space
 	rofi -show run
 
+super + alt + space
+	xfce4-popup-whiskermenu
+
 # window finder
 super + backslash
 	rofi -show window
@@ -46,9 +49,9 @@ XF86AudioMute
 XF86Audio{Play,Prev,Next}
 	mpc {toggle,prev,next}
 
-# Xfce log out
+# lock the screen
 super + shift + q
-	xfce4-session-logout
+	light-locker-command -l
 
 # Toggle keyboard layout
 XF86LaunchA
@@ -59,8 +62,8 @@ XF86LaunchB
 	toggle-presentation-mode
 
 # monitor brightness
-#XF86MonBrightness{Up,Down}
-#	light -s mba6x_backlight -{A,U} 10
+XF86MonBrightness{Up,Down}
+	light -s mba6x_backlight -{A,U} 5
 
 # keyboard brightness
 #XF86KbdBrightness{Up,Down}

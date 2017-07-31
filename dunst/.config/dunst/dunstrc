@@ -1,5 +1,6 @@
 [global]
-font = Ubuntu Mono 10.5
+#font = Ubuntu Mono 10.5
+font = Inconsolata 11
 
 # Path to default icons.
 icon_folders = /usr/share/icons/Moka/16x16/status/:/usr/share/icons/Moka/16x16/devices/:/usr/share/icons/Faba-Mono/16x16/status/:/usr/share/icons/Faba-Mono/16x16/devices/:/usr/share/icons/Moka/16x16/actions/:/usr/share/icons/Moka/16x16/categories/:/usr/share/icons/Moka/16x16/mimetypes/:/usr/share/icons/Moka/16x16/apps/:/usr/share/icons/Moka/16x16/places/:/usr/share/icons/Paper/16x16/status/
