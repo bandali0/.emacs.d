@@ -1,0 +1,10 @@
+[Unit]
+Description=wallpaper timer
+
+[Timer]
+OnCalendar=07,21:00
+Unit=wp.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

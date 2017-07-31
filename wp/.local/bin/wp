@@ -1,0 +1,15 @@
+#! /bin/bash
+
+export DISPLAY=:0
+
+case "$1" in
+  "day")
+    feh --bg-scale $HOME/usr/pics/island_day_by_arsenixc-d6ctqon.jpg
+    ;;
+  "night")
+    feh --bg-scale $HOME/usr/pics/island_night_by_arsenixc-d6cz757.jpg
+    ;;
+  *)
+    echo $"Usage: $0 {day|night}"
+    exit 1
+esac

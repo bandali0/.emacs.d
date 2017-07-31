@@ -1,0 +1,6 @@
+[Unit]
+Description=wallpaper service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c %h/.local/bin/wp-auto
