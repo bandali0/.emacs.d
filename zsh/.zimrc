@@ -9,10 +9,10 @@
 #
 
 # Select what modules you would like enabled.
-# The second line of modules may depend on options set by modules in the first line.
-# These dependencies are noted on the respective module's README.md.
-zmodules=(directory environment git history input ssh utility meta custom \
-          prompt syntax-highlighting history-substring-search completion)
+# The second line of modules may depend on options set by modules in the first
+# line. These dependencies are noted on the respective module's README.md.
+zmodules=(directory environment git git-info history input ssh utility meta custom \
+          syntax-highlighting history-substring-search prompt completion)
 
 
 ###################
@@ -24,7 +24,9 @@ zmodules=(directory environment git history input ssh utility meta custom \
 #
 
 # Set your desired prompt here
-zprompt_theme='pure'
+#zprompt_theme='pure'
+#zprompt_theme='gitster'
+zprompt_theme='minimal'
 PURE_PROMPT_SYMBOL=λ
 
 #

@@ -1,6 +1,6 @@
 # Bash-like navigation
 #export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-export WORDCHARS='*?[]~=&;!#$%^(){}<>'
+export WORDCHARS='*?-[]~=&;!#$%^(){}<>'
 
 fpath+=~/.zfunc
 
@@ -29,3 +29,5 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias mpv="mpv --ytdl-format mp4"
 alias mv="mv -iv"
 alias cp="cp -iv"
+alias scl=systemctl
+alias jcl=journalctl
