@@ -2,7 +2,29 @@
 [SpamFilter]
 #[ClassifyingFilter]
 [KillThreadsFilter]
-[ListMailsFilter]
+#[ListMailsFilter]
 [ArchiveSentMailsFilter]
 sent_tag = sent
 [InboxFilter]
+
+#[Filter.1]
+#query = 'folder:amin/lists/.haskell-cafe'
+#tags = +lists;+lists/haskell-cafe
+#message = lists/haskell-cafe
+
+#[Filter.2]
+#query = 'folder:amin/lists/.haskell-weekly'
+#tags = +lists;+lists/haskell-weekly
+#message = lists/haskell-weekly
+
+#[Filter.3]
+#query = 'folder:amin/lists/.hackernewsletter'
+#tags = +lists;+lists/hackernewsletter
+#message = lists/hackernewsletter
+
+
+#[FolderNameFilter]
+#folder_blacklist = Inbox
+#maildir_separator = /.
+#folder_transforms = Drafts:draft Junk:spam Trash:deleted Sent:sent Archive:archive lists/haskell-cafe:lists/haskell-cafe
+
