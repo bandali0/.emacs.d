@@ -24,10 +24,11 @@ zmodules=(directory environment git git-info history input ssh utility meta cust
 #
 
 # Set your desired prompt here
-#zprompt_theme='pure'
+zprompt_theme='pure'
 #zprompt_theme='gitster'
-zprompt_theme='minimal'
+#zprompt_theme='minimal'
 PURE_PROMPT_SYMBOL=λ
+#PURE_PROMPT_SYMBOL=➜
 
 #
 # Completion

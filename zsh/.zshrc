@@ -4,6 +4,9 @@ export WORDCHARS='*?-[]~=&;!#$%^(){}<>'
 
 fpath+=~/.zfunc
 
+disable -r time       # disable shell reserved word
+alias time='time -p'  # -p for POSIX output
+
 # rehash if last command was pacaur or pacman
 # (so that zsh picks up changes in $PATH immediately)
 TRAPUSR1() { rehash}; precmd() { [[ $history[$[ HISTCMD -1 ]] == *(pacaur|pacman)* ]] && killall -USR1 zsh }
@@ -31,3 +34,4 @@ alias mv="mv -iv"
 alias cp="cp -iv"
 alias scl=systemctl
 alias jcl=journalctl
+alias m="mbsync -Va; getmail; notmuch new"
