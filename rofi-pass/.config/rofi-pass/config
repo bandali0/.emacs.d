@@ -3,7 +3,8 @@
 
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
-    rofi -no-auto-select -kb-accept-entry "!Return" -i -no-levenshtein-sort "$@"
+    #rofi -no-auto-select -kb-accept-entry "!Return" -i -no-levenshtein-sort "$@"
+    rofi -i -no-auto-select "$@"
 }
 
 # xdotool needs the keyboard layout to be set using setxkbmap
@@ -37,6 +38,7 @@ BROWSER='chromium'
 default_do='menu' # menu, autotype, copyPass, typeUser, typePass, copyUser, copyUrl, viewEntry, typeMenu, actionMenu, copyMenu, openUrl
 auto_enter='false'
 notify='false'
+default_autotype='user :tab pass'
 
 # color of the help messages
 # leave empty for autodetection
@@ -47,6 +49,7 @@ help_color="#4872FF"
 clip=primary
 
 # Options for generating new password entries
+# default_user is also used for password files that have no user field.
 default_user=aminb
 default_user2=aminban
 password_length=30
