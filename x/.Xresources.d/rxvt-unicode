@@ -8,16 +8,22 @@ URxvt.letterSpace: 0
 ! URxvt.bolditalicFont:   xft:Fira Mono:pixelsize=15:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
 
 ! Inconsolata
-URxvt.font:             xft:inconsolata:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true
-URxvt.boldFont:         xft:inconsolata:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bold
-URxvt.italicFont:       xft:inconsolata:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:italic
-URxvt.bolditalicFont:   xft:inconsolata:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bolditalic
+!URxvt.font:             xft:inconsolata:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true
+!URxvt.boldFont:         xft:inconsolata:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bold
+!URxvt.italicFont:       xft:inconsolata:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:italic
+!URxvt.bolditalicFont:   xft:inconsolata:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bolditalic
 
 ! Ubuntu Mono
 ! URxvt.font:             xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
 ! URxvt.boldFont:         xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
 ! URxvt.italicFont:       xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
 ! URxvt.bolditalicFont:   xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+! Ubuntu Mono
+URxvt.font:             xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+URxvt.boldFont:         xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+URxvt.italicFont:       xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+URxvt.bolditalicFont:   xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
 
 ! Ubuntu Mono
 !URxvt.font:             xft:ubuntu mono-10.5:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true

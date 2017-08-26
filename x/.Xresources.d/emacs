@@ -15,5 +15,6 @@ Emacs.FontBackend: xft,x
 ! Emacs.font: Inconsolata:size=17
 ! Emacs.font: Inconsolata:size=16
 ! Emacs.font: Inconsolata LGC:size=14
-Emacs.font: Source Code Pro Medium-10.5
+!Emacs.font: Source Code Pro Medium-10.5
+Emacs.font: Ubuntu Mono:size=16
 ! Emacs.font: Iosevka:size=16
