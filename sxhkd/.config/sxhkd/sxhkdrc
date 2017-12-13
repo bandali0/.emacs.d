@@ -3,8 +3,11 @@
 #
 
 # terminal emulator
+#super + {_,shift} + Return
+#	urxvt{_, -name tiled}
+
 super + {_,shift} + Return
-	urxvt{_, -name tiled}
+	termite{_, --name=tiled}
 
 # program launcher
 super + space

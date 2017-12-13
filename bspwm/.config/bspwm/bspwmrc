@@ -23,6 +23,7 @@ bspc config click_to_focus       button1
 bspc config directional_focus_tightness low
 
 bspc rule -a Firefox desktop='^1' follow=on
+bspc rule -a Nightly desktop='^1' follow=on
 bspc rule -a Emacs desktop='^2' state=tiled follow=on
 #bspc rule -a Chromium desktop='^4' follow=on
 bspc rule -a URxvt state=floating
@@ -41,3 +42,11 @@ bspc rule -a Autokey-gtk state=floating
 bspc rule -a Mousepad state=floating
 bspc rule -a Wrapper-1.0 state=floating
 bspc rule -a File-roller state=floating
+bspc rule -a Gnome-disks state=floating
+bspc rule -a Termite state=floating
+bspc rule -a Termite:tiled state=tiled
+bspc rule -a Thunderbird:Calendar state=floating
+bspc rule -a Audacity state=floating
+bspc rule -a Proof state=floating # pvs x-show-proof
+bspc rule -a Nm-connection-editor state=floating
+bspc rule -a Wire state=floating

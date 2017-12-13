@@ -1,12 +1,13 @@
 ! rofi.font: Ubuntu Mono 10.5
-rofi.font: Inconsolata 16
+!rofi.font: Inconsolata 16
+rofi.font: Iosevka 13
 ! rofi.font: Source Code Pro 11
 rofi.modi: run,window
 ! rofi.width: 640
 rofi.width: 600
-rofi.location: 2
-rofi.yoffset: 200
+!rofi.location: 2
+!rofi.yoffset: 200
 rofi.monitor: -1
-rofi.lines: 7
+rofi.lines: 10
 
 rofi.theme: /usr/share/rofi/themes//gruvbox-light.rasi

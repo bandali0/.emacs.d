@@ -14,6 +14,7 @@ Account amin
 MaildirStore amin-local
 Path ~/mail/amin/
 Inbox ~/mail/amin/Inbox
+SubFolders Verbatim
 
 Channel amin
 Master :amin-remote:

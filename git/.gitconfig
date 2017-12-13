@@ -6,3 +6,8 @@
 # 	gpgsign = true
 # [format]
 # 	signoff = true
+
+[alias]
+	git = !exec git
+[core]
+	autocrlf = input

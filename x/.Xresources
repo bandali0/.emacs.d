@@ -1,4 +1,4 @@
 #include ".Xresources.d/fonts"
-#include ".Xresources.d/colors"
+!#include ".Xresources.d/colors"
 #include ".Xresources.d/emacs"
 #include ".Xresources.d/rxvt-unicode"

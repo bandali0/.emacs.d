@@ -2,7 +2,7 @@
 afew -tn
 
 # apply tags to lists
-notmuch tag +lists +lists/deepspec -- folder:amin/lists/.deepspec
-notmuch tag +lists +lists/haskell-cafe -- folder:amin/lists/.haskell-cafe
-notmuch tag +lists +lists/haskell-weekly -- folder:amin/lists/.haskell-weekly
-notmuch tag +lists +lists/hackernewsletter -- folder:amin/lists/.hackernewsletter
+notmuch tag +lists +lists/deepspec -- folder:amin/lists/deepspec
+notmuch tag +lists +lists/haskell-cafe -- folder:amin/lists/haskell-cafe
+notmuch tag +lists +lists/haskell-weekly -- folder:amin/lists/haskell-weekly
+notmuch tag +lists +lists/hackernewsletter -- folder:amin/lists/hackernewsletter

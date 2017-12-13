@@ -27,6 +27,7 @@ ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
 #ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold' 
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autopair/autopair.zsh
 
 # aliases
 alias mpv="mpv --ytdl-format mp4"
@@ -35,3 +36,4 @@ alias cp="cp -iv"
 alias scl=systemctl
 alias jcl=journalctl
 alias m="mbsync -Va; getmail; notmuch new"
+alias best="youtube-dl -f best"

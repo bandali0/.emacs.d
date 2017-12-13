@@ -9,12 +9,15 @@ export CVS_RSH=ssh
 export MATHMODELS=$HOME/src/eiffel/mathmodels
 export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # Eiffel2Java stuff
 export JAVA_HOME=/usr/lib/jvm/default
 export CPATH=$CPATH:"$JAVA_HOME/include:$JAVA_HOME/include/linux"
 export LIBRARY_PATH=$LIBRARY_PATH:"$JAVA_HOME/jre/lib/amd64/server"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$JAVA_HOME/jre/lib/amd64/server"
 
-# if [ -e /home/amin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/amin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export PATH="$HOME/usr/build/pvs:$PATH"
+export SBCLISP_HOME=/usr/share/sbcl-source
+export PVS_LIBRARY_PATH="$HOME/usr/build/pvs/nasalib"
+
+
+ #if [ -e /home/amin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/amin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
