@@ -1,5 +1,5 @@
 #PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
+#PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.cargo/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
@@ -18,6 +18,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$JAVA_HOME/jre/lib/amd64/server"
 export PATH="$HOME/usr/build/pvs:$PATH"
 export SBCLISP_HOME=/usr/share/sbcl-source
 export PVS_LIBRARY_PATH="$HOME/usr/build/pvs/nasalib"
+
+export MOZ_USE_XINPUT2=1
 
 
  #if [ -e /home/amin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/amin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

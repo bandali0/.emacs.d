@@ -3,11 +3,11 @@
 #
 
 # terminal emulator
-#super + {_,shift} + Return
-#	urxvt{_, -name tiled}
-
 super + {_,shift} + Return
-	termite{_, --name=tiled}
+	urxvt{_, -name tiled}
+
+#super + {_,shift} + Return
+#	termite{_, --name=tiled}
 
 # program launcher
 super + space
@@ -65,8 +65,8 @@ XF86LaunchB
 	toggle-presentation-mode
 
 # monitor brightness
-XF86MonBrightness{Up,Down}
-	light -s mba6x_backlight -{A,U} 5
+#XF86MonBrightness{Up,Down}
+#	light -{A,U} 5
 
 # keyboard brightness
 #XF86KbdBrightness{Up,Down}
@@ -181,3 +181,6 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#alt + bracket{left,right}
+#	xdotool key --clearmodifiers ctrl+Page_{Up,Down}

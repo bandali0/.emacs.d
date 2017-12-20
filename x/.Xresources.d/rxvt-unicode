@@ -1,63 +1,11 @@
+! Font
+URxvt.font:             xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+URxvt.boldFont:         xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+URxvt.italicFont:       xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+URxvt.bolditalicFont:   xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
 URxvt.xftAntialias:     true
-URxvt.letterSpace: 0
-
-! Fira Mono
-! URxvt.font:             xft:Fira Mono:pixelsize=15:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-! URxvt.boldFont:         xft:Fira Mono:pixelsize=15:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-! URxvt.italicFont:       xft:Fira Mono:pixelsize=15:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-! URxvt.bolditalicFont:   xft:Fira Mono:pixelsize=15:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-! Inconsolata
-!URxvt.font:             xft:inconsolata:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true
-!URxvt.boldFont:         xft:inconsolata:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bold
-!URxvt.italicFont:       xft:inconsolata:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:italic
-!URxvt.bolditalicFont:   xft:inconsolata:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=14:antialias=true:hinting=true:bolditalic
-
-! Ubuntu Mono
-! URxvt.font:             xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-! URxvt.boldFont:         xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-! URxvt.italicFont:       xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-! URxvt.bolditalicFont:   xft:ubuntu mono:pixelsize=17:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-! Ubuntu Mono
-!URxvt.font:             xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-!URxvt.boldFont:         xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-!URxvt.italicFont:       xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-!URxvt.bolditalicFont:   xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-! Ubuntu Mono
-! URxvt.font:             xft:ubuntu mono-10.5:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-! URxvt.boldFont:         xft:ubuntu mono-10.5:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-! URxvt.italicFont:       xft:ubuntu mono-10.5:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-! URxvt.bolditalicFont:   xft:ubuntu mono-10.5:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-!URxvt.font:             xft:Triplicate T4C-11.5:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-!URxvt.boldFont:         xft:Triplicate T4C-11.5:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-!URxvt.italicFont:       xft:Triplicate T4C-11.5:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-!URxvt.bolditalicFont:   xft:Triplicate T4C-11.5:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-! Iosevka
-!URxvt.font:             xft:iosevka-13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-!URxvt.boldFont:         xft:iosevka-13:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-!URxvt.italicFont:       xft:iosevka-13:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-!URxvt.bolditalicFont:   xft:iosevka-13:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-URxvt.font:             xft:iosevka medium:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-URxvt.boldFont:         xft:iosevka:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-URxvt.italicFont:       xft:iosevka medium oblique:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-URxvt.bolditalicFont:   xft:iosevka bold oblique:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-! DejaVu Sans Mono
-! URxvt.font:             xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-! URxvt.boldFont:         xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-! URxvt.italicFont:       xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-! URxvt.bolditalicFont:   xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
-
-! Source Code Pro
-!URxvt.font:             xft:source code pro:pixelsize=14.5:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
-!URxvt.boldFont:         xft:source code pro:pixelsize=14.5:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
-!URxvt.italicFont:       xft:source code pro:pixelsize=14.5:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
-!URxvt.bolditalicFont:   xft:source code pro:pixelsize=14.5:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+URxvt.letterSpace:      0
 
 URxvt.depth:                0
 URxvt.loginShell:           true
@@ -72,9 +20,8 @@ URxvt*scrollTtyKeypress:    true
 URxvt.keysym.Shift-Up:      command:\033]720;1\007
 URxvt.keysym.Shift-Down:    command:\033]721;1\007
 
-!URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,bidi
-URxvt.perl-ext:             default,clipboard,url-select,keyboard-select,bidi
-!!,font-size
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.perl-ext:             bidi
 URxvt.bidi.enabled:         1
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
@@ -88,12 +35,98 @@ URxvt.iso14755_53:          false
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.C-A-V:         perl:clipboard:paste_escaped
-!URxvt.keysym.C-Up:          font-size:increase
-!URxvt.keysym.C-Down:        font-size:decrease
-!URxvt.keysym.C-S-Up:        font-size:incglobal
-!URxvt.keysym.C-S-Down:      font-size:decglobal
-!URxvt.keysym.C-equal:       font-size:reset
-!URxvt.keysym.C-question:    font-size:show
+URxvt.keysym.C-Up:          font-size:increase
+URxvt.keysym.C-Down:        font-size:decrease
+URxvt.keysym.C-S-Up:        font-size:incglobal
+URxvt.keysym.C-S-Down:      font-size:decglobal
+URxvt.keysym.C-equal:       font-size:reset
+!URxvt.keysym.C-question:   font-size:show
 
-! URxvt.iconFile:             /usr/share/icons/Moka/96x96/apps/utilities-terminal.png
-URxvt.iconFile:             /usr/share/icons/elementary-xfce/apps/128/utilities-terminal.svg
+URxvt.iconFile:             /usr/share/icons/Paper/48x48/apps/utilities-terminal.png
+
+!urxvt*foreground: white
+!urxvt*background: black
+
+!*color0:  #2E3436
+!*color1:  #a40000
+!*color2:  #4E9A06
+!*color3:  #C4A000
+!*color4:  #3465A4
+!*color5:  #75507B
+!*color6:  #ce5c00
+!*color7:  #babdb9
+!*color8:  #555753
+!*color9:  #EF2929
+!*color10: #8AE234
+!*color11: #FCE94F
+!*color12: #729FCF
+!*color13: #AD7FA8
+!*color14: #fcaf3e
+!*color15: #EEEEEC
+
+!URxvt.foreground: #C8C8C8
+!URxvt.background: #FFFFFF
+
+!! black
+!*color0:  #2E3436
+!*color8:  #555753
+!! red
+!*color1:  #a40000
+!*color9:  #EF2929
+!! green
+!*color2:  #4E9A06
+!*color10: #8AE234
+!! yellow
+!*color3:  #C4A000
+!*color11: #FCE94F
+!! blue
+!*color4:  #3465A4
+!*color12: #729FCF
+!! purple
+!*color5:  #75507B
+!*color13: #AD7FA8
+!! orange (replaces cyan)
+!*color6:  #ce5c00
+!*color14: #fcaf3e
+!! white
+!*color7:  #babdb9
+!*color15: #EEEEEC
+
+! Tango colour theme for rxvt-unicode
+URxvt.background: #FFFFFF
+URxvt.foreground: #000000
+
+! Black
+URxvt.color0: #2E3436
+URxvt.color8: #757773
+
+! Red
+URxvt.color1: #CC0000
+URxvt.color9: #EF2929
+
+! Green
+URxvt.color2: #4E9A06
+URxvt.color10: #8AE234
+
+! Yellow
+URxvt.color3: #C4A000
+URxvt.color11: #FCE94F
+
+! Blue
+URxvt.color4: #3465A4
+URxvt.color12: #729FCF
+
+! Magenta
+URxvt.color5: #75507B
+URxvt.color13: #AD7FA8
+
+!! Cyan
+!URxvt.color6: #06989A
+!URxvt.color14: #34E2E2
+! orange (replaces cyan)
+*color6:  #ce5c00
+*color14: #fcaf3e
+
+! White
+URxvt.color7: #D3D7CF
+URxvt.color15: #EEEEEC

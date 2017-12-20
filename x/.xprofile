@@ -1,5 +1,12 @@
-setxkbmap -option ctrl:nocaps
 #setxkbmap -option compose:ralt
+setxkbmap -option ctrl:nocaps
+
+setxkbmap -option ctrl:rctrl_ralt
+setxkbmap -option altwin:swap_alt_win
+#xmodmap .Xmodmap
+
+#light -Scrs "intel_backlight" 75
+light -Scrs "intel_backlight" 2
 
 source ~/.zprofile
 export _JAVA_AWT_WM_NONREPARENTING=1
