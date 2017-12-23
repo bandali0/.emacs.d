@@ -57,7 +57,7 @@ super + shift + q
 	light-locker-command -l
 
 # Toggle keyboard layout
-XF86LaunchA
+super + F7
 	toggle-layout
 
 # Toggle Xfce presentation mode

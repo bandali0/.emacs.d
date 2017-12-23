@@ -8,7 +8,7 @@ setxkbmap -option altwin:swap_alt_win
 #light -Scrs "intel_backlight" 75
 light -Scrs "intel_backlight" 2
 
-source ~/.zprofile
+source $HOME/.zprofile
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
