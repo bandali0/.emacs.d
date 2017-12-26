@@ -23,7 +23,7 @@ URxvt.keysym.Shift-Down:    command:\033]721;1\007
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
 URxvt.perl-ext:             bidi
 URxvt.bidi.enabled:         1
-URxvt.url-select.launcher:  firefox
+URxvt.url-select.launcher:  firefox-nightly
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
