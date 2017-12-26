@@ -3,8 +3,8 @@
 #export WORDCHARS='*?-[]~=&;!#$%^(){}<>'
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 
-disable -r time       # disable shell reserved word
-alias time='time -p'  # -p for POSIX output
+#disable -r time       # disable shell reserved word
+#alias time='time -p'  # -p for POSIX output
 
 # rehash if last command was pacaur or pacman
 # (so that zsh picks up changes in $PATH immediately)

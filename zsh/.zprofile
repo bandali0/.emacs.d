@@ -22,4 +22,4 @@ export PVS_LIBRARY_PATH="$HOME/usr/build/pvs/nasalib"
 export MOZ_USE_XINPUT2=1
 
 
- #if [ -e /home/amin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/amin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e /home/amin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/amin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
