@@ -6,3 +6,7 @@ notmuch tag +lists +lists/deepspec -- folder:amin/lists/deepspec
 notmuch tag +lists +lists/haskell-cafe -- folder:amin/lists/haskell-cafe
 notmuch tag +lists +lists/haskell-weekly -- folder:amin/lists/haskell-weekly
 notmuch tag +lists +lists/hackernewsletter -- folder:amin/lists/hackernewsletter
+notmuch tag +lists +lists/notmuch -- folder:amin/lists/notmuch
+notmuch tag +lists +lists/info-gnu-emacs -- folder:amin/lists/info-gnu-emacs
+notmuch tag +lists +lists/help-gnu-emacs -- folder:amin/lists/help-gnu-emacs
+notmuch tag +lists +lists/emacs-devel -- folder:amin/lists/emacs-devel
