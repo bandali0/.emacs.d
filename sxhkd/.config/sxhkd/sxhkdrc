@@ -68,6 +68,9 @@ XF86LaunchB
 #XF86MonBrightness{Up,Down}
 #	light -{A,U} 5
 
+super + apostrophe
+	rofi-light
+
 # keyboard brightness
 #XF86KbdBrightness{Up,Down}
 #	kbdlight {up,down}
