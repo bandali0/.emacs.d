@@ -31,7 +31,7 @@ path=/home/amin/mail
 [user]
 name=Amin Bandali
 primary_email=amin@aminb.org
-other_email=aminb@gnu.org;
+other_email=amin.bandali@uwaterloo.ca;mbandali@uwaterloo.ca;aminb@gnu.org;
 
 # Configuration for "notmuch new"
 #

@@ -22,3 +22,25 @@ Slave :amin-local:
 Patterns * !dovecot*
 Create Both
 SyncState *
+
+######
+IMAPAccount uwaterloo
+Host connect.uwaterloo.ca
+User mbandali
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/uwaterloo.gpg"
+SSLType IMAPS
+
+IMAPStore uwaterloo-remote
+Account uwaterloo
+
+MaildirStore uwaterloo-local
+Path ~/mail/uwaterloo/
+Inbox ~/mail/uwaterloo/Inbox
+SubFolders Verbatim
+
+Channel uwaterloo
+Master :uwaterloo-remote:
+Slave :uwaterloo-local:
+Patterns * !dovecot*
+Create Both
+SyncState *
