@@ -50,7 +50,7 @@ other_email=amin.bandali@uwaterloo.ca;mbandali@uwaterloo.ca;aminb@gnu.org;
 [new]
 tags=new;
 #tags=unread;inbox;
-ignore=
+ignore=.uidvalidity;.mbsyncstate
 
 # Search configuration
 #
