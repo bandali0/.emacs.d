@@ -57,6 +57,18 @@ alias scl=systemctl
 alias jcl=journalctl
 alias m="mbsync -Va; getmail; notmuch new"
 alias best="youtube-dl -f best"
+alias nix="ssh amin@aminb.org"
+alias mutt=neomutt
+
+alias p=pacaur
+alias psyu="pacaur -Syu"
+alias pS="pacaur -S"
+alias t=trizen
+aur() {
+   cd ~/usr/build
+   git clone https://aur.archlinux.org/${1}.git
+   cd ${1}
+}
 
 # i-beam cursor
 echo -e "\033[5 q"
