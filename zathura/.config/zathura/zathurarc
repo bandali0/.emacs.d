@@ -1,2 +1,3 @@
 set smooth-scroll true
 set selection-clipboard clipboard
+set zoom-step 05
