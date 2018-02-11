@@ -11,14 +11,14 @@ super + {_,shift} + Return
 
 # program launcher
 super + space
-	rofi -show run
+	rofi -show run -display-run '> ' -display-window ' 🗔 '
 
 super + alt + space
 	xfce4-popup-whiskermenu
 
 # window finder
 super + backslash
-	rofi -show window
+	rofi -show window  -display-run '> ' -display-window ' 🗔 '
 
 # password manager
 super + shift + space
