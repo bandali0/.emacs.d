@@ -50,3 +50,6 @@ bspc rule -a Audacity state=floating
 bspc rule -a Proof state=floating # pvs x-show-proof
 bspc rule -a Nm-connection-editor state=floating
 bspc rule -a Wire state=floating
+bspc rule -a discord state=floating
+bspc rule -a X2goclient state=floating
+bspc rule -a SimpleScreenRecorder state=floating
