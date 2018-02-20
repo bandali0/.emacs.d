@@ -57,6 +57,7 @@ alias scl=systemctl
 alias jcl=journalctl
 alias m="mbsync -Va; getmail; notmuch new"
 alias best="youtube-dl -f best"
+alias ace="ssh amin@ace.aminb.org"
 alias nix="ssh amin@aminb.org"
 alias mutt=neomutt
 

@@ -53,3 +53,4 @@ bspc rule -a Wire state=floating
 bspc rule -a discord state=floating
 bspc rule -a X2goclient state=floating
 bspc rule -a SimpleScreenRecorder state=floating
+bspc rule -a Gimp state=floating
