@@ -14,4 +14,4 @@ rofi.monitor: -1
 !rofi.theme: /usr/share/rofi/themes//Paper.rasi
 !rofi.theme: /usr/share/rofi/themes//sidebar.rasi
 
-rofi.theme: .nix-profile/share/rofi/themes//gruvbox-light.rasi
+rofi.theme: /usr/share/rofi/themes//gruvbox-light.rasi

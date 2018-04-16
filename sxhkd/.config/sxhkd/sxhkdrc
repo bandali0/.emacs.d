@@ -21,7 +21,7 @@ super + backslash
 	rofi -show window  -display-run '> ' -display-window ' 🗔 '
 
 # password manager
-super + shift + space
+alt + space
 	rofi-pass
 
 # firefox
@@ -65,8 +65,8 @@ XF86LaunchB
 	toggle-presentation-mode
 
 # monitor brightness
-#XF86MonBrightness{Up,Down}
-#	light -{A,U} 5
+XF86MonBrightness{Up,Down}
+	light -{A,U} 5
 
 super + apostrophe
 	rofi-light
@@ -91,9 +91,9 @@ super + {w,q}
 super + m
 	bspc desktop -l next
 
-# if the current node is automatic, send it to the last manual, otherwise pull the last leaf
+# send the newest marked node to the newest preselected node
 super + y
-	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+	bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest node
 super + g
@@ -108,8 +108,8 @@ super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
-super + ctrl + {x,y,z}
-	bspc node -g {locked,sticky,private}
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
 
 #
 # focus/swap
@@ -133,7 +133,7 @@ super + bracket{left,right}
 
 # send to next/prev desktop
 super + shift + bracket{left,right}
-	bspc node -d {prev,next}
+	bspc node -d {prev,next} --follow
 
 # focus the last node/desktop
 super + {grave,Tab}

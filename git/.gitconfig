@@ -11,3 +11,5 @@
 	git = !exec git
 [core]
 	autocrlf = input
+[color]
+	ui = auto

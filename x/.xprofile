@@ -5,7 +5,6 @@ setxkbmap -option ctrl:rctrl_ralt
 setxkbmap -option altwin:swap_alt_win
 #xmodmap .Xmodmap
 
-#light -Scrs "intel_backlight" 75
 light -Scrs "intel_backlight" 2
 
 source $HOME/.zprofile

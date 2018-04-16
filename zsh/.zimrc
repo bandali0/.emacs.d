@@ -25,8 +25,9 @@ zmodules=(directory environment git git-info history input ssh utility custom \
 
 # Set your desired prompt here
 zprompt_theme='pure'
-PURE_PROMPT_SYMBOL=λ
-#PURE_PROMPT_SYMBOL=➜
+#PURE_PROMPT_SYMBOL=λ
+#PURE_PROMPT_SYMBOL=δ
+PURE_PROMPT_SYMBOL=➜
 
 #
 # Completion
@@ -89,7 +90,7 @@ zssh_ids=(id_rsa plasma_id_rsa id_ed25519 id_rsa_aur)
 #
 
 # Set (optional) pacman front-end.
-zpacman_frontend='pacaur'
+zpacman_frontend='yay'
 
 # Load any helper scripts as defined here
 #zpacman_helper=(aur)

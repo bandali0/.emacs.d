@@ -2,6 +2,7 @@
 #export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 #export WORDCHARS='*?-[]~=&;!#$%^(){}<>'
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
+#ZLE_SPACE_SUFFIX_CHARS=$'|&'
 
 #disable -r time       # disable shell reserved word
 #alias time='time -p'  # -p for POSIX output
@@ -57,14 +58,9 @@ alias scl=systemctl
 alias jcl=journalctl
 alias m="mbsync -Va; getmail; notmuch new"
 alias best="youtube-dl -f best"
-alias ace="ssh amin@ace.aminb.org"
+alias ace="mosh amin@ace.aminb.org"
 alias nix="ssh amin@aminb.org"
-alias mutt=neomutt
 
-alias p=pacaur
-alias psyu="pacaur -Syu"
-alias pS="pacaur -S"
-alias t=trizen
 aur() {
    cd ~/usr/build
    git clone https://aur.archlinux.org/${1}.git
