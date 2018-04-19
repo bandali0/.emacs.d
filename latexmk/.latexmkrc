@@ -1,4 +1,4 @@
-$pdf_previewer = "start okular %O %S";
+$pdf_previewer = "start zathura %O %S";
 $clean_ext = "aux out";
 #$pdf_update_method = 4;
 #$pdf_update_command = "zathura %O %S";
