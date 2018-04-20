@@ -41,7 +41,7 @@ file.
 
 ** Commentary
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :comments none
 ;;; Commentary:
 
 ;; Emacs configuration of Amin Bandali, computer scientist and functional
@@ -52,15 +52,53 @@ file.
 
 * Config
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :comments none
 ;;; Code:
 #+end_src
 
-TODO
+** Org
+
+#+begin_src emacs-lisp
+(setq org-src-tab-acts-natively t
+      org-src-preserve-indentation nil
+      org-edit-src-content-indentation 0)
+#+end_src
+
+** Startup time
+
+Measure and display startup time. Also, temporarily increase
+~gc-cons-threshhold~ during startup to reduce reduce garbage
+collection frequency. Taken from [[https://github.com/dieggsy/dotfiles/tree/3d95bc08033920e077855caf545a975eba52d28d/emacs.d#startup-time][here]].
+
+#+begin_src emacs-lisp
+(defconst aminb/emacs-start-time (current-time))
+(defconst aminb/gc-cons-threshold gc-cons-threshold)
+(defconst aminb/gc-cons-percentage gc-cons-percentage)
+(defvar aminb/file-name-handler-alist file-name-handler-alist)
+(setq gc-cons-threshold 400000000
+      gc-cons-percentage 0.6
+      file-name-handler-alist nil
+      ;; sidesteps a bug when profiling with esup
+      esup-child-profile-require-level 0)
+#+end_src
+
+Reset the variables back to default after init.
+
+#+begin_src emacs-lisp
+(add-hook
+ 'after-init-hook
+ `(lambda ()
+    (setq gc-cons-threshold aminb/gc-cons-threshold
+	  gc-cons-percentage aminb/gc-cons-percentage
+	  file-name-handler-alist aminb/file-name-handler-alist)
+    (let ((elapsed (float-time (time-subtract (current-time)
+					      aminb/emacs-start-time))))
+      (message "Loading %s...done (%.3fs) [after-init]"
+	       ,load-file-name elapsed))))
+#+end_src
 
 * Footer
 
 #+begin_src emacs-lisp :comments none
-
 ;;; init.el ends here
 #+end_src

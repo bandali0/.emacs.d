@@ -1,0 +1,8 @@
+*.elc
+/init.el
+/auto-save-list/
+/var/
+/elpa/
+/recentf
+/smex-items
+/network-security.data
