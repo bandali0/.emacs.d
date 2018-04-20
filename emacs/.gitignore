@@ -1,6 +1,7 @@
 *.elc
 /init.el
 /auto-save-list/
+/etc/
 /var/
 /elpa/
 /recentf

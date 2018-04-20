@@ -56,14 +56,6 @@ file.
 ;;; Code:
 #+end_src
 
-** Org
-
-#+begin_src emacs-lisp
-(setq org-src-tab-acts-natively t
-      org-src-preserve-indentation nil
-      org-edit-src-content-indentation 0)
-#+end_src
-
 ** Startup time
 
 Measure and display startup time. Also, temporarily increase
@@ -95,6 +87,27 @@ Reset the variables back to default after init.
 					      aminb/emacs-start-time))))
       (message "Loading %s...done (%.3fs) [after-init]"
 	       ,load-file-name elapsed))))
+#+end_src
+
+** Custom file (=custom.el=)
+
+I'm not planning on using the custom file much, but even so, I
+definitely don't want it mixing with =init.el=. So, here, let's give
+it it's own file.
+
+#+begin_src emacs-lisp
+(setq custom-file (expand-file-name
+		   "etc/custom.el"
+		   user-emacs-directory))
+(load custom-file)
+#+end_src
+
+** Org
+
+#+begin_src emacs-lisp
+(setq org-src-tab-acts-natively t
+      org-src-preserve-indentation nil
+      org-edit-src-content-indentation 0)
 #+end_src
 
 * Footer
