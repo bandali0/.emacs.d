@@ -1,0 +1,66 @@
+#+title: =aminb='s Emacs Init file
+#+property: header-args :results silent :comments link :tangle ~/dotfiles/emacs/init.el
+
+* Intro
+
+TODO: description
+
+TODO: toc
+
+* Header
+
+** First line
+
+#+begin_src emacs-lisp :comments none
+;;; init.el --- Amin Bandali's Emacs config -*- lexical-binding: t ; eval: (view-mode 1)-*-
+#+end_src
+
+Enable =view-mode=, which both makes the file read-only (as a reminder
+that =init.el= is an auto-generated file, not supposed to be edited),
+and provides some convenient key bindings for browsing through the
+file.
+
+** License
+
+#+begin_src emacs-lisp :comments none
+;; Copyright (C) 2018  Amin Bandali <amin@aminb.org>
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#+end_src
+
+** Commentary
+
+#+begin_src emacs-lisp
+;;; Commentary:
+
+;; Emacs configuration of Amin Bandali, computer scientist and functional
+;; programmer.
+
+;; THIS FILE IS AUTO-GENERATED FROM `init.org'.
+#+end_src
+
+* Config
+
+#+begin_src emacs-lisp
+;;; Code:
+#+end_src
+
+TODO
+
+* Footer
+
+#+begin_src emacs-lisp :comments none
+
+;;; init.el ends here
+#+end_src
