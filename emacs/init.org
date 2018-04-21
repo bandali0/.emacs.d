@@ -5,7 +5,13 @@
 
 TODO: description
 
-TODO: toc
+* Contents                                                   :toc_1:noexport:
+
+- [[#intro][Intro]]
+- [[#header][Header]]
+- [[#initial-setup][Initial setup]]
+- [[#config][Config]]
+- [[#footer][Footer]]
 
 * Header
 
@@ -199,6 +205,8 @@ variable.
 (setq backup-by-copying t
       version-control t)
 #+end_src
+
+* Config
 
 ** Org
 
