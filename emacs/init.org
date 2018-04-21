@@ -91,7 +91,7 @@ Reset the variables back to default after init.
 
 ** Package management
 
-*** [[https://github.com/raxod502/straight.el][=straight.el=]]
+*** =straight.el=
 
 #+begin_quote
 Next-generation, purely functional package manager for the Emacs
@@ -187,6 +187,17 @@ it it's own file.
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
 (when (file-exists-p custom-file)
   (load custom-file))
+#+end_src
+
+** Backups
+
+Emacs' default backup settings aren't that great. Let's use more
+sensible options. See documentation for the ~make-backup-file~
+variable.
+
+#+begin_src emacs-lisp
+(setq backup-by-copying t
+      version-control t)
 #+end_src
 
 ** Org
