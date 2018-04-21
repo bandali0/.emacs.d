@@ -59,6 +59,24 @@ file.
 ;; THIS FILE IS AUTO-GENERATED FROM `init.org'.
 #+end_src
 
+** Naming conventions
+
+The conventions below were inspired by [[https://github.com/hlissner/doom-emacs][Doom]]'s conventions, found
+[[https://github.com/hlissner/doom-emacs/blob/5dacbb7cb1c6ac246a9ccd15e6c4290def67757c/core/core.el#L3-L17][here]]. Naturally, I use my initials, =ab=, instead of =doom=.
+
+#+begin_src emacs-lisp :comments none
+;; Naming conventions:
+;;
+;;   ab-...   public variables or non-interactive functions
+;;   ab--...  private anything (non-interactive), not safe for direct use
+;;   ab/...   an interactive function; safe for M-x or keybinding
+;;   ab:...   an evil operator, motion, or command
+;;   ab|...   a hook function
+;;   ab*...   an advising function
+;;   ab@...   a hydra command
+;;   ab!...   a macro
+#+end_src
+
 * Initial setup
 :PROPERTIES:
 :CUSTOM_ID: initial-setup
@@ -100,9 +118,6 @@ Reset the variables back to default after init.
       (message "Loading %s...done (%.3fs) [after-init]"
 	       ,load-file-name elapsed))))
 #+end_src
-
-Note that I'll be using my initials, =ab=, as a prefix for the
-variables and functions I define throughout my init file.
 
 ** Package management
 
