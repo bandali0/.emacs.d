@@ -75,10 +75,10 @@ Measure and display startup time. Also, temporarily increase
 collection frequency. Taken from [[https://github.com/dieggsy/dotfiles/tree/3d95bc08033920e077855caf545a975eba52d28d/emacs.d#startup-time][here]].
 
 #+begin_src emacs-lisp
-(defconst aminb/emacs-start-time (current-time))
-(defconst aminb/gc-cons-threshold gc-cons-threshold)
-(defconst aminb/gc-cons-percentage gc-cons-percentage)
-(defvar aminb/file-name-handler-alist file-name-handler-alist)
+(defconst ab--emacs-start-time (current-time))
+(defconst ab--gc-cons-threshold gc-cons-threshold)
+(defconst ab--gc-cons-percentage gc-cons-percentage)
+(defvar ab--file-name-handler-alist file-name-handler-alist)
 (setq gc-cons-threshold 400000000
       gc-cons-percentage 0.6
       file-name-handler-alist nil
@@ -92,14 +92,17 @@ Reset the variables back to default after init.
 (add-hook
  'after-init-hook
  `(lambda ()
-    (setq gc-cons-threshold aminb/gc-cons-threshold
-	  gc-cons-percentage aminb/gc-cons-percentage
-	  file-name-handler-alist aminb/file-name-handler-alist)
+    (setq gc-cons-threshold ab--gc-cons-threshold
+	  gc-cons-percentage ab--gc-cons-percentage
+	  file-name-handler-alist ab--file-name-handler-alist)
     (let ((elapsed (float-time (time-subtract (current-time)
-					      aminb/emacs-start-time))))
+					      ab--emacs-start-time))))
       (message "Loading %s...done (%.3fs) [after-init]"
 	       ,load-file-name elapsed))))
 #+end_src
+
+Note that I'll be using my initials, =ab=, as a prefix for the
+variables and functions I define throughout my init file.
 
 ** Package management
 
@@ -155,7 +158,7 @@ hacker.
 *** =use-package=
 
 #+begin_quote
-A use-package declaration for simplifying your .emacs.
+A use-package declaration for simplifying your .emacs
 #+end_quote
 
 =use-package= is an awesome utility for managing and configuring
@@ -171,7 +174,7 @@ performance. So let's install it using =striaght.el= and have it use
 ** No littering in =~/.emacs.d=
 
 #+begin_quote
-Help keeping ~/.emacs.d clean.
+Help keeping ~/.emacs.d clean
 #+end_quote
 
 By default, even for Emacs' built-in packages, the configuration files
