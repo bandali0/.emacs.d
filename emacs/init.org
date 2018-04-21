@@ -50,7 +50,7 @@ file.
 ;; THIS FILE IS AUTO-GENERATED FROM `init.org'.
 #+end_src
 
-* Config
+* Initial setup
 
 #+begin_src emacs-lisp :comments none
 ;;; Code:
@@ -89,6 +89,94 @@ Reset the variables back to default after init.
 	       ,load-file-name elapsed))))
 #+end_src
 
+** Package management
+
+*** [[https://github.com/raxod502/straight.el][=straight.el=]]
+
+#+begin_quote
+Next-generation, purely functional package manager for the Emacs
+hacker.
+#+end_quote
+
+=straight.el= allows me to have a fully reproducible Emacs setup.
+
+**** Bootstrap
+
+#+begin_src emacs-lisp
+(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
+      (bootstrap-version 3))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+#+end_src
+
+**** Useful helpers
+
+#+begin_src emacs-lisp
+(defun straight-reload-init ()
+  "Reload init.el."
+  (interactive)
+  (straight-transaction
+    (straight-mark-transaction-as-init)
+    (message "Reloading init.el...")
+    (load user-init-file nil 'nomessage)
+    (message "Reloading init.el... done.")))
+
+(defun straight-eval-buffer ()
+  "Evaluate the current buffer as Elisp code."
+  (interactive)
+  (message "Evaluating %s..." (buffer-name))
+  (straight-transaction
+    (if (null buffer-file-name)
+        (eval-buffer)
+      (when (string= buffer-file-name user-init-file)
+        (straight-mark-transaction-as-init))
+      (load-file buffer-file-name)))
+  (message "Evaluating %s... done." (buffer-name)))
+#+end_src
+
+*** =use-package=
+
+#+begin_quote
+A use-package declaration for simplifying your .emacs.
+#+end_quote
+
+=use-package= is an awesome utility for managing and configuring
+packages in a neatly organized way and without compromising on
+performance. So let's install it using =striaght.el= and have it use
+=straight.el= for installing packages.
+
+#+begin_src emacs-lisp
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+#+end_src
+
+** No littering in =~/.emacs.d=
+
+#+begin_quote
+Help keeping ~/.emacs.d clean.
+#+end_quote
+
+By default, even for Emacs' built-in packages, the configuration files
+and persistent data are all over the place. Use =no-littering= to help
+contain the mess.
+
+#+begin_src emacs-lisp
+(use-package no-littering
+  :demand t
+  :config
+  (savehist-mode 1)
+  (add-to-list 'savehist-additional-variables 'kill-ring)
+  (save-place-mode 1)
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+#+end_src
+
 ** Custom file (=custom.el=)
 
 I'm not planning on using the custom file much, but even so, I
@@ -96,10 +184,9 @@ definitely don't want it mixing with =init.el=. So, here, let's give
 it it's own file.
 
 #+begin_src emacs-lisp
-(setq custom-file (expand-file-name
-		   "etc/custom.el"
-		   user-emacs-directory))
-(load custom-file)
+(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
 #+end_src
 
 ** Org

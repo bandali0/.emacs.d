@@ -3,6 +3,8 @@
 /auto-save-list/
 /etc/
 /var/
+/straight/*
+!/straight/versions
 /elpa/
 /recentf
 /smex-items
