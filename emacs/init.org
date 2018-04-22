@@ -74,7 +74,7 @@ The conventions below were inspired by [[https://github.com/hlissner/doom-emacs]
 ;;   ab|...   a hook function
 ;;   ab*...   an advising function
 ;;   ab@...   a hydra command
-;;   ab!...   a macro
+;;   ...!     a macro
 #+end_src
 
 * Initial setup
@@ -148,7 +148,7 @@ hacker.
 **** Useful helpers
 
 #+begin_src emacs-lisp
-(defun straight-reload-init ()
+(defun ab/reload-init ()
   "Reload init.el."
   (interactive)
   (straight-transaction
@@ -157,7 +157,7 @@ hacker.
     (load user-init-file nil 'nomessage)
     (message "Reloading init.el... done.")))
 
-(defun straight-eval-buffer ()
+(defun ab/eval-buffer ()
   "Evaluate the current buffer as Elisp code."
   (interactive)
   (message "Evaluating %s..." (buffer-name))
@@ -219,6 +219,39 @@ it it's own file.
   (load custom-file))
 #+end_src
 
+** Better =$PATH= handling
+
+Let's use [[https://github.com/purcell/exec-path-from-shell][exec-path-from-shell]] to make Emacs use the =$PATH= as set up
+in my shell.
+
+#+begin_src emacs-lisp
+(use-package exec-path-from-shell
+  :defer 1
+  :init
+  (setq exec-path-from-shell-check-startup-files nil)
+  :config
+  (exec-path-from-shell-initialize)
+  ;; while we're at it, let's fix access to our running ssh-agent
+  (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+#+end_src
+
+** Server
+
+Start server if not already running. Alternatively, can be done by
+issuing =emacs --daemon= in the terminal, which can be automated with
+a systemd service or using =brew services start emacs= on macOS. I use
+Emacs as my window manager (via =exwm=), so I always start Emacs on
+login; so starting the server from inside Emacs is good enough for me.
+
+See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html#Emacs-Server][Using Emacs as a Server]].
+
+#+begin_src emacs-lisp
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+#+end_src
+
 ** Backups
 
 Emacs' default backup settings aren't that great. Let's use more
@@ -228,6 +261,78 @@ variable.
 #+begin_src emacs-lisp
 (setq backup-by-copying t
       version-control t)
+#+end_src
+
+* Core
+:PROPERTIES:
+:CUSTOM_ID: core
+:END:
+
+** Defaults
+
+*** Disable disabled commands
+
+Emacs disables some commands by default that could persumably be
+confusing for novice users. Let's disable that.
+
+#+begin_src emacs-lisp
+(setq disabled-command-function nil)
+#+end_src
+
+*** Kill-ring
+
+Save what I copy into clipboard from other applications into Emacs'
+kill-ring, which would allow me to still be able to easily access it
+in case I kill (cut or copy) something else inside Emacs before
+yanking (pasting) what I'd originally intended to.
+
+#+begin_src emacs-lisp
+(setq save-interprogram-paste-before-kill t)
+#+end_src
+
+*** Keep more =*Messages*=
+
+#+begin_src emacs-lisp
+(setq message-log-max 10000)
+#+end_src
+
+*** Lazy-person-friendly yes/no prompts
+
+Lazy people would prefer to type fewer keystrokes, especially for yes
+or no questions. I'm lazy.
+
+#+begin_src emacs-lisp
+(defalias 'yes-or-no-p #'y-or-n-p)
+#+end_src
+
+*** =*scratch*=
+
+Let's customize the =*scratch*= buffer a bit. First off, I don't need
+the default hint.
+
+#+begin_src emacs-lisp
+(setq initial-scratch-message "")
+#+end_src
+
+Also, let's use Text mode as the major mode, in case I want to
+customize it (=*scratch*='s default major mode, Fundamental mode,
+can't really be customized).
+
+#+begin_src emacs-lisp
+(setq initial-major-mode 'text-mode)
+#+end_src
+
+*** More useful frame titles
+
+Show either the file name or the buffer name (in case the buffer isn't
+visiting a file). Borrowed from Emacs Prelude.
+
+#+begin_src emacs-lisp
+(setq frame-title-format
+      '("" invocation-name " - "
+        (:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
 #+end_src
 
 * Config
