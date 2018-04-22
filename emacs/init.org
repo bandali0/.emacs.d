@@ -10,6 +10,7 @@ TODO: description
 - [[#intro][Intro]]
 - [[#header][Header]]
 - [[#initial-setup][Initial setup]]
+- [[#core][Core]]
 - [[#config][Config]]
 - [[#footer][Footer]]
 
@@ -252,17 +253,6 @@ See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.htm
   (server-start))
 #+end_src
 
-** Backups
-
-Emacs' default backup settings aren't that great. Let's use more
-sensible options. See documentation for the ~make-backup-file~
-variable.
-
-#+begin_src emacs-lisp
-(setq backup-by-copying t
-      version-control t)
-#+end_src
-
 * Core
 :PROPERTIES:
 :CUSTOM_ID: core
@@ -333,6 +323,17 @@ visiting a file). Borrowed from Emacs Prelude.
         (:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
+#+end_src
+
+** Backups
+
+Emacs' default backup settings aren't that great. Let's use more
+sensible options. See documentation for the ~make-backup-file~
+variable.
+
+#+begin_src emacs-lisp
+(setq backup-by-copying t
+      version-control t)
 #+end_src
 
 * Config
