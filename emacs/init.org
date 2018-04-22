@@ -3,7 +3,10 @@
 
 * Intro
 
-TODO: description
+This org file is tangled to [[./init.el][init.el]] and constitutes my Emacs
+configuration. =straight.el=, =use-package=, =general.el=, =exwm=,
+=org-mode=, and =magit= are some of the awesome packages powering my
+Emacs setup.
 
 * Contents                                                   :toc_1:noexport:
 
@@ -11,7 +14,6 @@ TODO: description
 - [[#header][Header]]
 - [[#initial-setup][Initial setup]]
 - [[#core][Core]]
-- [[#config][Config]]
 - [[#footer][Footer]]
 
 * Header
@@ -286,6 +288,13 @@ yanking (pasting) what I'd originally intended to.
 (setq message-log-max 10000)
 #+end_src
 
+*** Minibuffer
+
+#+begin_src emacs-lisp
+(setq enable-recursive-minibuffers t
+      resize-mini-windows t)
+#+end_src
+
 *** Lazy-person-friendly yes/no prompts
 
 Lazy people would prefer to type fewer keystrokes, especially for yes
@@ -325,7 +334,7 @@ visiting a file). Borrowed from Emacs Prelude.
                  "%b"))))
 #+end_src
 
-** Backups
+*** Backups
 
 Emacs' default backup settings aren't that great. Let's use more
 sensible options. See documentation for the ~make-backup-file~
@@ -336,17 +345,111 @@ variable.
       version-control t)
 #+end_src
 
-* Config
-:PROPERTIES:
-:CUSTOM_ID: config
-:END:
+** Packages
 
-** Org
+The packages in this section are absolutely essential to my everyday
+workflow, and they play key roles in how I do my computing. They
+immensely enhance the Emacs experience for me; both using Emacs, and
+customizing it.
+
+*** [[https://github.com/noctuid/general.el][general.el]]
+
+#+begin_quote
+More convenient key definitions in emacs
+#+end_quote
+
+More like /the most/ convenient key definitions in Emacs.
+
+#+begin_src emacs-lisp
+(use-package general
+  :demand t
+  :config)
+#+end_src
+
+*** [[https://github.com/ch11ng/exwm][exwm]] (window manager)
+
+#+begin_src emacs-lisp
+(use-package exwm
+  :config
+  (require 'exwm-config)
+  (exwm-config-default))
+#+end_src
+
+*** [[https://orgmode.org/][Org mode]]
+
+#+begin_quote
+Org mode is for keeping notes, maintaining TODO lists, planning
+projects, and authoring documents with a fast and effective plain-text
+system.
+#+end_quote
+
+In short, my favourite way of life.
 
 #+begin_src emacs-lisp
 (setq org-src-tab-acts-natively t
       org-src-preserve-indentation nil
       org-edit-src-content-indentation 0)
+#+end_src
+
+*** [[https://magit.vc/][Magit]]
+
+#+begin_quote
+It's Magit! A Git porcelain inside Emacs.
+#+end_quote
+
+Not just how I do git, but /the/ way to do git.
+
+#+begin_src emacs-lisp
+(use-package magit
+  :general
+  ("s-g" 'magit-status))
+#+end_src
+
+*** [[https://github.com/abo-abo/swiper][Ivy]] (and friends)
+
+#+begin_quote
+Ivy - a generic completion frontend for Emacs, Swiper - isearch with
+an overview, and more. Oh, man!
+#+end_quote
+
+There's no way I could top that, so I won't attempt to.
+
+**** Ivy
+
+#+begin_src emacs-lisp
+(use-package ivy
+  :general
+  (ivy-minibuffer-map
+   [escape] 'keyboard-escape-quit
+   "C-j" 'ivy-next-line
+   "C-k" 'ivy-previous-line
+   [S-up] 'ivy-previous-history-element
+   [S-down] 'ivy-next-history-element
+   "DEL" 'ivy-backward-delete-char)
+  :config
+  (ivy-mode 1))
+#+end_src
+
+**** Swiper
+
+#+begin_src emacs-lisp
+(use-package swiper
+  :general ("C-s" 'swiper))
+#+end_src
+
+**** Counsel
+
+#+begin_src emacs-lisp
+(use-package counsel
+  :general
+  ("M-x" 'counsel-M-x
+   "C-x C-f" 'counsel-find-file
+   "s-r" 'counsel-recentf)
+  (imap minibuffer-local-map
+    "C-r" 'counsel-minibuffer-history)
+  :config
+  (counsel-mode 1)
+  (defalias 'locate #'counsel-locate))
 #+end_src
 
 * Footer
