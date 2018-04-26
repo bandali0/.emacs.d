@@ -362,8 +362,7 @@ More like /the most/ convenient key definitions in Emacs.
 
 #+begin_src emacs-lisp
 (use-package general
-  :demand t
-  :config)
+  :demand t)
 #+end_src
 
 *** [[https://github.com/ch11ng/exwm][exwm]] (window manager)
@@ -374,7 +373,9 @@ More like /the most/ convenient key definitions in Emacs.
   (require 'exwm-config)
   (exwm-config-default)
   (require 'exwm-systemtray)
-  (exwm-systemtray-enable))
+  (exwm-systemtray-enable)
+  (require 'exwm-randr)
+  (exwm-randr-enable))
 #+end_src
 
 *** [[https://orgmode.org/][Org mode]]
