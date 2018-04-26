@@ -15,3 +15,5 @@ ncmpcpp/*/error.log
 
 # getmail oldmail file
 oldmail-*
+
+/var
