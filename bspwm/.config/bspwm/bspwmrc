@@ -3,7 +3,7 @@
 sxhkd &
 sh ~/.fehbg &
 xfce4-panel -d &
-compton &
+#compton &
 sleep 0.5 && pasystray --notify=all &
 
 bspc monitor -d I II III IV V VI VII VIII IX X

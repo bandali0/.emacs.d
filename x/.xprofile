@@ -1,9 +1,10 @@
 #setxkbmap -option compose:ralt
 setxkbmap -option ctrl:nocaps
-
-setxkbmap -option ctrl:rctrl_ralt
+#setxkbmap -option ctrl:rctrl_ralt
 setxkbmap -option altwin:swap_alt_win
-#xmodmap .Xmodmap
+
+#xmodmap -e "keycode 135 = Super_R"  # remap menu key to super
+xmodmap -e "keycode 135 = Alt_R"  # remap menu key to alt
 
 light -Scrs "intel_backlight" 2
 
@@ -11,5 +12,6 @@ source $HOME/.zprofile
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
-unlock-def-gk.py &
+#unlock-def-gk.py &
 bspwm &
+#emacs &
