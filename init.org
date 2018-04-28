@@ -264,7 +264,6 @@ contain the mess.
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 #+end_src
 
-
 ** Custom file (=custom.el=)
 
 I'm not planning on using the custom file much, but even so, I
@@ -287,15 +286,15 @@ Let's use [[https://github.com/purcell/exec-path-from-shell][exec-path-from-shel
 in my shell.
 
 #+begin_src emacs-lisp
-;; (use-package exec-path-from-shell
-;;   :defer 1
-;;   :init
-;;   (setq exec-path-from-shell-check-startup-files nil)
-;;   :config
-;;   (exec-path-from-shell-initialize)
-;;   ;; while we're at it, let's fix access to our running ssh-agent
-;;   (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-;;   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+(use-package exec-path-from-shell
+  :defer 1
+  :init
+  (setq exec-path-from-shell-check-startup-files nil)
+  :config
+  (exec-path-from-shell-initialize)
+  ;; while we're at it, let's fix access to our running ssh-agent
+  (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 #+end_src
 
 ** Server
