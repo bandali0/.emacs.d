@@ -28,7 +28,7 @@ having fast startup times.
 - [[#header][Header]]
 - [[#initial-setup][Initial setup]]
 - [[#core][Core]]
-- [[#post-init][Post initialization]]
+- [[#post-initialization][Post initialization]]
 - [[#footer][Footer]]
 
 * Header
@@ -638,7 +638,7 @@ TODO: break this giant source block down into individual org sections.
 
 * Post initialization
 :PROPERTIES:
-:CUSTOM_ID: post-init
+:CUSTOM_ID: post-initialization
 :END:
 
 Display how long it took to load the init file.
