@@ -16,4 +16,6 @@ ncmpcpp/*/error.log
 # getmail oldmail file
 oldmail-*
 
+/early-init.el
+/init.el
 /var
