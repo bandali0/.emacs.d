@@ -519,39 +519,39 @@ There's no way I could top that, so I won't attempt to.
 **** Ivy
 
 #+begin_src emacs-lisp
-;; (use-package ivy
-;;   :bind
-;;   (:map ivy-minibuffer-map
-;;         ([escape] . keyboard-escape-quit)
-;;         ("C-j"    . ivy-next-line)
-;;         ("C-k"    . ivy-previous-line)
-;;         ([S-up]   . ivy-previous-history-element)
-;;         ([S-down] . ivy-next-history-element)
-;;         ("DEL"    . ivy-backward-delete-char))
-;;   :config
-;;   (ivy-mode 1))
+(use-package ivy
+  :bind
+  (:map ivy-minibuffer-map
+        ([escape] . keyboard-escape-quit)
+        ("C-j"    . ivy-next-line)
+        ("C-k"    . ivy-previous-line)
+        ([S-up]   . ivy-previous-history-element)
+        ([S-down] . ivy-next-history-element)
+        ("DEL"    . ivy-backward-delete-char))
+  :config
+  (ivy-mode 1))
 #+end_src
 
 **** Swiper
 
 #+begin_src emacs-lisp
-;; (use-package swiper
-;;   :bind (([remap isearch-forward]  . swiper)
-;; 	 ([remap isearch-backward] . swiper)))
+(use-package swiper
+  :bind (([remap isearch-forward]  . swiper)
+	 ([remap isearch-backward] . swiper)))
 #+end_src
 
 **** Counsel
 
 #+begin_src emacs-lisp
-;; (use-package counsel
-;;   :bind (([remap execute-extended-command] . counsel-M-x)
-;; 	 ([remap find-file] . counsel-find-file)
-;; 	 ("s-r"     . counsel-recentf)
-;; 	 :map minibuffer-local-map
-;; 	 ("C-r" . counsel-minibuffer-history))
-;;   :config
-;;   (counsel-mode 1)
-;;   (defalias 'locate #'counsel-locate))
+(use-package counsel
+  :bind (([remap execute-extended-command] . counsel-M-x)
+         ([remap find-file] . counsel-find-file)
+         ("s-r"     . counsel-recentf)
+         :map minibuffer-local-map
+	 ("C-r" . counsel-minibuffer-history))
+  :config
+  (counsel-mode 1)
+  (defalias 'locate #'counsel-locate))
 #+end_src
 
 * Borg's =layer/essentials=
