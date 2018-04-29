@@ -2024,6 +2024,262 @@ def_key "K"
     move_sort_order_up
 #+end_src
 
+** notmuch
+
+*** notmuch-config
+:PROPERTIES:
+:header-args+: :tangle ~/.notmuch-config
+:END:
+
+#+begin_src conf
+# .notmuch-config - Configuration file for the notmuch mail system
+#
+# For more information about notmuch, see https://notmuchmail.org
+
+# Database configuration
+#
+# The only value supported here is 'path' which should be the top-level
+# directory where your mail currently exists and to where mail will be
+# delivered in the future. Files should be individual email messages.
+# Notmuch will store its database within a sub-directory of the path
+# configured here named ".notmuch".
+#
+[database]
+path=/home/amin/mail
+
+# User configuration
+#
+# Here is where you can let notmuch know how you would like to be
+# addressed. Valid settings are
+#
+#	name		Your full name.
+#	primary_email	Your primary email address.
+#	other_email	A list (separated by ';') of other email addresses
+#			at which you receive email.
+#
+# Notmuch will use the various email addresses configured here when
+# formatting replies. It will avoid including your own addresses in the
+# recipient list of replies, and will set the From address based on the
+# address to which the original email was addressed.
+#
+[user]
+name=Amin Bandali
+primary_email=amin@aminb.org
+other_email=amin.bandali@uwaterloo.ca;mbandali@uwaterloo.ca;aminb@gnu.org;
+
+# Configuration for "notmuch new"
+#
+# The following options are supported here:
+#
+#	tags	A list (separated by ';') of the tags that will be
+#		added to all messages incorporated by "notmuch new".
+#
+#	ignore	A list (separated by ';') of file and directory names
+#		that will not be searched for messages by "notmuch new".
+#
+#		NOTE: *Every* file/directory that goes by one of those
+#		names will be ignored, independent of its depth/location
+#		in the mail store.
+#
+[new]
+tags=new;
+#tags=unread;inbox;
+ignore=.uidvalidity;.mbsyncstate
+
+# Search configuration
+#
+# The following option is supported here:
+#
+#	exclude_tags
+#		A ;-separated list of tags that will be excluded from
+#		search results by default.  Using an excluded tag in a
+#		query will override that exclusion.
+#
+[search]
+exclude_tags=deleted;spam;
+
+# Maildir compatibility configuration
+#
+# The following option is supported here:
+#
+#	synchronize_flags      Valid values are true and false.
+#
+#	If true, then the following maildir flags (in message filenames)
+#	will be synchronized with the corresponding notmuch tags:
+#
+#		Flag	Tag
+#		----	-------
+#		D	draft
+#		F	flagged
+#		P	passed
+#		R	replied
+#		S	unread (added when 'S' flag is not present)
+#
+#	The "notmuch new" command will notice flag changes in filenames
+#	and update tags, while the "notmuch tag" and "notmuch restore"
+#	commands will notice tag changes and update flags in filenames
+#
+[maildir]
+synchronize_flags=true
+
+# Cryptography related configuration
+#
+# The following option is supported here:
+#
+#	gpg_path
+#		binary name or full path to invoke gpg.
+#
+[crypto]
+gpg_path=gpg
+#+end_src
+
+*** post-new hook
+:PROPERTIES:
+:header-args+: :tangle ~/mail/.notmuch/hooks/post-new :shebang "#!/bin/sh"
+:END:
+
+#+begin_src sh
+afew -tn
+
+# apply tags to lists
+notmuch tag +lists +lists/deepspec -- folder:amin/lists/deepspec
+notmuch tag +lists +lists/haskell-cafe -- folder:amin/lists/haskell-cafe
+notmuch tag +lists +lists/haskell-weekly -- folder:amin/lists/haskell-weekly
+notmuch tag +lists +lists/hackernewsletter -- folder:amin/lists/hackernewsletter
+notmuch tag +lists +lists/notmuch -- folder:amin/lists/notmuch
+notmuch tag +lists +lists/info-gnu-emacs -- folder:amin/lists/info-gnu-emacs
+notmuch tag +lists +lists/help-gnu-emacs -- folder:amin/lists/help-gnu-emacs
+notmuch tag +lists +lists/emacs-devel -- folder:amin/lists/emacs-devel
+#+end_src
+
+*** notmuch.service
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/notmuch.service
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+Description=notmuch service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notmuch new
+StandardOutput=syslog
+StandardError=syslog
+#+end_src
+
+*** notmuch.timer
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/notmuch.timer
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+Description=notmuch timer
+
+[Timer]
+OnCalendar=*:0/5
+Persistent=true
+Unit=notmuch.service
+
+[Install]
+WantedBy=timers.target
+#+end_src
+
+** offlineimap
+
+*** offlineimaprc
+:PROPERTIES:
+:header-args+: :tangle ~/.offlineimaprc
+:END:
+
+#+begin_src conf :tangle no
+[general]
+pythonfile = ~/.offlineimap.py
+accounts = Gmail, aminb
+maxsyncaccounts = 3
+
+[Account Gmail]
+localrepository = GmailL
+remoterepository = GmailR
+
+[Account aminb]
+localrepository = aminbL
+remoterepository = aminbR
+
+[Repository GmailL]
+type = Maildir
+localfolders = ~/Maildir/Gmail
+
+[Repository GmailR]
+type = IMAP
+remotehost = imap.gmail.com
+remoteusereval = mailuser("gmail")
+remotepasseval = mailpasswd("gmail")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl = yes
+folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
+maxconnections = 1
+realdelete = no
+
+[Repository aminbL]
+type = Maildir
+localfolders = ~/Maildir/aminb
+
+[Repository aminbR]
+type = IMAP
+remotehost = mail.aminb.org
+remoteusereval = mailuser("aminb")
+remotepasseval = mailpasswd("aminb")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl = yes
+folderfilter = lambda foldername: foldername not in 'dovecot.sieve'
+maxconnections = 1
+realdelete = no
+#+end_src
+
+*** offlineimap.py
+:PROPERTIES:
+:header-args+: :tangle ~/.offlineimap.py
+:END:
+
+#+begin_src python :tangle no
+import os
+import subprocess
+
+def mailpasswd(acct):
+    acct = os.path.basename(acct)
+    path = "/home/amin/.passwd/%s.gpg" % acct
+    args = ["gpg", "--use-agent", "--quiet", "--batch", "-d", path]
+    try:
+        return subprocess.check_output(args).strip()
+    except subprocess.CalledProcessError:
+        return ""
+
+def mailuser(acct):
+    acct = os.path.basename(acct)
+    path = "/home/amin/.passwd/%s" % acct
+    args = ["cat", path]
+    try:
+        return subprocess.check_output(args).strip()
+    except subprocess.CalledProcessError:
+        return ""
+
+def prime_gpg_agent():
+  ret = False
+  i = 1
+  while not ret:
+    ret = (mailpasswd("prime") == "prime")
+    if i > 2:
+      from offlineimap.ui import getglobalui
+      sys.stderr.write("Error reading in passwords. Terminating.\n")
+      getglobalui().terminate()
+    i += 1
+  return ret
+
+prime_gpg_agent()
+#+end_src
+
 * Scripts
 
 This section contains various useful scripts and the ones used by the
