@@ -787,6 +787,79 @@ $clean_ext = "aux out";
 # $pdf_previewer = 'exec zathura --synctex-forward -x \'emacsclient --no-wait +%{line} %{input}\' %O %S';
 #+end_src
 
+** getmail
+
+*** getmailrc
+:PROPERTIES:
+:header-args+: :tangle ~/.getmail/getmailrc
+:END:
+
+#+begin_src conf
+[retriever]
+type = SimplePOP3SSLRetriever
+server = fencepost.gnu.org
+username = aminb
+password_command = ("gpg2", "--no-tty", "-q", "-d", "~/.passwd/gnu.gpg")
+port = 995
+use_apop = True
+
+[destination]
+type = Maildir
+path = ~/mail/gnu/Inbox/
+
+[options]
+delete = True
+#+end_src
+
+*** getmail.service
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/getmail.service
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+Description=getmail service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/getmail
+StandardOutput=syslog
+StandardError=syslog
+#+end_src
+
+*** getmail.timer
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/getmail.timer
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+Description=getmail timer
+
+[Timer]
+OnCalendar=*:0/30
+Persistent=true
+Unit=getmail.service
+
+[Install]
+WantedBy=timers.target
+#+end_src
+
+** GnuPG
+:PROPERTIES:
+:header-args+: :tangle ~/.gnupg/gpg-agent.conf
+:END:
+
+#+begin_src conf
+default-cache-ttl 43200
+max-cache-ttl 43200
+
+default-cache-ttl-ssh 10800
+max-cache-ttl-ssh 10800
+
+# pinentry-program /usr/bin/pinentry-qt
+#+end_src
+
 * Scripts
 
 This section contains various useful scripts and the ones used by the
@@ -893,7 +966,6 @@ cat << EOF
 
 EOF
 #+end_src
-
 
 *** invade-em
 :PROPERTIES:

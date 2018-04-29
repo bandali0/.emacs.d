@@ -1,8 +1,0 @@
-[Unit]
-Description=getmail service
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/getmail
-StandardOutput=syslog
-StandardError=syslog
