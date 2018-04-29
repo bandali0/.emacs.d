@@ -1,8 +1,0 @@
-[Unit]
-Description=mbsync service
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/mbsync -Va
-StandardOutput=syslog
-StandardError=syslog

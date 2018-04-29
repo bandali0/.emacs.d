@@ -860,6 +860,129 @@ max-cache-ttl-ssh 10800
 # pinentry-program /usr/bin/pinentry-qt
 #+end_src
 
+** GTK
+
+*** gtk-2.0
+:PROPERTIES:
+:header-args+: :tangle ~/.gtkrc-2.0
+:END:
+
+#+begin_src conf
+gtk-theme-name="Greybird"
+gtk-icon-theme-name="Paper"
+gtk-font-name="Ubuntu 10"
+gtk-menu-images=0
+# gtk-key-theme-name = "Emacs"
+#+end_src
+
+*** gtk-3.0
+:PROPERTIES:
+:header-args+: :tangle ~/.config/gtk-3.0/settings.ini
+:END:
+
+#+begin_src conf :tangle no
+[Settings]
+gtk-icon-theme-name = Paper
+# gtk-theme-name = Adwaita
+
+gtk-theme-name = Greybird
+# gtk-theme-name = Arc-Darker
+# gtk-theme-name = Numix-ArchBlue
+
+gtk-font-name = Ubuntu 10
+# gtk-key-theme-name = Emacs
+#+end_src
+
+** isync
+
+*** mbsyncrc
+:PROPERTIES:
+:header-args+: :tangle ~/.mbsyncrc
+:END:
+
+#+begin_src conf
+# Global defaults
+CopyArrivalDate yes
+
+######
+IMAPAccount amin
+Host nix.aminb.org
+User amin@aminb.org
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/amin.gpg"
+SSLType IMAPS
+
+IMAPStore amin-remote
+Account amin
+
+MaildirStore amin-local
+Path ~/mail/amin/
+Inbox ~/mail/amin/Inbox
+SubFolders Verbatim
+
+Channel amin
+Master :amin-remote:
+Slave :amin-local:
+Patterns * !dovecot*
+Create Both
+SyncState *
+
+######
+IMAPAccount uwaterloo
+Host connect.uwaterloo.ca
+User mbandali
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.passwd/uwaterloo.gpg"
+SSLType IMAPS
+
+IMAPStore uwaterloo-remote
+Account uwaterloo
+
+MaildirStore uwaterloo-local
+Path ~/mail/uwaterloo/
+Inbox ~/mail/uwaterloo/Inbox
+SubFolders Verbatim
+
+Channel uwaterloo
+Master :uwaterloo-remote:
+Slave :uwaterloo-local:
+Patterns * !dovecot*
+Create Both
+SyncState *
+#+end_src
+
+*** mbsync.service
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/mbsync.service
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+Description=mbsync service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mbsync -Va
+StandardOutput=syslog
+StandardError=syslog
+#+end_src
+
+*** mbsync.timer
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/mbsync.timer
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+Description=mbsync timer
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+Unit=mbsync.service
+
+[Install]
+WantedBy=timers.target
+#+end_src
+
 * Scripts
 
 This section contains various useful scripts and the ones used by the
