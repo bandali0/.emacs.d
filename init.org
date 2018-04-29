@@ -321,11 +321,11 @@ See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.htm
 
 *** Smaller fringe
 
-Set fringe to a small value so we don't have big borders in EXWM, but
-can still see the =diff-hl= colors in the fringe.
+Might want to set the fringe to a smaller value, especially if using
+EXWM. I'm fine with the default for now.
 
 #+begin_src emacs-lisp
-(fringe-mode '(3 . 1))
+;; (fringe-mode '(3 . 1))
 #+end_src
 
 *** Disable disabled commands
@@ -460,14 +460,15 @@ Roll your own modal mode
 *** [[https://github.com/ch11ng/exwm][EXWM]] (window manager)
 
 #+begin_src emacs-lisp
-;; (use-package exwm
-;;   :config
-;;   (require 'exwm-config)
-;;   (exwm-config-default)
-;;   (require 'exwm-systemtray)
-;;   (exwm-systemtray-enable)
-;;   (require 'exwm-randr)
-;;   (exwm-randr-enable))
+(use-package exwm
+  :demand t
+  :config
+  (require 'exwm-config)
+  (exwm-config-default)
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+  (require 'exwm-randr)
+  (exwm-randr-enable))
 #+end_src
 
 *** [[https://orgmode.org/][Org mode]]
