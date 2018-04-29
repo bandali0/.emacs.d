@@ -19,3 +19,7 @@ oldmail-*
 /early-init.el
 /init.el
 /var
+/recentf
+/smex-items
+/auto-save-list
+/network-security.data
