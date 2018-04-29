@@ -3316,6 +3316,186 @@ esac
 exit 1
 #+end_src
 
+** redshift
+:PROPERTIES:
+:header-args+: :tangle ~/.config/redshift.conf
+:END:
+
+#+begin_src conf
+; Global settings for redshift
+[redshift]
+; Set the day and night screen temperatures (Neutral is 6500K)
+;temp-day=5700
+;temp-night=3500
+
+;temp-day=6500
+temp-day=6200
+;temp-night=4800
+;temp-night=5000
+;temp-night=4500
+temp-night=4000
+
+; Enable/Disable a smooth transition between day and night
+; 0 will cause a direct change from day to night screen temperature.
+; 1 will gradually increase or decrease the screen temperature.
+transition=1
+
+; Set the screen brightness. Default is 1.0.
+;brightness=0.9
+; It is also possible to use different settings for day and night
+; since version 1.8.
+;brightness-day=0.7
+;brightness-night=0.4
+; Set the screen gamma (for all colors, or each color channel
+; individually)
+;gamma=0.8
+;gamma=1.0
+;gamma=0.8:0.7:0.8
+; This can also be set individually for day and night since
+; version 1.10.
+;gamma-day=0.8:0.7:0.8
+;gamma-night=0.6
+
+; Set the location-provider: 'geoclue2' or 'manual'
+; type 'redshift -l list' to see possible values.
+; The location provider settings are in a different section.
+;location-provider=manual
+location-provider=geoclue2
+
+; Set the adjustment-method: 'randr', 'vidmode'
+; type 'redshift -m list' to see all possible values.
+; 'randr' is the preferred method, 'vidmode' is an older API.
+; but works in some cases when 'randr' does not.
+; The adjustment method settings are in a different section.
+adjustment-method=randr
+
+; Configuration of the location-provider:
+; type 'redshift -l PROVIDER:help' to see the settings.
+; ex: 'redshift -l manual:help'
+; Keep in mind that longitudes west of Greenwich (e.g. the Americas)
+; are negative numbers.
+;[manual]
+;lat=48.1
+;lon=11.6
+
+; Configuration of the adjustment-method
+; type 'redshift -m METHOD:help' to see the settings.
+; ex: 'redshift -m randr:help'
+; In this example, randr is configured to adjust screen 1.
+; Note that the numbering starts from 0, so this is actually the
+; second screen. If this option is not specified, Redshift will try
+; to adjust _all_ screens.
+;[randr]
+;screen=1
+#+end_src
+
+** rofi
+:PROPERTIES:
+:header-args+: :tangle ~/.config/rofi/config
+:END:
+
+#+begin_src conf
+rofi.font: Ubuntu Mono 13
+! rofi.font: Inconsolata 16
+! rofi.font: Iosevka 13
+! rofi.font: Source Code Pro 11
+rofi.modi: run,window
+! rofi.width: 640
+rofi.width: 600
+!rofi.location: 2
+!rofi.yoffset: 200
+rofi.monitor: -1
+!rofi.lines: 10
+
+!rofi.theme: /usr/share/rofi/themes//Arc.rasi
+!rofi.theme: /usr/share/rofi/themes//Paper.rasi
+!rofi.theme: /usr/share/rofi/themes//sidebar.rasi
+
+rofi.theme: /usr/share/rofi/themes//gruvbox-light.rasi
+#+end_src
+
+** rofi-pass
+:PROPERTIES:
+:header-args+: :tangle ~/.config/rofi-pass/config
+:END:
+
+#+begin_src conf
+# permanently set alternative root dir
+# root=/path/to/root
+
+# rofi command. Make sure to have "$@" as last argument
+_rofi () {
+    #rofi -no-auto-select -kb-accept-entry "!Return" -i -no-levenshtein-sort "$@"
+    rofi -i -no-auto-select "$@"
+}
+
+# xdotool needs the keyboard layout to be set using setxkbmap
+# You can do this in your autostart scripts (e.g. xinitrc)
+
+# If for some reason, you cannot do this, you can set the command here.
+# and set fix_layout to true
+fix_layout=false
+
+layout_cmd () {
+  setxkbmap us
+}
+
+# fields to be used
+URL_field='url'
+USERNAME_field='user'
+AUTOTYPE_field='autotype'
+
+# delay to be used for :delay keyword
+delay=2
+
+## Programs to be used
+# Editor
+EDITOR='gvim -f'
+
+# Browser
+BROWSER='chromium'
+
+## Misc settings
+
+default_do='menu' # menu, autotype, copyPass, typeUser, typePass, copyUser, copyUrl, viewEntry, typeMenu, actionMenu, copyMenu, openUrl
+auto_enter='false'
+notify='false'
+default_autotype='user :tab pass'
+
+# color of the help messages
+# leave empty for autodetection
+help_color="#4872FF"
+
+# Clipboard settings
+# Possible options: primary, clipboard, both
+clip=primary
+
+# Options for generating new password entries
+# default_user is also used for password files that have no user field.
+default_user=aminb
+default_user2=aminban
+password_length=30
+
+# Custom Keybindings
+#autotype="Alt+1"
+autotype="Alt+m"
+type_user="Alt+2"
+type_pass="Alt+3"
+open_url="Alt+4"
+copy_name="Alt+u"
+copy_url="Alt+l"
+copy_pass="Alt+p"
+show="Alt+o"
+copy_entry="Alt+2"
+type_entry="Alt+1"
+copy_menu="Alt+c"
+action_menu="Alt+a"
+type_menu="Alt+t"
+help="Alt+h"
+switch="Alt+x"
+insert_pass="Alt+n"
+#+end_src
+
 * Scripts
 
 This section contains various useful scripts and the ones used by the
