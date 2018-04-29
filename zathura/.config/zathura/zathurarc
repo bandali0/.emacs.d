@@ -1,6 +1,0 @@
-set smooth-scroll true
-set selection-clipboard clipboard
-set zoom-step 05
-set default-bg "#272727"
-set statusbar-bg "#272727"
-set inputbar-bg "#373737"
