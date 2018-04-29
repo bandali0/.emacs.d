@@ -11,6 +11,419 @@ Note: This file is best viewed inside Emacs with org mode.
 
 * Configs
 
+This section contains the configuration files (dotfiles) of various
+programs I use.
+
+** [[https://github.com/afewmail/afew][afew]]
+:PROPERTIES:
+:header-args+: :tangle ~/.config/afew/config
+:END:
+
+#+begin_quote
+an initial tagging script for notmuch mail
+#+end_quote
+
+#+begin_src conf
+# This is the default filter chain
+[SpamFilter]
+#[ClassifyingFilter]
+[KillThreadsFilter]
+#[ListMailsFilter]
+[ArchiveSentMailsFilter]
+sent_tag = sent
+[InboxFilter]
+
+#[Filter.1]
+#query = 'folder:amin/lists/.haskell-cafe'
+#tags = +lists;+lists/haskell-cafe
+#message = lists/haskell-cafe
+
+#[Filter.2]
+#query = 'folder:amin/lists/.haskell-weekly'
+#tags = +lists;+lists/haskell-weekly
+#message = lists/haskell-weekly
+
+#[Filter.3]
+#query = 'folder:amin/lists/.hackernewsletter'
+#tags = +lists;+lists/hackernewsletter
+#message = lists/hackernewsletter
+
+
+#[FolderNameFilter]
+#folder_blacklist = Inbox
+#maildir_separator = /.
+#folder_transforms = Drafts:draft Junk:spam Trash:deleted Sent:sent Archive:archive lists/haskell-cafe:lists/haskell-cafe
+#+end_src
+
+** bspwm
+
+*** bspwmrc
+:PROPERTIES:
+:header-args+: :tangle ~/.config/bspwm/bspwmrc :shebang "#!/bin/sh"
+:END:
+
+#+begin_src sh
+sxhkd &
+sh ~/.fehbg &
+xfce4-panel -d &
+#compton &
+sleep 0.5 && pasystray --notify=all &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+#bspc monitor eDP-1 -d I II III IV V
+#bspc monitor HDMI-1 -d VI VII VIII IX X
+
+#bspc config border_width         2
+#bspc config window_gap           8
+bspc config window_gap           0
+
+bspc config bottom_padding 26
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config click_to_focus       button1
+bspc config directional_focus_tightness low
+
+bspc rule -a Firefox desktop='^1' follow=on
+bspc rule -a Nightly desktop='^1' follow=on
+bspc rule -a Emacs desktop='^2' state=tiled follow=on
+#bspc rule -a Chromium desktop='^4' follow=on
+bspc rule -a URxvt state=floating
+bspc rule -a URxvt:tiled state=tiled
+bspc rule -a Connman-gtk state=floating
+bspc rule -a Xfce4-panel state=floating
+bspc rule -a TelegramDesktop state=floating
+bspc rule -a Ec state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Eog state=floating
+bspc rule -a Seahorse state=floating
+bspc rule -a mpv state=floating
+bspc rule -a Evince state=floating
+bspc rule -a Meld state=floating
+bspc rule -a Autokey-gtk state=floating
+bspc rule -a Mousepad state=floating
+bspc rule -a Wrapper-1.0 state=floating
+bspc rule -a File-roller state=floating
+bspc rule -a Gnome-disks state=floating
+bspc rule -a Termite state=floating
+bspc rule -a Termite:tiled state=tiled
+bspc rule -a Thunderbird:Calendar state=floating
+bspc rule -a Audacity state=floating
+bspc rule -a Proof state=floating # pvs x-show-proof
+bspc rule -a Nm-connection-editor state=floating
+bspc rule -a Wire state=floating
+bspc rule -a discord state=floating
+bspc rule -a X2goclient state=floating
+bspc rule -a SimpleScreenRecorder state=floating
+bspc rule -a Gimp state=floating
+bspc rule -a Wrapper-2.0 state=floating
+bspc rule -a Zathura state=tiled
+#+end_src
+
+*** sxhkdrc
+:PROPERTIES:
+:header-args+: :tangle ~/.config/sxhkd/sxhkdrc
+:END:
+
+#+begin_src conf
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + {_,shift} + Return
+	urxvt{_, -name tiled}
+
+#super + {_,shift} + Return
+#	termite{_, --name=tiled}
+
+# program launcher
+super + space
+	rofi -show run -display-run '> ' -display-window ' 🗔 '
+
+super + alt + space
+	xfce4-popup-whiskermenu
+
+# window finder
+super + backslash
+	rofi -show window  -display-run '> ' -display-window ' 🗔 '
+
+# password manager
+alt + space
+	rofi-pass
+
+# firefox
+#super + r
+#	firefox
+
+# chromium
+#super + c
+#	chromium -incognito
+
+# emacs
+super + e
+	emacs
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# volume {up,down}
+XF86Audio{Raise,Lower}Volume
+	pamixer --allow-boost --{in,de}crease 5
+
+# mute
+XF86AudioMute
+	pamixer --toggle-mute
+
+# playback control
+XF86Audio{Play,Prev,Next}
+	mpc {toggle,prev,next}
+
+# lock the screen
+super + shift + q
+	light-locker-command -l
+
+# Toggle keyboard layout
+super + F7
+	toggle-layout
+
+# Toggle Xfce presentation mode
+XF86LaunchB
+	toggle-presentation-mode
+
+# monitor brightness
+XF86MonBrightness{Up,Down}
+	light -{A,U} 5
+
+super + apostrophe
+	rofi-light
+
+# keyboard brightness
+#XF86KbdBrightness{Up,Down}
+#	kbdlight {up,down}
+
+#
+# bspwm hotkeys
+#
+
+# quit bspwm normally
+super + alt + Escape
+	bspc quit
+
+# close and kill
+super + {w,q}
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# send to next/prev desktop
+super + shift + bracket{left,right}
+	bspc node -d {prev,next} --follow
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#alt + bracket{left,right}
+#	xdotool key --clearmodifiers ctrl+Page_{Up,Down}
+#+end_src
+
+** compton
+:PROPERTIES:
+:header-args+: :tangle ~/.config/compton.conf
+:END:
+
+#+begin_src conf
+# Shadow
+shadow = false;			# Enabled client-side shadows on windows.
+no-dock-shadow = true;		# Avoid drawing shadows on dock/panel windows.
+no-dnd-shadow = true;		# Don't draw shadows on DND windows.
+clear-shadow = true;		# Zero the part of the shadow's mask behind the 
+				# window. Fix some weirdness with ARGB windows.
+shadow-radius = 5;		# The blur radius for shadows. (default 12)
+shadow-offset-x = -5;		# The left offset for shadows. (default -15)
+shadow-offset-y = -5;		# The top offset for shadows. (default -15)
+# shadow-opacity = 0.7;		# The translucency for shadows. (default .75)
+# shadow-red = 0.0;		# Red color value of shadow. (0.0 - 1.0, defaults to 0)
+# shadow-green = 0.0;		# Green color value of shadow. (0.0 - 1.0, defaults to 0)
+# shadow-blue = 0.0;		# Blue color value of shadow. (0.0 - 1.0, defaults to 0)
+shadow-exclude = [ "n:e:Notification", "class_g = 'Chromium'", "class_g = 'Dmenu'", "class_g = 'Firefox' && argb" ];	# Exclude conditions for shadows.
+# shadow-exclude = "n:e:Notification";
+#shadow-exclude = [ "_GTK_FRAME_EXTENTS@:c" ] # Fix dual shadow on some gtk3 powered applications
+shadow-ignore-shaped = true;	# Avoid drawing shadow on all shaped windows
+ 				# (see also: --detect-rounded-corners)
+
+# Opacity
+menu-opacity = 1.0;			# The opacity for menus. (default 1.0)
+#inactive-opacity = 0.9;			# Default opacity of inactive windows. (0.0 - 1.0)
+# active-opacity = 0.8;			# Default opacity for active windows. (0.0 - 1.0)
+frame-opacity = 1.0;			# Opacity of window titlebars and borders. (0.1 - 1.0)
+# inactive-opacity-override = true;	# Let inactive opacity set by 'inactive-opacity' overrides
+ 					# value of _NET_WM_OPACITY. Bad choice.
+alpha-step = 0.06;			# XRender backend: Step size for alpha pictures. Increasing
+					# it may result in less X resource usage,
+					# Yet fading may look bad.
+#inactive-dim = 0.5;			# Dim inactive windows. (0.0 - 1.0)
+#inactive-dim-fixed = true;		# Do not let dimness adjust based on window opacity.
+# blur-background = true;		# Blur background of transparent windows.
+					# Bad performance with X Render backend.
+					# GLX backend is preferred.
+# blur-background-frame = true;		# Blur background of opaque windows with transparent
+					# frames as well.
+blur-background-fixed = true;		# Do not let blur radius adjust based on window opacity.
+blur-background-exclude = [ "window_type = 'dock'", "window_type = 'desktop'" ];
+					# Exclude conditions for background blur.
+
+# Fading
+fading = false;			# Fade windows during opacity changes.
+fade-delta = 3;		# The time between steps in a fade in milliseconds. (default 10).
+fade-in-step = 0.03;		# Opacity change between steps while fading in. (default 0.028).
+fade-out-step = 0.03;		# Opacity change between steps while fading out. (default 0.03).
+# no-fading-openclose = true;	# Avoid fade windows in/out when opening/closing.
+fade-exclude = [ ];		# Exclude conditions for fading.
+
+# Other
+backend = "glx"			# Backend to use: "xrender" or "glx". GLX backend is typically
+				# much faster but depends on a sane driver.
+mark-wmwin-focused = true;	# Try to detect WM windows and mark them as active.
+mark-ovredir-focused = true;	# Mark all non-WM but override-redirect windows active (e.g. menus).
+use-ewmh-active-win = true;	# Use EWMH _NET_WM_ACTIVE_WINDOW to determine which window is focused
+				# instead of using FocusIn/Out events. Usually more reliable but
+				# depends on a EWMH-compliant WM.
+detect-rounded-corners = false;	# Detect rounded corners and treat them as rectangular when --shadow-ignore- shaped is on.
+detect-client-opacity = true;	# Detect _NET_WM_OPACITY on client windows, useful for window
+				# managers not passing _NET_WM_OPACITY of client windows to frame
+				# windows.
+refresh-rate = 0;		# For --sw-opti: Specify refresh rate of the screen. 0 for auto.
+vsync = "drm";			# "none", "drm", "opengl", "opengl-oml", "opengl-swc", "opengl-mswc" 
+				# See man page for more details.
+dbe = false;			# Enable DBE painting mode. Rarely needed.
+paint-on-overlay = true;	# Painting on X Composite overlay window. Recommended.
+sw-opti = false;		# Limit compton to repaint at most once every 1 / refresh_rate.
+				# Incompatible with certain VSync methods.
+unredir-if-possible = false;	# Unredirect all windows if a full-screen opaque window is
+				# detected, to maximize performance for full-screen windows.
+focus-exclude = [ ];		# A list of conditions of windows that should always be considered
+				# focused.
+detect-transient = true;	# Use WM_TRANSIENT_FOR to group windows, and consider windows in
+				# the same group focused at the same time.
+detect-client-leader = true;	# Use WM_CLIENT_LEADER to group windows.
+invert-color-include = [ ];	# Conditions for windows to be painted with inverted color.
+
+# GLX backend			# GLX backend fine-tune options. See man page for more info.
+glx-no-stencil = true;		# Recommended.
+glx-copy-from-front = false;	# Useful with --glx-swap-method,
+# glx-use-copysubbuffermesa = true; # Recommended if it works. Breaks VSync.
+# glx-no-rebind-pixmap = true;	# Recommended if it works.	
+glx-no-rebind-pixmap = true;	# Recommended if it works.	
+#glx-swap-method = "4";	# See man page.
+glx-swap-method = "4";	# See man page.
+
+# Window type settings
+wintypes:
+{
+  tooltip = { fade = true; shadow = false; opacity = 1; focus = true; };
+  menu = { shadow = false; };
+  dropdown_menu = { shadow = false; };
+  popup_menu =  { shadow = false; };
+  utility =  { shadow = false; };
+  # fade: Fade the particular type of windows.
+  # shadow: Give those windows shadow
+  # opacity: Default opacity for the type of windows.
+  # focus: Whether to always consider windows of this type focused.
+};
+#+end_src
+
 ** Git
 
 *** gitconfig
@@ -129,4 +542,49 @@ $clean_ext = "aux out";
 # Tell latexmk to use Zathura as a previewer, and run emacsclient as the Synctex
 # editor.
 # $pdf_previewer = 'exec zathura --synctex-forward -x \'emacsclient --no-wait +%{line} %{input}\' %O %S';
+#+end_src
+
+* Scripts
+
+This section contains various useful scripts and the ones used by the
+programs above. For instance, =toggle-tablet= for switching to and
+from tablet mode on my X220T, =toggle-presentation-mode= for toggling
+Xfce's presentation mode which keeps the screen awake, and
+=rofi-light= a small utility that uses [[https://github.com/DaveDavenport/rofi][Rofi]] to ask and [[https://github.com/haikarainen/light][light]] to set an
+exact brightness value.
+
+** rofi-light
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/rofi-light :shebang "#!/bin/bash"
+:END:
+
+#+begin_src sh
+cur=$(light -G)
+val=$(rofi -dmenu -mesg "light    $cur" -p "light -S " -l 0 -width 8)
+light -S $val
+#+end_src
+
+** toggle-layout
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/toggle-layout :shebang "#!/bin/bash"
+:END:
+
+#+begin_src sh
+lang="$(setxkbmap -print | grep xkb_symbols | cut -d'+' -f 2)"
+
+if [ "$lang" = "us" ]; then
+    setxkbmap ir
+else
+    setxkbmap us
+    # xmodmap $HOME/.Xmodmap
+fi
+#+end_src
+
+** toggle-presentation-mode
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/toggle-presentation-mode :shebang "#!/bin/bash"
+:END:
+
+#+begin_src sh
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -T
 #+end_src

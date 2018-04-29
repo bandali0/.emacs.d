@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cur=$(light -G)
-val=$(rofi -dmenu -mesg "light    $cur" -p "light -S " -l 0 -width 8)
-light -S $val
