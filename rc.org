@@ -3541,6 +3541,118 @@ fi
 xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -T
 #+end_src
 
+** wp
+
+My little wallpaper changer script.
+
+*** wp
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/wp :shebang "#!/bin/bash"
+:END:
+
+#+begin_src bash :tangle no
+export DISPLAY=:0
+
+case "$1" in
+  "day")
+    feh --bg-scale $HOME/usr/pics/island_day_by_arsenixc-d6ctqon.jpg
+    ;;
+  "night")
+    feh --bg-scale $HOME/usr/pics/island_night_by_arsenixc-d6cz757.jpg
+    ;;
+  *)
+    echo $"Usage: $0 {day|night}"
+    exit 1
+esac
+#+end_src
+
+*** wp-auto
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/wp-auto :shebang "#!/bin/bash"
+:END:
+
+#+begin_src bash :tangle no
+SED=$(which sed)
+ROFI=$(which rofi)
+
+export DISPLAY=:0
+HOUR=$(date +%H)
+
+if [ -z "${SED}" ]
+then
+    echo "Did not find 'sed', script cannot continue."
+    exit 1
+fi
+if [ -z "${ROFI}" ]
+then
+    echo "Did not find rofi, there is no point to continue."
+    exit 1
+fi
+
+###
+# Create if not exists, then removes #include of .theme file (if present) and add the selected theme to the end.
+# Repeated calls should leave the config clean-ish
+###
+function set_theme()
+{
+    CDIR="${HOME}/.config/rofi/"
+    if [ ! -d "${CDIR}" ]
+    then
+        mkdir -p ${CDIR}
+    fi
+    if [ -f "${CDIR}/config" ]
+    then
+        ${SED} -i "/rofi\.theme: .*\.rasi$/d" "${CDIR}/config"
+    fi
+    echo "rofi.theme: ${1}" >> "${CDIR}/config"
+
+}
+
+if [ "$HOUR" -gt "19" ] || [ "$HOUR" -lt "7" ]
+    then
+        feh --bg-scale $HOME/usr/pics/island_night_by_arsenixc-d6cz757.jpg
+        xrdb -merge $HOME/.Xresources.d/gruvbox-dark.xresources
+        set_theme "/usr/share/rofi/themes//gruvbox-dark.rasi"
+    else
+        feh --bg-scale $HOME/usr/pics/island_day_by_arsenixc-d6ctqon.jpg
+        xrdb -merge $HOME/.Xresources.d/gruvbox-light.xresources
+        set_theme "/usr/share/rofi/themes//gruvbox-light.rasi"
+fi
+#+end_src
+
+*** wp.service
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/wp.service
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+Description=wallpaper service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c %h/.local/bin/wp-auto
+#+end_src
+
+*** wp.timer
+:PROPERTIES:
+:header-args+: :tangle ~/.config/systemd/user/wp.timer
+:END:
+
+#+begin_src conf :tangle no
+[Unit]
+[Unit]
+Description=wallpaper timer
+
+[Timer]
+OnCalendar=07,21:00
+Unit=wp.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+#+end_src
+
 ** Fun :)
 
 *** eat-em
