@@ -1,0 +1,113 @@
+#+title: rc.org
+#+property: header-args :comments link :mkdirp yes :results silent
+
+* About
+
+This org file contains the configuration files of pretty much every
+program I use. The files are tangled (i.e. exported, or derived) from
+this file using =org-babel=.
+
+Note: This file is best viewed inside Emacs with org mode.
+
+* Configs
+
+** =git=
+
+*** gitconfig
+:PROPERTIES:
+:header-args+: :tangle ~/.gitconfig
+:END:
+
+**** user
+#+begin_src conf
+[user]
+    name = Amin Bandali
+    email = amin@aminb.org
+    # signingkey = 4E05246AB0BF7FFB
+#+end_src
+
+**** signing
+#+begin_src conf
+# [commit]
+#     gpgsign = true
+# [format]
+#     signoff = true
+#+end_src
+
+**** core
+#+begin_src conf
+[core]
+    autocrlf = input  # CRLF -> LF on commit
+    editor = emacsclient -t
+    excludesfile = ~/.gitignore_global
+    pager = "less"
+#+end_src
+
+**** gpg
+#+begin_src conf
+[gpg]
+    program = gpg2
+#+end_src
+
+**** alias
+#+begin_src conf
+[alias]
+    git = !exec git  # handle nested git calls, e.g. git git status
+    aliases = config --get-regexp '^alias\\.'
+    a = add
+    s = status
+    sl = status --long
+    c = checkout
+    cb = checkout -b
+    b = branch
+    r = rebase
+    p = pull
+    pr = pull --rebase
+    ps = push
+    psf = push --force
+#+end_src
+
+**** color
+#+begin_src conf
+[color]
+    ui = auto
+[color "status"]
+    added = green bold
+    changed = red bold
+    untracked = red bold
+[color "branch"]
+    current = green bold
+    remote = magenta bold
+[color "diff"]
+    new = green bold
+    old = red bold
+#+end_src
+
+**** status
+#+begin_src conf
+[status]
+    # showUntrackedFiles = all
+    short=true
+    branch=true
+#+end_src
+
+**** github
+#+begin_src conf
+[github]
+	user = aminb
+#+end_src
+
+*** gitignore
+:PROPERTIES:
+:header-args+: :tangle ~/.gitignore_global
+:END:
+
+#+begin_src conf
+*.orig
+*.py[co]
+*.sublime-workspace
+*~
+.DS_Store
+*.elc
+*-autoloads.el
+#+end_src
