@@ -9,9 +9,21 @@
 :END:
 
 This org file is my literate configuration for GNU Emacs, and is
-tangled to [[./init.el][init.el]]. Packages are installed and managed using [[https://github.com/emacscollective/borg][Borg]].
+tangled to [[./init.el][init.el]]. Packages are installed and managed using
+[[https://github.com/emacscollective/borg][Borg]]. Over the years, I've taken inspiration from configurations of
+many different people. Some of the configurations that I can remember
+off the top of my head are:
 
-** Installation
+- [[https://github.com/dieggsy/dotfiles][dieggsy/dotfiles]]: literate Emacs and dotfiles configuration, uses
+  straight.el for managing packages
+- [[https://github.com/dakra/dmacs][dakra/dmacs]]: literate Emacs configuration, using Borg for managing
+  packages
+- [[http://pages.sachachua.com/.emacs.d/Sacha.html][Sacha Chua's literate Emacs configuration]]
+- [[https://github.com/dakrone/eos][dakrone/eos]]
+- Ryan Rix's [[http://doc.rix.si/cce/cce.html][Complete Computing Environment]] ([[http://doc.rix.si/projects/fsem.html][about cce]])
+- [[https://github.com/jwiegley/dot-emacs][jwiegley/dot-emacs]]: nix-based configuration
+- [[https://github.com/wasamasa/dotemacs][wasamasa/dotemacs]]
+- [[https://github.com/hlissner/doom-emacs][Doom Emacs]]
 
 I'd like to have a fully reproducible Emacs setup (part of the reason
 why I store my configuration in this repository) but unfortunately out
@@ -21,6 +33,8 @@ experimented with [[https://github.com/raxod502/straight.el][straight.el]], but 
 to my init time; which is unacceptable for me: I use Emacs as my
 window manager (via EXWM) and coming from bspwm, I'm too used to
 having fast startup times.
+
+** Installation
 
 To use this config for your Emacs, first you need to clone this repo,
 then bootstrap Borg, tell Borg to retrieve package submodules, and
