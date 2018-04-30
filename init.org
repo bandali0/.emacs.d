@@ -40,7 +40,7 @@ To use this config for your Emacs, first you need to clone this repo,
 then bootstrap Borg, tell Borg to retrieve package submodules, and
 byte-compiled the packages. Something along these lines should work:
 
-#+begin_src sh
+#+begin_src sh :tangle no
 git clone https://github.com/aminb/dotfiles ~/.emacs.d
 cd ~/.emacs.d
 make bootstrap-borg
@@ -353,6 +353,7 @@ EXWM. I'm fine with the default for now.
 
 #+begin_src emacs-lisp
 ;; (fringe-mode '(3 . 1))
+(fringe-mode nil)
 #+end_src
 
 *** Disable disabled commands
