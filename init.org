@@ -641,8 +641,8 @@ There's no way I could top that, so I won't attempt to.
   :bind
   (:map ivy-minibuffer-map
         ([escape] . keyboard-escape-quit)
-        ("C-j"    . ivy-next-line)
-        ("C-k"    . ivy-previous-line)
+        ;; ("C-j"    . ivy-next-line)
+        ;; ("C-k"    . ivy-previous-line)
         ([S-up]   . ivy-previous-history-element)
         ([S-down] . ivy-next-history-element)
         ("DEL"    . ivy-backward-delete-char))
