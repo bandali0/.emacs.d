@@ -2669,10 +2669,10 @@ margin-bottom = 0
 
 *** polybar-launch
 :PROPERTIES:
-:header-args+: :tangle ~/.local/bin/polybar-launch
+:header-args+: :tangle ~/.local/bin/polybar-launch :shebang "#!/usr/bin/env sh"
 :END:
 
-#+begin_src sh :shebang "#!/bin/sh" :tangle no
+#+begin_src sh :tangle no
 # Terminate already running bar instances
 killall -q polybar
 
@@ -3227,10 +3227,10 @@ copytmap <ESC> q Q w <C-c>
 
 *** scope.sh
 :PROPERTIES:
-:header-args+: :tangle ~/.config/ranger/scope.sh
+:header-args+: :tangle ~/.config/ranger/scope.sh :shebang "#!/usr/bin/env sh"
 :END:
 
-#+begin_src sh :shebang "#!/bin/sh" :tangle no
+#+begin_src sh :tangle no
 # ranger supports enhanced previews.  If the option "use_preview_script"
 # is set to True and this file exists, this script will be called and its
 # output is displayed in ranger.  ANSI color codes are supported.
@@ -3496,6 +3496,380 @@ switch="Alt+x"
 insert_pass="Alt+n"
 #+end_src
 
+** X
+
+*** xprofile
+:PROPERTIES:
+:header-args+: :tangle ~/.xprofile
+:END:
+
+=~/.xprofile= is similar in style to =~/.xinitrc=, but on the
+contrary, it's automatically sourced by LightDM, my display manager of
+choice.
+
+#+begin_src sh
+# setxkbmap -option compose:ralt
+
+setxkbmap -option ctrl:nocaps          # turn capslock into control
+setxkbmap -option altwin:swap_alt_win  # swap alt and super
+
+if [ $(hostname) = "plasma" ]
+then
+    setxkbmap -option ctrl:rctrl_ralt  # turn right control into right alt
+fi
+
+if [ $(hostname) = "enigma" ]
+then
+    xmodmap -e "keycode 135 = Alt_R"  # remap menu key to alt
+fi
+
+light -Scrs "intel_backlight" 2
+
+source $HOME/.zprofile
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+
+# unlock-def-gk.py &
+
+if [ $(hostname) = "plasma" ]
+then
+    bspwm &
+elif [ $(hostname) = "enigma" ]
+then
+    emacs &
+fi
+#+end_src
+
+*** X resources
+
+**** Xresources
+:PROPERTIES:
+:header-args+: :tangle (when (eq system-type 'gnu/linux) "~/.Xresources")
+:END:
+
+#+begin_src conf-xdefaults
+#include ".Xresources.d/fonts"
+! #include ".Xresources.d/colors"
+#include ".Xresources.d/emacs"
+#include ".Xresources.d/rxvt-unicode"
+#+end_src
+
+**** Xresources.d
+
+***** fonts
+:PROPERTIES:
+:header-args+: :tangle (when (eq system-type 'gnu/linux) "~/.Xresources.d/fonts")
+:END:
+
+#+begin_src conf-xdefaults
+Xft.lcdfilter: lcddefault
+Xft.antialias: true
+Xft.autohint: 0
+Xft.hinting: true
+Xft.hintstyle: hintslight
+! Xft.hintstyle: hintfull
+Xft.rgba: rgb
+Xft.dpi: 96
+#+end_src
+
+***** colors
+:PROPERTIES:
+:header-args+: :tangle (when (eq system-type 'gnu/linux) "~/.Xresources.d/colors")
+:END:
+
+#+begin_src conf-xdefaults :tangle no
+#include "gruvbox-light.xresources"
+! #include "gruvbox-dark.xresources"
+#include "gruvbox-urxvt256.xresources"
+#+end_src
+
+#+begin_src conf-xdefaults :tangle no
+! -----------------------------------------------------------------------------
+! File: gruvbox-light.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+! hard contrast: *background: #f9f5d7
+*background: #fbf1c7
+! soft contrast: *background: #f2e5bc
+*foreground: #3c3836
+! Black + DarkGrey
+*color0:  #fdf4c1
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #9d0006
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #79740e
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #b57614
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #076678
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #8f3f71
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #427b58
+! LightGrey + White
+*color7:  #7c6f64
+*color15: #3c3836
+#+end_src
+
+#+begin_src conf-xdefaults :tangle no
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+#+end_src
+
+#+begin_src conf-xdefaults :tangle no
+! -----------------------------------------------------------------------------
+! File: gruvbox-urxvt256.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 13 Dec 2013
+! -----------------------------------------------------------------------------
+
+URxvt.color24:  #076678
+URxvt.color66:  #427b58
+URxvt.color88:  #9d0006
+URxvt.color96:  #8f3f71
+URxvt.color100: #79740e
+URxvt.color108: #8ec07c
+URxvt.color109: #83a598
+URxvt.color130: #af3a03
+URxvt.color136: #b57614
+URxvt.color142: #b8bb26
+URxvt.color167: #fb4934
+URxvt.color175: #d3869b
+URxvt.color208: #fe8019
+URxvt.color214: #fabd2f
+URxvt.color223: #ebdbb2
+URxvt.color228: #f2e5bc
+URxvt.color229: #fbf1c7
+URxvt.color230: #f9f5d7
+URxvt.color234: #1d2021
+URxvt.color235: #282828
+URxvt.color236: #32302f
+URxvt.color237: #3c3836
+URxvt.color239: #504945
+URxvt.color241: #665c54
+URxvt.color243: #7c6f64
+URxvt.color244: #928374
+URxvt.color245: #928374
+URxvt.color246: #a89984
+URxvt.color248: #bdae93
+URxvt.color250: #d5c4a1
+#+end_src
+
+***** emacs
+:PROPERTIES:
+:header-args+: :tangle (when (eq system-type 'gnu/linux) "~/.Xresources.d/emacs")
+:END:
+
+#+begin_src conf-xdefaults
+Emacs.menuBar: off
+Emacs.toolBar: off
+Emacs.verticalScrollBars: off
+Emacs.cursorBlink: off
+Emacs.FontBackend: xft,x
+! Emacs.font: Ubuntu Mono-12
+! Emacs.font: Triplicate T4C-11
+! Emacs.font: Ubuntu Mono-10.5
+! Emacs.font: Ubuntu Mono-12
+! Emacs.font: Iosevka-11
+
+! Emacs.font: Fira Mono:size=15
+! Emacs.font: DejaVu Sans Mono:size=15
+! Emacs.font: Inconsolata:size=17
+! Emacs.font: Inconsolata:size=16
+! Emacs.font: Inconsolata LGC:size=14
+! Emacs.font: Source Code Pro Medium-10.5
+Emacs.font: Ubuntu Mono:size=16
+! Emacs.font: Iosevka:size=16
+#+end_src
+
+***** rxvt-unicode
+:PROPERTIES:
+:header-args+: :tangle (when (eq system-type 'gnu/linux) "~/.Xresources.d/rxvt-unicode")
+:END:
+
+#+begin_src conf-xdefaults
+! Font
+URxvt.font:             xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true
+URxvt.boldFont:         xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bold
+URxvt.italicFont:       xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:italic
+URxvt.bolditalicFont:   xft:ubuntu mono:pixelsize=16:antialias=true:hinting=true:bold:italic, xft:dejavu sans mono:pixelsize=15:antialias=true:hinting=true:bolditalic
+
+URxvt.xftAntialias:     true
+URxvt.letterSpace:      0
+
+URxvt.depth:                0
+URxvt.loginShell:           true
+URxvt.saveLines:            100000
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+URxvt.scrollBar:            false
+URxvt.scrollStyle:          rxvt
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+URxvt.keysym.Shift-Up:      command:\033]720;1\007
+URxvt.keysym.Shift-Down:    command:\033]721;1\007
+
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.perl-ext:             bidi
+URxvt.bidi.enabled:         1
+URxvt.url-select.launcher:  firefox
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.url-launcher:         /usr/bin/firefox
+URxvt.matcher.button:       1
+URxvt.iso14755:             false
+URxvt.iso14755_53:          false
+URxvt.keysym.M-c:           perl:clipboard:copy
+URxvt.keysym.M-v:           perl:clipboard:paste
+URxvt.keysym.C-A-V:         perl:clipboard:paste_escaped
+URxvt.keysym.C-Up:          font-size:increase
+URxvt.keysym.C-Down:        font-size:decrease
+URxvt.keysym.C-S-Up:        font-size:incglobal
+URxvt.keysym.C-S-Down:      font-size:decglobal
+URxvt.keysym.C-equal:       font-size:reset
+!URxvt.keysym.C-question:   font-size:show
+
+URxvt.iconFile:             /usr/share/icons/Paper/48x48/apps/utilities-terminal.png
+
+!urxvt*foreground: white
+!urxvt*background: black
+
+!*color0:  #2E3436
+!*color1:  #a40000
+!*color2:  #4E9A06
+!*color3:  #C4A000
+!*color4:  #3465A4
+!*color5:  #75507B
+!*color6:  #ce5c00
+!*color7:  #babdb9
+!*color8:  #555753
+!*color9:  #EF2929
+!*color10: #8AE234
+!*color11: #FCE94F
+!*color12: #729FCF
+!*color13: #AD7FA8
+!*color14: #fcaf3e
+!*color15: #EEEEEC
+
+!URxvt.foreground: #C8C8C8
+!URxvt.background: #FFFFFF
+
+!! black
+!*color0:  #2E3436
+!*color8:  #555753
+!! red
+!*color1:  #a40000
+!*color9:  #EF2929
+!! green
+!*color2:  #4E9A06
+!*color10: #8AE234
+!! yellow
+!*color3:  #C4A000
+!*color11: #FCE94F
+!! blue
+!*color4:  #3465A4
+!*color12: #729FCF
+!! purple
+!*color5:  #75507B
+!*color13: #AD7FA8
+!! orange (replaces cyan)
+!*color6:  #ce5c00
+!*color14: #fcaf3e
+!! white
+!*color7:  #babdb9
+!*color15: #EEEEEC
+
+! Tango colour theme for rxvt-unicode
+URxvt.background: #FFFFFF
+URxvt.foreground: #000000
+
+! Black
+URxvt.color0: #2E3436
+URxvt.color8: #757773
+
+! Red
+URxvt.color1: #CC0000
+URxvt.color9: #EF2929
+
+! Green
+URxvt.color2: #4E9A06
+URxvt.color10: #8AE234
+
+! Yellow
+URxvt.color3: #C4A000
+URxvt.color11: #FCE94F
+
+! Blue
+URxvt.color4: #3465A4
+URxvt.color12: #729FCF
+
+! Magenta
+URxvt.color5: #75507B
+URxvt.color13: #AD7FA8
+
+!! Cyan
+!URxvt.color6: #06989A
+!URxvt.color14: #34E2E2
+! orange (replaces cyan)
+*color6:  #ce5c00
+*color14: #fcaf3e
+
+! White
+URxvt.color7: #D3D7CF
+URxvt.color15: #EEEEEC
+#+end_src
+
 ** XDG
 :PROPERTIES:
 :header-args+: :tangle ~/.config/user-dirs.dirs
@@ -3569,6 +3943,17 @@ fi
 
 #+begin_src bash
 xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -T
+#+end_src
+
+** unlock-def-gk.py
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/unlock-def-gk.py :shebang "#!/usr/bin/env python2"
+:END:
+
+#+begin_src python
+import gnomekeyring as gk
+# list_item_ids_sync('login')[0] == 1L
+gk.unlock_sync('Default_keyring',gk.item_get_info_sync('login',1L).get_secret())
 #+end_src
 
 ** wp
