@@ -1,0 +1,21 @@
+#+title: dotfiles
+
+This is my dotfiles repository; i.e. where I keep the configuration
+files of all the pieces of software I use.
+
+My GNU Emacs configuration is in [[file:init.org][init.org]], which is a literate Org
+mode file that gets tangled (i.e. exported) to =init.el= using
+=org-babel=. Emacs packages are installed and managed using [[https://github.com/emacscollective/borg][Borg]],
+which helps me have a fully reproducible setup.
+
+The configurations for all the other programs I use is located in
+[[file:rc.org][rc.org]]. Similar to my =init.org= file for Emacs, is also written in
+Org mode; and the configuration for each program is tangled to a file
+at its expected location on disk.
+
+Note: even though GitHub has a decent renderer for Org mode files, I
+/strongly/ suggest using Emacs itself for browsing through the org
+files.
+
+P.S. my previous =stow=-based setup along with my brief experiment
+with [[https://github.com/raxod502/straight.el][straight.el]] can be accessed from the =straight-exp= branch.

@@ -22,6 +22,19 @@ to my init time; which is unacceptable for me: I use Emacs as my
 window manager (via EXWM) and coming from bspwm, I'm too used to
 having fast startup times.
 
+To use this config for your Emacs, first you need to clone this repo,
+then bootstrap Borg, tell Borg to retrieve package submodules, and
+byte-compiled the packages. Something along these lines should work:
+
+#+begin_src sh
+git clone https://github.com/aminb/dotfiles ~/.emacs.d
+cd ~/.emacs.d
+make bootstrap-borg
+make tangle-init
+make bootstrap
+make build
+#+end_src
+
 * Contents                                                   :toc_1:noexport:
 
 - [[#about][About]]
@@ -545,6 +558,7 @@ There's no way I could top that, so I won't attempt to.
 
 #+begin_src emacs-lisp
 (use-package counsel
+  :defer 1.5
   :bind (([remap execute-extended-command] . counsel-M-x)
          ([remap find-file] . counsel-find-file)
          ("s-r"     . counsel-recentf)
