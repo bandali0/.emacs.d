@@ -346,6 +346,26 @@ See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.htm
 
 ** Defaults
 
+*** Time and battery in mode-line
+
+Enable displaying time and battery in the mode-line, since I'm not
+using the Xfce panel anymore. Also, I don't need to see the load
+average on a regular basis, so disable that.
+
+#+begin_src emacs-lisp
+(use-package time
+  :ensure nil
+  :init
+  (setq display-time-default-load-average nil)
+  :config
+  (display-time-mode))
+
+(use-package battery
+  :ensure nil
+  :config
+  (display-battery-mode))
+#+end_src
+
 *** Smaller fringe
 
 Might want to set the fringe to a smaller value, especially if using
