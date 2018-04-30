@@ -339,6 +339,33 @@ See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.htm
   :config (or (server-running-p) (server-mode)))
 #+end_src
 
+** Unicode support
+
+Font stack with better unicode support, around =Ubuntu Mono= and
+=Hack=.
+
+#+begin_src emacs-lisp
+(dolist (ft (fontset-list))
+  (set-fontset-font
+   ft
+   'unicode
+   (font-spec :name "Ubuntu Mono"))
+  (set-fontset-font
+   ft
+   'unicode
+   (font-spec
+    :name "Hack")
+   nil
+   'append)
+  (set-fontset-font
+   ft
+   'unicode
+   (font-spec
+    :name "Symbola monospacified for DejaVu Sans Mono")
+   nil
+   'append))
+#+end_src
+
 * Core
 :PROPERTIES:
 :CUSTOM_ID: core
@@ -535,7 +562,7 @@ Roll your own modal mode
     (exwm-input-set-key (kbd (format "s-%d" i))
                         (lambda ()
                           (interactive)
-                          (exwm-workspace-switch-create ,i))))
+                          (exwm-workspace-switch-create i))))
   ;; 's-SPC': Launch application
   (exwm-input-set-key
    (kbd "s-SPC")
@@ -759,7 +786,9 @@ TODO: break this giant source block down into individual org sections.
 ** Lean mode
 
 #+begin_src emacs-lisp
-(use-package lean-mode)
+(use-package lean-mode
+  :bind (:map lean-mode-map
+	      ("S-SPC" . company-complete)))
 #+end_src
 
 * Post initialization
