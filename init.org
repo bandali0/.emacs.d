@@ -754,6 +754,14 @@ TODO: break this giant source block down into individual org sections.
   (setq undo-tree-mode-lighter ""))
 #+end_src
 
+* Programming modes
+
+** Lean mode
+
+#+begin_src emacs-lisp
+(use-package lean-mode)
+#+end_src
+
 * Post initialization
 :PROPERTIES:
 :CUSTOM_ID: post-initialization
