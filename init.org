@@ -512,11 +512,80 @@ Roll your own modal mode
   :demand t
   :config
   (require 'exwm-config)
-  (exwm-config-default)
+
+  ;; Set the initial workspace number.
+  (setq exwm-workspace-number 4)
+
+  ;; Make class name the buffer name, truncating beyond 50 characters
+  (defun exwm-rename-buffer ()
+    (interactive)
+    (exwm-workspace-rename-buffer
+     (concat exwm-class-name ":"
+             (if (<= (length exwm-title) 50) exwm-title
+               (concat (substring exwm-title 0 49) "...")))))
+  (add-hook 'exwm-update-class-hook 'exwm-rename-buffer)
+  (add-hook 'exwm-update-title-hook 'exwm-rename-buffer)
+
+  ;; 's-R': Reset
+  (exwm-input-set-key (kbd "s-R") #'exwm-reset)
+  ;; 's-\': Switch workspace
+  (exwm-input-set-key (kbd "s-\\") #'exwm-workspace-switch)
+  ;; 's-N': Switch to certain workspace
+  (dotimes (i 10)
+    (exwm-input-set-key (kbd (format "s-%d" i))
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+  ;; 's-SPC': Launch application
+  (exwm-input-set-key
+   (kbd "s-SPC")
+   (lambda (command)
+     (interactive (list (read-shell-command "➜ ")))
+     (start-process-shell-command command nil command)))
+
+  (exwm-input-set-key (kbd "M-s-SPC") #'counsel-linux-app)
+
+  ;; Shorten 'C-c C-q' to 'C-q'
+  (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
+
+  ;; Line-editing shortcuts
+  (setq exwm-input-simulation-keys
+	'(;; movement
+          ([?\C-b] . [left])
+          ([?\M-b] . [C-left])
+          ([?\C-f] . [right])
+          ([?\M-f] . [C-right])
+          ([?\C-p] . [up])
+          ([?\C-n] . [down])
+          ([?\C-a] . [home])
+          ([?\C-e] . [end])
+          ([?\M-v] . [prior])
+          ([?\C-v] . [next])
+          ([?\C-d] . [delete])
+          ([?\C-k] . [S-end delete])
+          ;; cut/paste
+          ([?\C-w] . [?\C-x])
+          ([?\M-w] . [?\C-c])
+          ([?\C-y] . [?\C-v])
+          ;; search
+          ([?\C-s] . [?\C-f])))
+
+  ;; Enable EXWM
+  (exwm-enable)
+
+  (add-hook 'exwm-init-hook #'exwm-config--fix/ido-buffer-window-other-frame)
+
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
+
   (require 'exwm-randr)
-  (exwm-randr-enable))
+  (exwm-randr-enable)
+
+  (exwm-input-set-key
+   (kbd "M-SPC")
+   (lambda ()
+     (interactive)
+     (start-process "rofi-pass" nil "rofi-pass"))))
 #+end_src
 
 *** [[https://orgmode.org/][Org mode]]
