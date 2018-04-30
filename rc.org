@@ -3900,6 +3900,260 @@ set statusbar-bg "#272727"
 set inputbar-bg "#373737"
 #+end_src
 
+** Zsh
+
+My zsh setup is built on [[https://github.com/zimfw/zimfw][Zim]]. Further, my zshrc references [[https://github.com/junegunn/fzf][fzf]],
+[[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]], and [[https://github.com/hlissner/zsh-autopair][zsh-autopair]]; so be sure to have them
+installed.
+
+*** zimrc
+:PROPERTIES:
+:header-args+: :tangle ~/.zimrc
+:END:
+
+#+begin_src sh
+
+
+#################
+# CORE SETTINGS #
+#################
+
+#
+# Zim settings
+#
+
+# Select what modules you would like enabled.
+# The second line of modules may depend on options set by modules in the first
+# line. These dependencies are noted on the respective module's README.md.
+zmodules=(directory environment git git-info history input ssh utility custom \
+          syntax-highlighting history-substring-search prompt completion)
+
+
+###################
+# MODULE SETTINGS #
+###################
+
+#
+# Prompt
+#
+
+# Set your desired prompt here
+zprompt_theme='pure'
+#PURE_PROMPT_SYMBOL=λ
+#PURE_PROMPT_SYMBOL=δ
+PURE_PROMPT_SYMBOL=➜
+
+#
+# Completion
+#
+
+# set an optional host-specific filename for the completion cache file
+# if none is provided, the default '.zcompdump' is used.
+#zcompdump_file=".zcompdump-${HOST}-${ZSH_VERSION}"
+
+#
+# Utility
+#
+
+# Uncomment to enable command correction prompts
+# See: http://zsh.sourceforge.net/Doc/Release/Options.html#Input_002fOutput
+setopt CORRECT
+
+#
+# Environment
+#
+
+# Set the string below to the desired terminal title format string.
+# The terminal title is redrawn upon directory change, however, variables like 
+# ${PWD} are only evaluated once. Use prompt expansion strings for dynamic data:
+#   http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
+# The example below uses the following format: 'username@host:/current/directory'
+ztermtitle='%n@%m:%~'
+
+#
+# Input
+#
+
+# Uncomment to enable double-dot expansion.
+# This appends '../' to your input for each '.' you type after an initial '..'
+#zdouble_dot_expand='true'
+
+#
+# Syntax-Highlighting
+#
+
+# This determines what highlighters will be used with the syntax-highlighting module.
+# Documentation of the highlighters can be found here:
+#   https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+# For (u)rxvt, termite and gnome-terminal users,
+# removing the 'cursor' highlighter will fix the disappearing cursor problem
+#zhighlighters=(main brackets cursor)
+zhighlighters=(main brackets pattern)
+
+
+#
+# SSH
+#
+
+# Load these ssh identities with the ssh module
+zssh_ids=(id_rsa plasma_id_rsa id_ed25519 id_rsa_aur)
+
+
+#
+# Pacman
+#
+
+# Set (optional) pacman front-end.
+zpacman_frontend='yay'
+
+# Load any helper scripts as defined here
+#zpacman_helper=(aur)
+#+end_src
+
+*** zlogin
+:PROPERTIES:
+:header-args+: :tangle ~/.zlogin
+:END:
+
+#+begin_src sh
+
+
+#
+# User configuration sourced by login shells
+#
+
+# Initialize zim
+[[ -s ${ZIM_HOME}/login_init.zsh ]] && source ${ZIM_HOME}/login_init.zsh
+#+end_src
+
+*** zprofile
+:PROPERTIES:
+:header-args+: :tangle ~/.zprofile
+:END:
+
+#+begin_src sh
+#PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+#PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.cargo/bin:$PATH
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export MAILDIR="$HOME/mail"
+export CVS_RSH=ssh
+#export MATHMODELS=$HOME/src/eiffel/mathmodels
+#export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+#export PATH=$PATH:$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/
+
+# Eiffel2Java stuff
+#export JAVA_HOME=/usr/lib/jvm/default
+#export CPATH=$CPATH:"$JAVA_HOME/include:$JAVA_HOME/include/linux"
+#export LIBRARY_PATH=$LIBRARY_PATH:"$JAVA_HOME/jre/lib/amd64/server"
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$JAVA_HOME/jre/lib/amd64/server"
+
+#export PATH="$HOME/usr/build/pvs:$PATH"
+#export SBCLISP_HOME=/usr/share/sbcl-source
+#export PVS_LIBRARY_PATH="$HOME/usr/build/pvs/nasalib"
+
+export MOZ_USE_XINPUT2=1  # precise scrolling in firefox
+
+#export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+#export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
+
+#if [ -e /home/amin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/amin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+#+end_src
+
+*** zshenv
+:PROPERTIES:
+:header-args+: :tangle ~/.zshenv
+:END:
+
+#+begin_src sh
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
+#+end_src
+
+*** zshrc
+:PROPERTIES:
+:header-args+: :tangle ~/.zshrc
+:END:
+
+#+begin_src sh
+# Bash-like navigation
+#export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+#export WORDCHARS='*?-[]~=&;!#$%^(){}<>'
+export WORDCHARS='*?[]~=&;!#$%^(){}<>'
+#ZLE_SPACE_SUFFIX_CHARS=$'|&'
+
+#disable -r time       # disable shell reserved word
+#alias time='time -p'  # -p for POSIX output
+
+# rehash if last command was pacaur or pacman
+# (so that zsh picks up changes in $PATH immediately)
+TRAPUSR1() { rehash}; precmd() { [[ $history[$[ HISTCMD -1 ]] == *(pacaur|pacman)* ]] && killall -USR1 zsh }
+
+#
+# User configuration sourced by interactive shells
+#
+
+# Change default zim location
+export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+
+# Start zim
+[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
+
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+#ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold' 
+
+setopt globdots
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autopair/autopair.zsh
+
+
+### fzf ###
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+# Accept history selection instead of putting it on
+# the command line
+fzf-history-widget-accept() {
+  fzf-history-widget
+  zle accept-line
+}
+#zle     -N   fzf-history-widget-accept
+#bindkey '^R' fzf-history-widget-accept
+
+# alt+c preview
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+### fzf ###
+
+
+# aliases
+alias mpv="mpv --ytdl-format mp4"
+alias mv="mv -iv"
+alias cp="cp -iv"
+alias scl=systemctl
+alias jcl=journalctl
+alias m="mbsync -Va; getmail; notmuch new"
+alias best="youtube-dl -f best"
+alias ace="mosh amin@ace.aminb.org"
+alias nix="ssh amin@aminb.org"
+
+aur() {
+   cd ~/usr/build
+   git clone https://aur.archlinux.org/${1}.git
+   cd ${1}
+}
+
+# i-beam cursor
+echo -e "\033[5 q"
+#echo -e "\033[6 q"
+#+end_src
+
 * Scripts
 
 This section contains various useful scripts and the ones used by the
