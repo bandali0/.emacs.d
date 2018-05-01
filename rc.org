@@ -3508,6 +3508,8 @@ contrary, it's automatically sourced by LightDM, my display manager of
 choice.
 
 #+begin_src sh
+xset -b  # disable bell
+
 # setxkbmap -option compose:ralt
 
 setxkbmap -option ctrl:nocaps          # turn capslock into control
