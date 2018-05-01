@@ -3537,7 +3537,7 @@ then
     bspwm &
 elif [ $(hostname) = "enigma" ]
 then
-    emacs &
+    emacs -ib 0 &
 fi
 #+end_src
 
