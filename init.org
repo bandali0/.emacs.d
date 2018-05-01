@@ -564,11 +564,11 @@ Roll your own modal mode
                           (interactive)
                           (exwm-workspace-switch-create i))))
   ;; 's-SPC': Launch application
-  (exwm-input-set-key
-   (kbd "s-SPC")
-   (lambda (command)
-     (interactive (list (read-shell-command "➜ ")))
-     (start-process-shell-command command nil command)))
+  ;; (exwm-input-set-key
+  ;;  (kbd "s-SPC")
+  ;;  (lambda (command)
+  ;;    (interactive (list (read-shell-command "➜ ")))
+  ;;    (start-process-shell-command command nil command)))
 
   (exwm-input-set-key (kbd "M-s-SPC") #'counsel-linux-app)
 
@@ -590,8 +590,8 @@ Roll your own modal mode
           ([?\C-v] . [next])
           ([?\C-d] . [delete])
           ([?\C-k] . [S-end delete])
-          ;; cut/paste
-          ([?\C-w] . [?\C-x])
+          ;; cut/copy/paste
+          ;; ([?\C-w] . [?\C-x])
           ([?\M-w] . [?\C-c])
           ([?\C-y] . [?\C-v])
           ;; search
@@ -608,11 +608,154 @@ Roll your own modal mode
   (require 'exwm-randr)
   (exwm-randr-enable)
 
+  ;; (exwm-input-set-key
+  ;;  (kbd "s-<return>")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process "urxvt" nil "urxvt")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "s-SPC")  ;; rofi doesn't properly launch programs when started from emacs
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "rofi-run" nil "rofi -show run -display-run '> ' -display-window ' 🗔 '")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "s-/")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "rofi-win" nil "rofi -show window  -display-run '> ' -display-window ' 🗔 '")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "M-SPC")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process "rofi-pass" nil "rofi-pass")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "<XF86AudioMute>")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "pamixer" nil "pamixer --toggle-mute")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "<XF86AudioLowerVolume>")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "pamixer" nil "pamixer --allow-boost --decrease 5")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "<XF86AudioRaiseVolume>")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "pamixer" nil "pamixer --allow-boost --increase 5")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "<XF86AudioPlay>")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "mpc" nil "mpc toggle")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "<XF86AudioPrev>")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "mpc" nil "mpc prev")))
+
+  ;; (exwm-input-set-key
+  ;;  (kbd "<XF86AudioNext>")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (start-process-shell-command "mpc" nil "mpv next")))
+
+  (defun ab--exwm-pasystray ()
+    "A command used to start pasystray."
+    (interactive)
+    (if (executable-find "pasystray")
+	(progn
+          (message "EXWM: starting pasystray ...")
+          (start-process-shell-command "pasystray" nil "pasystray --notify=all"))
+      (message "EXWM: pasystray is not installed, abort!")))
+
+  (add-hook 'exwm-init-hook #'ab--exwm-pasystray)
+
   (exwm-input-set-key
-   (kbd "M-SPC")
+   (kbd "s-t")
    (lambda ()
      (interactive)
-     (start-process "rofi-pass" nil "rofi-pass"))))
+     (exwm-floating-toggle-floating)))
+
+  (exwm-input-set-key
+   (kbd "s-f")
+   (lambda ()
+     (interactive)
+     (exwm-layout-toggle-fullscreen)))
+
+  (exwm-input-set-key
+   (kbd "s-w")
+   (lambda ()
+     (interactive)
+     (kill-buffer (current-buffer))))
+
+  (exwm-input-set-key
+   (kbd "s-q")
+   (lambda ()
+     (interactive)
+     (exwm-manage--kill-client))))
+#+end_src
+
+**** sxhkdrc
+:PROPERTIES:
+:header-args+: :tangle ~/.config/sxhkd/sxhkdrc :mkdirp yes
+:END:
+
+#+begin_src conf
+# terminal emulator
+super + Return
+	urxvt
+
+# program launcher
+super + space
+	rofi -show run -display-run '> ' -display-window ' 🗔 '
+
+# window finder
+super + slash
+	rofi -show window  -display-run '> ' -display-window ' 🗔 '
+
+# password manager
+alt + space
+	rofi-pass
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# volume {up,down}
+XF86Audio{Raise,Lower}Volume
+	pamixer --allow-boost --{in,de}crease 5
+
+# mute
+XF86AudioMute
+	pamixer --toggle-mute
+
+# playback control
+XF86Audio{Play,Prev,Next}
+	mpc {toggle,prev,next}
+
+# Toggle keyboard layout
+# super + F7
+#	toggle-layout
+
+# Toggle Xfce presentation mode
+# XF86LaunchB
+#	toggle-presentation-mode
+
+# monitor brightness
+XF86MonBrightness{Up,Down}
+	light -{A,U} 5
+
+super + apostrophe
+	rofi-light
 #+end_src
 
 *** [[https://orgmode.org/][Org mode]]
