@@ -674,6 +674,7 @@ There's no way I could top that, so I won't attempt to.
         ([S-down] . ivy-next-history-element)
         ("DEL"    . ivy-backward-delete-char))
   :config
+  (setq ivy-wrap t)
   (ivy-mode 1))
 #+end_src
 
