@@ -6,6 +6,8 @@ bootstrap-borg:
 	@cd lib/borg; git symbolic-ref HEAD refs/heads/master
 	@cd lib/borg; git reset --hard HEAD
 
+bootstrap: tangle-init
+
 ta: tangle-init all
 
 ti: tangle-init build-init

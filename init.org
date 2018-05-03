@@ -44,7 +44,6 @@ byte-compiled the packages. Something along these lines should work:
 git clone https://github.com/aminb/dotfiles ~/.emacs.d
 cd ~/.emacs.d
 make bootstrap-borg
-make tangle-init
 make bootstrap
 make build
 #+end_src
