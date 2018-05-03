@@ -534,7 +534,7 @@ Roll your own modal mode
 
 *** [[https://github.com/ch11ng/exwm][EXWM]] (window manager)
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package exwm
   :demand t
   :config
@@ -709,7 +709,7 @@ Roll your own modal mode
 :header-args+: :tangle ~/.config/sxhkd/sxhkdrc :mkdirp yes
 :END:
 
-#+begin_src conf
+#+begin_src conf :tangle no
 # terminal emulator
 super + Return
 	urxvt
