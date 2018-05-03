@@ -349,17 +349,28 @@ Font stack with better unicode support, around =Ubuntu Mono= and
   (set-fontset-font
    ft
    'unicode
-   (font-spec
-    :name "Hack")
+   (font-spec :name "DejaVu Sans Mono")
    nil
    'append)
+  ;; (set-fontset-font
+  ;;  ft
+  ;;  'unicode
+  ;;  (font-spec
+  ;;   :name "Symbola monospacified for DejaVu Sans Mono")
+  ;;  nil
+  ;;  'append)
+  ;; (set-fontset-font
+  ;;  ft
+  ;;  #x2115  ; ℕ
+  ;;  (font-spec :name "DejaVu Sans Mono")
+  ;;  nil
+  ;;  'append)
   (set-fontset-font
    ft
-   'unicode
-   (font-spec
-    :name "Symbola monospacified for DejaVu Sans Mono")
+   (cons ?Α ?ω)
+   (font-spec :name "DejaVu Sans Mono" :size 14)
    nil
-   'append))
+   'prepend))
 #+end_src
 
 * Core
