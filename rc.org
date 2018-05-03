@@ -4172,7 +4172,7 @@ exact brightness value.
 
 #+begin_src bash
 cur=$(light -G)
-val=$(rofi -dmenu -mesg "light    $cur" -p "light -S " -l 0 -width 8)
+val=$(rofi -dmenu -mesg "light    $cur" -p "light -S " -l 0 -width 12)
 light -S $val
 #+end_src
 
