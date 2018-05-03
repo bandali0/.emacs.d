@@ -168,10 +168,6 @@ done initializing.
 (add-hook
  'after-init-hook
  (lambda ()
-   (let ((elapsed (float-time (time-subtract (current-time)
-                                             ab--before-user-init-time))))
-     (message "Loading %s...done (%.3fs) [after-init]"
-              user-init-file elapsed))
    (setq gc-cons-threshold ab--gc-cons-threshold
          gc-cons-percentage ab--gc-cons-percentage
          file-name-handler-alist ab--file-name-handler-alist)))
@@ -833,7 +829,7 @@ There's no way I could top that, so I won't attempt to.
 
 #+begin_src emacs-lisp
 (use-package counsel
-  :defer 1.5
+  :defer 1
   :bind (([remap execute-extended-command] . counsel-M-x)
          ([remap find-file] . counsel-find-file)
          ("s-r"     . counsel-recentf)
