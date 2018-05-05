@@ -933,7 +933,7 @@ TODO: break this giant source block down into individual org sections.
 
 * Programming modes
 
-** Lean mode
+** [[https://github.com/leanprover/lean-mode][Lean]]
 
 #+begin_src emacs-lisp
 (use-package lean-mode
@@ -941,6 +941,15 @@ TODO: break this giant source block down into individual org sections.
 	      ("S-SPC" . company-complete)))
 #+end_src
 
+** [[https://github.com/haskell/haskell-mode][Haskell]]
+
+#+begin_src emacs-lisp
+(use-package haskell-mode
+  :config
+  (setq haskell-indentation-layout-offset 4
+        haskell-indentation-left-offset 4
+        haskell-indentation-ifte-offset 4))
+#+end_src
 * Post initialization
 :PROPERTIES:
 :CUSTOM_ID: post-initialization

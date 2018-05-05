@@ -52,6 +52,9 @@
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
+[submodule "haskell-mode"]
+	path = lib/haskell-mode
+	url = git@github.com:haskell/haskell-mode.git
 [submodule "helm"]
 	path = lib/helm
 	url = git@github.com:emacs-helm/helm.git
