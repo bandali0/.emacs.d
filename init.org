@@ -941,7 +941,9 @@ TODO: break this giant source block down into individual org sections.
 	      ("S-SPC" . company-complete)))
 #+end_src
 
-** [[https://github.com/haskell/haskell-mode][Haskell]]
+** Haskell
+
+*** [[https://github.com/haskell/haskell-mode][haskell-mode]]
 
 #+begin_src emacs-lisp
 (use-package haskell-mode
@@ -950,6 +952,20 @@ TODO: break this giant source block down into individual org sections.
         haskell-indentation-left-offset 4
         haskell-indentation-ifte-offset 4))
 #+end_src
+
+*** [[https://github.com/mpickering/hlint-refactor-mode][hlint-refactor]]
+
+Emacs bindings for [[https://github.com/ndmitchell/hlint][hlint]]'s refactor option. This requires the refact
+executable from [[https://github.com/mpickering/apply-refact][apply-refact]].
+
+#+begin_src emacs-lisp
+(use-package hlint-refactor
+  :bind (:map hlint-refactor-mode-map
+	      ("C-c l b" . hlint-refactor-refactor-buffer)
+	      ("C-c l r" . hlint-refactor-refactor-at-point))
+  :hook (haskell-mode . hlint-refactor-mode))
+#+end_src
+
 * Post initialization
 :PROPERTIES:
 :CUSTOM_ID: post-initialization

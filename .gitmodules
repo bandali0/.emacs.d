@@ -58,6 +58,9 @@
 [submodule "helm"]
 	path = lib/helm
 	url = git@github.com:emacs-helm/helm.git
+[submodule "hlint-refactor"]
+	path = lib/hlint-refactor
+	url = git@github.com:mpickering/hlint-refactor-mode.git
 [submodule "ivy"]
 	path = lib/ivy
 	url = git@github.com:abo-abo/swiper.git
