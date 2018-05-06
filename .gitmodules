@@ -49,6 +49,9 @@
 [submodule "flycheck"]
 	path = lib/flycheck
 	url = git@github.com:flycheck/flycheck.git
+[submodule "flycheck-haskell"]
+	path = lib/flycheck-haskell
+	url = git@github.com:flycheck/flycheck-haskell.git
 [submodule "ghub"]
 	path = lib/ghub
 	url = git@github.com:magit/ghub.git
