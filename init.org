@@ -1128,6 +1128,19 @@ instead.
   :bind (:map haskell-mode-map
               ("C-c l l" . hs-lint)))
 #+end_src
+* Emacs Enhancements
+
+** [[https://github.com/justbur/emacs-which-key][which-key]]
+
+#+begin_quote
+Emacs package that displays available keybindings in popup
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package which-key
+  :defer 1
+  :config (which-key-mode))
+#+end_src
 
 * Post initialization
 :PROPERTIES:
