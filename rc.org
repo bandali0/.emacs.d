@@ -2685,6 +2685,23 @@ polybar main &
 echo "Bars launched..."
 #+end_src
 
+** PowerTOP
+:PROPERTIES:
+:header-args+: :tangle "/sudo::/etc/systemd/system/powertop.service"
+:END:
+
+#+begin_src conf
+[Unit]
+Description=Powertop tunings
+
+[Service]
+ExecStart=/usr/bin/powertop --auto-tune
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+#+end_src
+
 ** ranger
 
 *** rc.conf
