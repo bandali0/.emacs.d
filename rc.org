@@ -4369,7 +4369,7 @@ zpacman_frontend='yay'
 #+begin_src sh
 #PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 #PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
-export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.cargo/bin:$HOME/.elan/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
