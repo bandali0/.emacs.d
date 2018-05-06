@@ -623,7 +623,7 @@ timeout = 0
 
 ** Fontconfig
 :PROPERTIES:
-:header-args+: :tangle ~/.config/fontconfig/fonts.conf
+:header-args+: :tangle ~/.config/fontconfig/fonts.conf :comments none
 :END:
 
 #+begin_src xml
