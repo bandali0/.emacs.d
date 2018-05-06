@@ -931,6 +931,17 @@ TODO: break this giant source block down into individual org sections.
   (setq undo-tree-mode-lighter ""))
 #+end_src
 
+* Syntax and spell checking
+#+begin_src emacs-lisp
+(use-package flycheck
+  :hook (prog-mode . flycheck-mode)
+  :config
+  ;; Use the load-path from running Emacs when checking elisp files
+  (setq flycheck-emacs-lisp-load-path 'inherit)
+
+  ;; Only flycheck when I actually save the buffer
+  (setq flycheck-check-syntax-automatically '(mode-enabled save)))
+#+end_src
 * Programming modes
 
 ** [[https://github.com/leanprover/lean-mode][Lean]]
