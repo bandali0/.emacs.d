@@ -787,6 +787,22 @@ $clean_ext = "aux out";
 # $pdf_previewer = 'exec zathura --synctex-forward -x \'emacsclient --no-wait +%{line} %{input}\' %O %S';
 #+end_src
 
+** libinput
+
+Improve XPS 15 9560's touchpad experience.
+
+#+begin_src conf :tangle (when (and (eq system-type 'gnu/linux) (string= (system-name) "plasma")) "/sudo::/etc/X11/xorg.conf.d/30-touchpad.conf")
+Section "InputClass"
+    Identifier "libinput touchpad catchall"
+    Driver "libinput"
+    MatchIsTouchpad "on"
+    Option "ClickMethod" "clickfinger"
+    Option "NaturalScrolling" "true"
+    Option "Tapping" "on"
+    Option "TappingButtonMap" "lrm"
+EndSection
+#+end_src
+
 ** getmail
 
 *** getmailrc
