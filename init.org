@@ -965,6 +965,15 @@ TODO: break this giant source block down into individual org sections.
 	flycheck-disabled-checkers '(haskell-stack-ghc haskell-ghc)))
 #+end_src
 
+*** [[https://github.com/jyp/dante][dante]]
+
+#+begin_src emacs-lisp
+(use-package dante
+  :after haskell-mode
+  :commands dante-mode
+  :hook (haskell-mode . dante-mode))
+#+end_src
+
 *** [[https://github.com/mpickering/hlint-refactor-mode][hlint-refactor]]
 
 Emacs bindings for [[https://github.com/ndmitchell/hlint][hlint]]'s refactor option. This requires the refact
