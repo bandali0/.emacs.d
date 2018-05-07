@@ -931,6 +931,25 @@ TODO: break this giant source block down into individual org sections.
   (setq undo-tree-mode-lighter ""))
 #+end_src
 
+* Editing
+
+** Company
+
+#+begin_src emacs-lisp
+(use-package company
+  :defer 5
+  :bind
+  (:map company-active-map
+	([tab] . company-complete-common-or-cycle))
+  :custom
+  (company-idle-delay 0.3)
+  (company-minimum-prefix-length 1)
+  (company-selection-wrap-around t)
+  (company-dabbrev-char-regexp "\\sw\\|\\s_\\|[-_]")
+  :config
+  (global-company-mode t))
+#+end_src
+
 * Syntax and spell checking
 #+begin_src emacs-lisp
 (use-package flycheck
