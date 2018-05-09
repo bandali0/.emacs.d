@@ -3351,7 +3351,7 @@ exit 1
 
 ** redshift
 :PROPERTIES:
-:header-args+: :tangle ~/.config/redshift.conf
+:header-args+: :tangle ~/.config/redshift.conf :comments none
 :END:
 
 #+begin_src conf
