@@ -93,6 +93,9 @@
 [submodule "no-littering"]
 	path = lib/no-littering
 	url = git@github.com:emacscollective/no-littering.git
+[submodule "notmuch"]
+	path = lib/notmuch
+	url = https://git.notmuchmail.org/git/notmuch
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
