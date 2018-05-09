@@ -3459,7 +3459,7 @@ rofi.theme: /usr/share/rofi/themes//gruvbox-light.rasi
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
     #rofi -no-auto-select -kb-accept-entry "!Return" -i -no-levenshtein-sort "$@"
-    rofi -i -no-auto-select "$@"
+    rofi -i -no-auto-select -kb-accept-entry "!Return" "$@"
 }
 
 # xdotool needs the keyboard layout to be set using setxkbmap
