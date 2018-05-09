@@ -3881,15 +3881,12 @@ source $HOME/.zprofile
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
-# unlock-def-gk.py &
-
 if [ $(hostname) = "plasma" ]
 then
-    bspwm &
-elif [ $(hostname) = "enigma" ]
-then
-    emacs -ib 0 &
+    unlock-def-gk.py &
 fi
+
+bspwm &
 #+end_src
 
 *** X resources
