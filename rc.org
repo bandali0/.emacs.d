@@ -1434,7 +1434,7 @@ logfile ~/.msmtp.log
 # aminb
 account aminb
 host nix.aminb.org
-tls_fingerprint BB:98:B3:02:83:B0:E0:C3:49:3E:C2:B2:A8:60:62:78:03:B3:5D:B3:BD:B8:0A:39:BB:E4:B0:66:D1:CF:D1:6B
+tls_fingerprint 65:DD:B8:32:D8:CD:F1:DC:B6:34:EE:35:04:18:AC:09:F3:1D:6D:20:F2:4A:E2:BD:64:48:B7:1F:90:BD:C4:BA
 tls_starttls on
 from amin@aminb.org
 user amin@aminb.org
@@ -2084,7 +2084,7 @@ path=/home/amin/mail
 [user]
 name=Amin Bandali
 primary_email=amin@aminb.org
-other_email=amin.bandali@uwaterloo.ca;mbandali@uwaterloo.ca;aminb@gnu.org;
+other_email=abandali@uwaterloo.ca;amin.bandali@uwaterloo.ca;aminb@gnu.org;
 
 # Configuration for "notmuch new"
 #
@@ -4492,6 +4492,7 @@ alias jcl=journalctl
 alias m="mbsync -Va; getmail; notmuch new"
 alias best="youtube-dl -f best"
 alias ace="mosh amin@ace.aminb.org"
+alias nixx="ssh amin@nix.aminb.org"
 
 aur() {
    cd ~/usr/build
