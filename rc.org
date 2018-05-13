@@ -66,7 +66,7 @@ sent_tag = sent
 sxhkd &
 sh ~/.fehbg &
 xfce4-panel -d &
-#compton &
+compton &
 sleep 0.5 && pasystray --notify=all &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
@@ -85,7 +85,7 @@ bspc config gapless_monocle      true
 bspc config click_to_focus       button1
 bspc config directional_focus_tightness low
 
-bspc rule -a Firefox desktop='^1' follow=on
+#bspc rule -a Firefox desktop='^1' follow=on
 bspc rule -a Nightly desktop='^1' follow=on
 bspc rule -a Emacs desktop='^2' state=tiled follow=on
 #bspc rule -a Chromium desktop='^4' follow=on
