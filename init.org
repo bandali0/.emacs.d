@@ -372,6 +372,48 @@ Font stack with better unicode support, around =Ubuntu Mono= and
    'prepend))
 #+end_src
 
+** Libraries
+
+#+begin_src emacs-lisp
+(require 'cl-lib)
+(require 'subr-x)
+#+end_src
+
+** Useful utilities
+
+#+begin_src emacs-lisp
+(defun ab-enlist (exp)
+  "Return EXP wrapped in a list, or as-is if already a list."
+(if (listp exp) exp (list exp)))
+
+; from https://github.com/hlissner/doom-emacs/commit/589108fdb270f24a98ba6209f6955fe41530b3ef
+(defmacro after! (features &rest body)
+  "A smart wrapper around `with-eval-after-load'. Supresses warnings during
+compilation."
+  (declare (indent defun) (debug t))
+  (list (if (or (not (bound-and-true-p byte-compile-current-file))
+                (dolist (next (ab-enlist features))
+                  (if (symbolp next)
+                      (require next nil :no-error)
+                    (load next :no-message :no-error))))
+            #'progn
+          #'with-no-warnings)
+        (cond ((symbolp features)
+               `(eval-after-load ',features '(progn ,@body)))
+              ((and (consp features)
+                    (memq (car features) '(:or :any)))
+               `(progn
+                  ,@(cl-loop for next in (cdr features)
+                             collect `(after! ,next ,@body))))
+              ((and (consp features)
+                    (memq (car features) '(:and :all)))
+               (dolist (next (cdr features))
+                 (setq body `(after! ,next ,@body)))
+               body)
+              ((listp features)
+	       `(after! (:all ,@features) ,@body)))))
+#+end_src
+
 * Core
 :PROPERTIES:
 :CUSTOM_ID: core
@@ -1168,6 +1210,148 @@ Emacs package that displays available keybindings in popup
 (use-package which-key
   :defer 1
   :config (which-key-mode))
+#+end_src
+* Email
+** notmuch
+
+#+begin_src emacs-lisp
+(defun ab/notmuch ()
+  "Delete other windows, then launch `notmuch'."
+  (interactive)
+  (require 'notmuch)
+  (delete-other-windows)
+  (notmuch))
+
+;; (map!
+;;  :leader
+;;  :desc "notmuch" :n "m" #'ab/notmuch
+;;  (:desc "search" :prefix "/"
+;;    :desc "notmuch" :n "m" #'counsel-notmuch))
+#+end_src
+
+#+begin_src emacs-lisp
+(defvar ab-maildir "~/mail")
+
+(use-package sendmail
+  ;; :ensure nil
+  :config
+  (setq sendmail-program "/usr/bin/msmtp"
+        mail-specify-envelope-from t
+        mail-envelope-from 'header))
+
+(use-package message
+  ;; :ensure nil
+  :config
+  (setq message-kill-buffer-on-exit t
+        message-send-mail-function 'message-send-mail-with-sendmail
+        message-sendmail-envelope-from 'header
+        message-directory "drafts"
+        message-user-fqdn "aminb.org")
+  (add-hook 'message-mode-hook
+            (lambda () (setq fill-column 65
+                        message-fill-column 65)))
+  (add-hook 'message-mode-hook
+            #'flyspell-mode)
+  ;; (add-hook 'notmuch-message-mode-hook #'+doom-modeline|set-special-modeline)
+  ;; TODO: is there a way to only run this when replying and not composing?
+  (add-hook 'notmuch-message-mode-hook
+            (lambda () (progn
+                    (newline)
+                    (newline)
+                    (forward-line -1)
+                    (forward-line -1))))
+  ;; (add-hook 'message-setup-hook
+  ;;           #'mml-secure-message-sign-pgpmime)
+  )
+
+(after! mml-sec
+  (setq mml-secure-openpgp-encrypt-to-self t
+        mml-secure-openpgp-sign-with-sender t))
+
+(use-package notmuch
+  :config
+  (setq notmuch-hello-sections
+        '(notmuch-hello-insert-header
+          notmuch-hello-insert-saved-searches
+          ;; notmuch-hello-insert-search
+          notmuch-hello-insert-alltags)
+        notmuch-search-oldest-first nil
+        notmuch-show-all-tags-list t
+        notmuch-hello-thousands-separator ","
+        notmuch-fcc-dirs
+        '(("amin@aminb.org"            . "amin/Sent")
+          ("abandali@uwaterloo.ca"     . "\"uwaterloo/Sent Items\"")
+          ("amin.bandali@uwaterloo.ca" . "\"uwaterloo/Sent Items\"")
+          ("aminb@gnu.org"             . "gnu/Sent")
+          (".*"                        . "sent")))
+  ;; (add-hook 'visual-fill-column-mode-hook
+  ;;           (lambda ()
+  ;;             (when (string= major-mode 'notmuch-message-mode)
+  ;;               (setq visual-fill-column-width 70))))
+  ;; (set! :evil-state 'notmuch-message-mode 'insert)
+  ;; (advice-add #'notmuch-bury-or-kill-this-buffer
+  ;;             :override #'kill-this-buffer)
+  :bind
+  (:map notmuch-hello-mode-map
+	("g" . notmuch-poll-and-refresh-this-buffer)
+	("i" . (lambda ()
+		 "Search for `inbox' tagged messages"
+		 (interactive)
+		 (notmuch-hello-search "tag:inbox")))
+	("u" . (lambda ()
+		 "Search for `unread' tagged messages"
+		 (interactive)
+		 (notmuch-hello-search "tag:unread")))
+	("M" . (lambda ()
+		 "Compose new mail and prompt for sender"
+		 (interactive)
+		 (let ((current-prefix-arg t))
+		   (call-interactively #'notmuch-mua-new-mail)))))
+  (:map notmuch-search-mode-map
+	("g" . notmuch-poll-and-refresh-this-buffer)
+	("k" . (lambda ()
+		 "Mark message read"
+		 (interactive)
+		 (notmuch-search-tag '("-unread"))
+		 ;; (notmuch-search-archive-thread)
+		 (notmuch-search-next-thread)))
+	("u" . (lambda ()
+		 "Mark message unread"
+		 (interactive)
+		 (notmuch-search-tag '("+unread"))
+		 (notmuch-search-next-thread)))
+	("K" . (lambda ()
+		 "Mark message deleted"
+		 (interactive)
+		 (notmuch-search-tag '("-unread" "-inbox" "+deleted"))
+		 (notmuch-search-archive-thread)))
+	("S" . (lambda ()
+		 "Mark message as spam"
+		 (interactive)
+		 (notmuch-search-tag '("-unread" "-inbox" "+spam"))
+		 (notmuch-search-archive-thread))))
+  (:map notmuch-tree-mode-map  ; TODO: additional bindings
+	("S" . (lambda ()
+		 "Mark message as spam"
+		 (interactive)
+		 (notmuch-tree-tag '("-unread" "-inbox" "+spam"))
+		 (notmuch-tree-archive-thread))))
+)
+
+;; (use-package counsel-notmuch
+;;   :commands counsel-notmuch)
+
+(after! notmuch-crypto
+  (setq notmuch-crypto-process-mime t))
+
+;; (after! evil
+;;   (mapc (lambda (str) (evil-set-initial-state (car str) (cdr str)))
+;;         '((notmuch-hello-mode . emacs)
+;;           (notmuch-search-mode . emacs)
+;;           (notmuch-tree-mode . emacs))))
+
+(after! recentf
+  (add-to-list 'recentf-exclude (expand-file-name ab-maildir)))
 #+end_src
 
 * Post initialization
