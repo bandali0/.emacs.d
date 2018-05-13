@@ -319,6 +319,14 @@ in my shell.
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 #+end_src
 
+** Only one custom theme at a time
+
+#+begin_src emacs-lisp
+(defadvice load-theme (before clear-previous-themes activate)
+  "Clear existing theme settings instead of layering them"
+  (mapc #'disable-theme custom-enabled-themes))
+#+end_src
+
 ** Server
 
 Start server if not already running. Alternatively, can be done by
