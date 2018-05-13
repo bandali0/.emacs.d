@@ -204,6 +204,9 @@ super + apostrophe
 #XF86KbdBrightness{Up,Down}
 #	kbdlight {up,down}
 
+XF86RotateWindows
+	toggle-tablet
+
 #
 # bspwm hotkeys
 #
@@ -4544,6 +4547,44 @@ fi
 
 #+begin_src bash
 xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -T
+#+end_src
+
+** toggle-tablet
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/toggle-tablet :shebang "#!/bin/bash"
+:END:
+
+This script toggles between a 'normal' mode and a 'tablet' mode, doing
+a few things:
+
+- rotates the screen using =xrandr=, so that rotating the physical
+  display of my X220t would have the laptop's battery on the right
+  hand side,
+- enables touch screen,
+- properly rotates the stylus pen and touch screen pointers, and
+- toggles between RGB and Vertical BGR sub-pixel order.
+
+#+begin_src bash
+case $(xfconf-query -c pointers -p /Wacom_ISDv4_E6_Pen_stylus/Properties/Wacom_Rotation) in
+    0)  # Screen is not rotated, we should rotate it right (90°)
+           xrandr -o 3
+           xfconf-query -c pointers -p /Wacom_ISDv4_E6_Pen_stylus/Properties/Wacom_Rotation -s 1
+           xfconf-query -c pointers -p /Wacom_ISDv4_E6_Finger_touch/Properties/Device_Enabled -s 1
+           xfconf-query -c pointers -p /Wacom_ISDv4_E6_Finger_touch/Properties/Wacom_Rotation -s 1
+           xfconf-query -c xsettings -p /Xft/RGBA -s vbgr
+           ;;
+    1)  # Currently top is rotated right, we should set it normal (0°)
+          xrandr -o 0
+          xfconf-query -c pointers -p /Wacom_ISDv4_E6_Pen_stylus/Properties/Wacom_Rotation -s 0
+          xfconf-query -c pointers -p /Wacom_ISDv4_E6_Finger_touch/Properties/Wacom_Rotation -s 0
+          xfconf-query -c pointers -p /Wacom_ISDv4_E6_Finger_touch/Properties/Device_Enabled -s 0
+          xfconf-query -c xsettings -p /Xft/RGBA -s rgb
+          ;;
+    *)
+           echo "Unknown result from 'xfconf-query -c pointers -p /Wacom_ISDv4_E6_Pen_stylus/Properties/Wacom_Rotation'" >&2
+           exit 1
+           ;;
+esac
 #+end_src
 
 ** unlock-def-gk.py
