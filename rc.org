@@ -177,6 +177,9 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
 	pamixer --toggle-mute
 
+XF86AudioMicMute
+	pactl set-source-mute 1 toggle
+
 # playback control
 XF86Audio{Play,Prev,Next}
 	mpc {toggle,prev,next}
@@ -4491,8 +4494,8 @@ alias scl=systemctl
 alias jcl=journalctl
 alias m="mbsync -Va; getmail; notmuch new"
 alias best="youtube-dl -f best"
-alias ace="mosh amin@ace.aminb.org"
 alias nixx="ssh amin@nix.aminb.org"
+alias fence="ssh aminb@fencepost.gnu.org"
 
 aur() {
    cd ~/usr/build
