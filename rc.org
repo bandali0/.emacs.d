@@ -1446,7 +1446,7 @@ passwordeval gpg2 --no-tty -q -d ~/.passwd/amin.gpg
 # gnu
 account gnu
 host fencepost.gnu.org
-tls_fingerprint 94:0E:37:EB:EA:44:5A:4B:B6:6F:16:3D:6C:7E:7E:44:2D:93:61:C1:FE:82:A8:29:5E:3C:12:4E:2D:BE:0E:2C
+tls_fingerprint 95:B7:AC:05:37:97:F8:BE:0B:C0:71:4A:8A:4C:0B:A7:59:FD:2F:B8:93:C8:CC:B6:FF:82:83:90:CF:03:91:93
 tls_starttls on
 from aminb@gnu.org
 user aminb
