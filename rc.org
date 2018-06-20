@@ -3891,6 +3891,7 @@ choice.
 
 #+begin_src sh
 xset -b  # disable bell
+xset r rate 200 45  # repeat delay (ms) and rate (repeats/sec)
 
 # setxkbmap -option compose:ralt
 
