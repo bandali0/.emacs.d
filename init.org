@@ -1254,7 +1254,7 @@ Emacs package that displays available keybindings in popup
         message-send-mail-function 'message-send-mail-with-sendmail
         message-sendmail-envelope-from 'header
         message-directory "drafts"
-        message-user-fqdn "aminb.org")
+        message-user-fqdn "fencepost.gnu.org")
   (add-hook 'message-mode-hook
             (lambda () (setq fill-column 65
                         message-fill-column 65)))
@@ -1336,13 +1336,13 @@ Emacs package that displays available keybindings in popup
 	("S" . (lambda ()
 		 "Mark message as spam"
 		 (interactive)
-		 (notmuch-search-tag '("-unread" "-inbox" "+spam"))
+		 (notmuch-search-tag '("-unread" "-inbox" "-webmasters" "+spam"))
 		 (notmuch-search-archive-thread))))
   (:map notmuch-tree-mode-map  ; TODO: additional bindings
 	("S" . (lambda ()
 		 "Mark message as spam"
 		 (interactive)
-		 (notmuch-tree-tag '("-unread" "-inbox" "+spam"))
+		 (notmuch-tree-tag '("-unread" "-inbox" "-webmasters" "+spam"))
 		 (notmuch-tree-archive-thread))))
 )
 
