@@ -2282,6 +2282,53 @@ def prime_gpg_agent():
 prime_gpg_agent()
 #+end_src
 
+** pigeonhole
+*** gnu.sieve
+:PROPERTIES:
+:header-args+: :tangle ~/sieve/gnu.sieve :comments none
+:END:
+
+#+begin_src conf
+require [ "regex", "variables", "fileinto", "envelope", "mailbox", "imap4flags", "include" ];
+
+if anyof (
+  address :is "from" "webmasters@gnu.org",
+  address :is "from" "webmasters-comment@gnu.org") {
+  fileinto :create "webmasters";
+  stop;
+}
+
+include :personal "lists";
+#+end_src
+
+*** lists.sieve
+:PROPERTIES:
+:header-args+: :tangle ~/sieve/lists.sieve :comments none
+:END:
+
+#+begin_src conf
+require [ "regex", "variables", "fileinto", "envelope", "mailbox", "imap4flags",
+ "include" ];
+
+if anyof (
+    header :contains "list-id" "<emacs-devel.gnu.org>",
+    header :contains "list-id" "<guix-devel.gnu.org>",
+    header :contains "list-id" "<guile-devel.gnu.org>",
+    header :contains "list-id" "<help-gnu-emacs.gnu.org>",
+    header :contains "list-id" "<info-gnu-emacs.gnu.org>",
+    header :contains "list-id" "<www-commits.gnu.org>",
+    header :contains "list-id" "<www-discuss.gnu.org>",
+    header :contains "list-id" "<fencepost-users.gnu.org>",
+    header :contains "list-id" "<deepspec.lists.cs.princeton.edu>",
+    header :contains "list-id" "<haskell-cafe.haskell.org>",
+    header :contains "list-id" "<notmuch.notmuchmail.org>") {
+    if header :regex "list-id" "<([a-z_0-9-]+)[.@]" {
+        set :lower "listname" "${1}";
+        fileinto :create "l/${listname}";
+    }
+}
+#+end_src
+
 ** polybar
 
 *** config
