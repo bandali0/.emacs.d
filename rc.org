@@ -14,47 +14,6 @@ Note: This file is best viewed inside Emacs with org mode.
 This section contains the configuration files (dotfiles) of various
 programs I use.
 
-** [[https://github.com/afewmail/afew][afew]]
-:PROPERTIES:
-:header-args+: :tangle ~/.config/afew/config
-:END:
-
-#+begin_quote
-an initial tagging script for notmuch mail
-#+end_quote
-
-#+begin_src conf
-# This is the default filter chain
-[SpamFilter]
-#[ClassifyingFilter]
-[KillThreadsFilter]
-#[ListMailsFilter]
-[ArchiveSentMailsFilter]
-sent_tag = sent
-[InboxFilter]
-
-#[Filter.1]
-#query = 'folder:amin/lists/.haskell-cafe'
-#tags = +lists;+lists/haskell-cafe
-#message = lists/haskell-cafe
-
-#[Filter.2]
-#query = 'folder:amin/lists/.haskell-weekly'
-#tags = +lists;+lists/haskell-weekly
-#message = lists/haskell-weekly
-
-#[Filter.3]
-#query = 'folder:amin/lists/.hackernewsletter'
-#tags = +lists;+lists/hackernewsletter
-#message = lists/hackernewsletter
-
-
-#[FolderNameFilter]
-#folder_blacklist = Inbox
-#maildir_separator = /.
-#folder_transforms = Drafts:draft Junk:spam Trash:deleted Sent:sent Archive:archive lists/haskell-cafe:lists/haskell-cafe
-#+end_src
-
 ** bspwm
 
 *** bspwmrc
@@ -821,7 +780,7 @@ EndSection
 type = SimplePOP3SSLRetriever
 server = fencepost.gnu.org
 username = aminb
-password_command = ("gpg2", "--no-tty", "-q", "-d", "~/.passwd/gnu.gpg")
+password_command = ("gpg2", "--no-tty", "-q", "-d", "/home/amin/.passwd/gnu.gpg")
 port = 995
 use_apop = True
 
@@ -2106,7 +2065,7 @@ other_email=abandali@uwaterloo.ca;amin.bandali@uwaterloo.ca;aminb@gnu.org;
 [new]
 tags=new;
 #tags=unread;inbox;
-ignore=.uidvalidity;.mbsyncstate
+ignore=.uidvalidity;.mbsyncstate;/.*/dovecot*/
 
 # Search configuration
 #
@@ -2155,23 +2114,44 @@ synchronize_flags=true
 gpg_path=gpg
 #+end_src
 
+*** pre-new hook
+:PROPERTIES:
+:header-args+: :tangle ~/mail/.notmuch/hooks/pre-new :shebang "#!/bin/sh"
+:END:
+
+#+begin_src sh
+touch /tmp/gnusieve.log
+sieve-filter -eW -o postmaster_address=postmaster@aminb.org \
+	     -o mail_location=maildir:$MAILDIR/gnu:LAYOUT=fs:INBOX=$MAILDIR/gnu/Inbox ~/sieve/gnu.sieve INBOX delete &>>/tmp/gnusieve.log
+#+end_src
+
 *** post-new hook
 :PROPERTIES:
 :header-args+: :tangle ~/mail/.notmuch/hooks/post-new :shebang "#!/bin/sh"
 :END:
 
 #+begin_src sh
-afew -tn
+# apply sent tag to messages sent by me
+notmuch tag -new +sent -- from:amin@aminb.org or from:aminb@gnu.org or from:abandali@uwaterloo.ca or from:amin.bandali@uwaterloo.ca
+
+# initial tagging
+notmuch tag +inbox +unread -new -- tag:new
 
 # apply tags to lists
-notmuch tag +lists +lists/deepspec -- folder:amin/lists/deepspec
-notmuch tag +lists +lists/haskell-cafe -- folder:amin/lists/haskell-cafe
-notmuch tag +lists +lists/haskell-weekly -- folder:amin/lists/haskell-weekly
-notmuch tag +lists +lists/hackernewsletter -- folder:amin/lists/hackernewsletter
-notmuch tag +lists +lists/notmuch -- folder:amin/lists/notmuch
-notmuch tag +lists +lists/info-gnu-emacs -- folder:amin/lists/info-gnu-emacs
-notmuch tag +lists +lists/help-gnu-emacs -- folder:amin/lists/help-gnu-emacs
-notmuch tag +lists +lists/emacs-devel -- folder:amin/lists/emacs-devel
+notmuch tag -inbox +lists/haskell-weekly -- folder:amin/lists/haskell-weekly
+notmuch tag -inbox +lists/hackernewsletter -- folder:amin/lists/hackernewsletter
+notmuch tag -inbox +lists/emacs-devel -- folder:gnu/l/emacs-devel
+notmuch tag -inbox +lists/guix-devel -- folder:gnu/l/guix-devel
+notmuch tag -inbox +lists/guile-devel -- folder:gnu/l/guile-devel
+notmuch tag -inbox +lists/info-gnu-emacs -- folder:gnu/l/info-gnu-emacs
+notmuch tag -inbox +lists/help-gnu-emacs -- folder:gnu/l/help-gnu-emacs
+notmuch tag -inbox +lists/www-commits -- folder:gnu/l/www-commits
+notmuch tag -inbox +lists/www-discuss -- folder:gnu/l/www-discuss
+notmuch tag -inbox +lists/fencepost-users -- folder:gnu/l/fencepost-users
+notmuch tag -inbox +webmasters -- folder:gnu/webmasters
+notmuch tag -inbox +lists/deepspec -- folder:gnu/l/deepspec
+notmuch tag -inbox +lists/haskell-cafe -- folder:gnu/l/haskell-cafe
+notmuch tag -inbox +lists/notmuch -- folder:gnu/l/notmuch
 #+end_src
 
 *** notmuch.service
