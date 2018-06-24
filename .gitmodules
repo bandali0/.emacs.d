@@ -40,6 +40,12 @@
 [submodule "epl"]
 	path = lib/epl
 	url = git@github.com:cask/epl.git
+[submodule "evil"]
+	path = lib/evil
+	url = git@github.com:emacs-evil/evil.git
+[submodule "evil-escape"]
+	path = lib/evil-escape
+	url = git@github.com:syl20bnr/evil-escape.git
 [submodule "exec-path-from-shell"]
 	path = lib/exec-path-from-shell
 	url = git@github.com:purcell/exec-path-from-shell.git
@@ -55,6 +61,9 @@
 [submodule "flycheck-haskell"]
 	path = lib/flycheck-haskell
 	url = git@github.com:flycheck/flycheck-haskell.git
+[submodule "general"]
+	path = lib/general
+	url = git@github.com:noctuid/general.el.git
 [submodule "ghub"]
 	path = lib/ghub
 	url = git@github.com:magit/ghub.git
