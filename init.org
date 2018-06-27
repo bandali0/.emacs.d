@@ -876,8 +876,11 @@ In short, my favourite way of life.
 #+begin_src emacs-lisp
 (setq org-src-tab-acts-natively t
       org-src-preserve-indentation nil
-      org-edit-src-content-indentation 0)
+      org-edit-src-content-indentation 0
+      org-html-doctype "html5"
+      org-html-html5-fancy t)
 (add-hook 'org-mode-hook 'org-indent-mode)
+(use-package htmlize)
 #+end_src
 
 *** [[https://magit.vc/][Magit]]
