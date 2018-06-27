@@ -1066,7 +1066,8 @@ TODO: break this giant source block down into individual org sections.
 (ab--leader-keys
   "b s" 'save-buffer
   "b b" 'ivy-switch-buffer
-  "b k" 'kill-buffer
+  ","   'ivy-switch-buffer
+  "b k" 'kill-this-buffer
   "q q" 'evil-save-and-quit)
 #+end_src
 
