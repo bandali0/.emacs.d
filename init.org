@@ -1084,6 +1084,12 @@ TODO: break this giant source block down into individual org sections.
 #+end_src
 * Programming modes
 
+** Alloy
+
+#+begin_src emacs-lisp
+(use-package alloy-mode)
+#+end_src
+
 ** [[https://github.com/leanprover/lean-mode][Lean]]
 
 #+begin_src emacs-lisp

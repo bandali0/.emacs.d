@@ -1,6 +1,9 @@
 [borg]
 	pushDefault = aminb
 	collective = emacsg
+[submodule "alloy-mode"]
+	path = lib/alloy-mode
+	url = git@github.com:anlun/alloy-mode.git
 [submodule "async"]
 	path = lib/async
 	url = git@github.com:jwiegley/emacs-async.git
