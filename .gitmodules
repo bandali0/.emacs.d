@@ -127,6 +127,9 @@
 [submodule "popup"]
 	path = lib/popup
 	url = git@github.com:auto-complete/popup-el.git
+[submodule "proof-site"]  # Proof General
+	path = lib/proof-site
+	url = git@github.com:ProofGeneral/PG.git
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git

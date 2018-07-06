@@ -1091,6 +1091,13 @@ TODO: break this giant source block down into individual org sections.
   :config (setq alloy-basic-offset 2))
 #+end_src
 
+** Coq
+
+#+begin_src emacs-lisp
+(use-package proof-site  ; Proof General
+  :load-path "lib/proof-site/generic/")
+#+end_src
+
 ** [[https://github.com/leanprover/lean-mode][Lean]]
 
 #+begin_src emacs-lisp
