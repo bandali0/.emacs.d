@@ -858,21 +858,21 @@ TODO: break this giant source block down into individual org sections.
 #+end_src
 * Programming modes
 
-** Alloy
+** [[http://alloytools.org][Alloy]] (with [[https://github.com/dwwmmn/alloy-mode][alloy-mode]])
 
 #+begin_src emacs-lisp
 (use-package alloy-mode
   :config (setq alloy-basic-offset 2))
 #+end_src
 
-** Coq
+** [[https://coq.inria.fr][Coq]] (with [[https://github.com/ProofGeneral/PG][Proof General]])
 
 #+begin_src emacs-lisp
 (use-package proof-site  ; Proof General
   :load-path "lib/proof-site/generic/")
 #+end_src
 
-** [[https://github.com/leanprover/lean-mode][Lean]]
+** [[https://leanprover.github.io][Lean]] (with [[https://github.com/leanprover/lean-mode][lean-mode]])
 
 #+begin_src emacs-lisp
 (use-package lean-mode
@@ -1079,7 +1079,7 @@ Emacs package that displays available keybindings in popup
   :config (which-key-mode))
 #+end_src
 
-** doom-modeline
+** [[https://github.com/seagle0128/doom-modeline][doom-modeline]]
 
 #+begin_src emacs-lisp
 (use-package doom-modeline
@@ -1088,7 +1088,7 @@ Emacs package that displays available keybindings in popup
   :hook (after-init . doom-modeline-init))
 #+end_src
 
-** tao-theme
+** [[https://github.com/11111000000/tao-theme-emacs][tao-theme]]
 
 #+begin_src emacs-lisp
 (use-package tao-theme
@@ -1097,7 +1097,7 @@ Emacs package that displays available keybindings in popup
 #+end_src
 
 * Email
-** notmuch
+** [[https://notmuchmail.org][notmuch]]
 
 #+begin_src emacs-lisp
 (defun ab/notmuch ()
