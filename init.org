@@ -1304,6 +1304,24 @@ Emacs package that displays available keybindings in popup
   :defer 1
   :config (which-key-mode))
 #+end_src
+
+** doom-modeline
+
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :demand t
+  :config (setq doom-modeline-height 32)
+  :hook (after-init . doom-modeline-init))
+#+end_src
+
+** tao-theme
+
+#+begin_src emacs-lisp
+(use-package tao-theme
+  :demand t
+  :config (load-theme 'tao-yang t))
+#+end_src
+
 * Email
 ** notmuch
 

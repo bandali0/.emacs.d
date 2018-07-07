@@ -1,6 +1,9 @@
 [borg]
 	pushDefault = aminb
 	collective = emacsg
+[submodule "all-the-icons"]
+	path = lib/all-the-icons
+	url = git@github.com:domtronn/all-the-icons.el.git
 [submodule "alloy-mode"]
 	path = lib/alloy-mode
 	url = git@github.com:dwwmmn/alloy-mode.git
@@ -33,6 +36,12 @@
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = git@github.com:dgutov/diff-hl.git
+[submodule "doom-modeline"]
+	path = lib/doom-modeline
+	url = git@github.com:seagle0128/doom-modeline.git
+[submodule "eldoc-eval"]
+	path = lib/eldoc-eval
+	url = git@github.com:thierryvolpiatto/eldoc-eval.git
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
@@ -106,6 +115,9 @@
 [submodule "markdown-mode"]
 	path = lib/markdown-mode
 	url = git@github.com:jrblevin/markdown-mode.git
+[submodule "memoize"]
+	path = lib/memoize
+	url = git@github.com:skeeto/emacs-memoize.git
 [submodule "no-littering"]
 	path = lib/no-littering
 	url = git@github.com:emacscollective/no-littering.git
@@ -127,15 +139,24 @@
 [submodule "popup"]
 	path = lib/popup
 	url = git@github.com:auto-complete/popup-el.git
+[submodule "projectile"]
+	path = lib/projectile
+	url = git@github.com:bbatsov/projectile.git
 [submodule "proof-site"]  # Proof General
 	path = lib/proof-site
 	url = git@github.com:ProofGeneral/PG.git
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git
+[submodule "shrink-path"]
+	path = lib/shrink-path
+	url = git@gitlab.com:bennya/shrink-path.el.git
 [submodule "smex"]  # used by counsel-M-x
 	path = lib/smex
 	url = git@github.com:nonsequitur/smex.git
+[submodule "tao-theme"]
+	path = lib/tao-theme
+	url = git@github.com:11111000000/tao-theme-emacs.git
 [submodule "undo-tree"]
 	path = lib/undo-tree
 	url = git@github.com:emacsorphanage/undo-tree.git
