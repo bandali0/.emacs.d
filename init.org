@@ -1174,7 +1174,13 @@ Emacs package that displays available keybindings in popup
           ("abandali@uwaterloo.ca"     . "\"uwaterloo/Sent Items\"")
           ("amin.bandali@uwaterloo.ca" . "\"uwaterloo/Sent Items\"")
           ("aminb@gnu.org"             . "gnu/Sent")
-          (".*"                        . "sent")))
+          (".*"                        . "sent"))
+        notmuch-search-result-format
+        '(("date" . "%12s ")
+          ("count" . "%-7s ")
+          ("authors" . "%-40s ")
+          ("subject" . "%s ")
+          ("tags" . "(%s)")))
   ;; (add-hook 'visual-fill-column-mode-hook
   ;;           (lambda ()
   ;;             (when (string= major-mode 'notmuch-message-mode)
