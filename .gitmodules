@@ -130,10 +130,9 @@
 	build-step = make
 	build-step = make sphinx-texinfo
 	build-step = borg-makeinfo
-[submodule "org-static-blog"]
-	path = lib/org-static-blog
-	url = git@github.com:bastibe/org-static-blog.git
-	remote = aminb git@github.com:aminb/org-static-blog.git
+[submodule "ox-hugo"]
+	path = lib/ox-hugo
+	url = git@github.com:kaushalmodi/ox-hugo.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
