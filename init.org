@@ -1255,6 +1255,57 @@ Emacs package that displays available keybindings in popup
   (add-to-list 'recentf-exclude (expand-file-name ab-maildir)))
 #+end_src
 
+** supercite
+
+#+begin_src emacs-lisp :tangle no
+(use-package supercite
+  :commands sc-cite-original
+  :init
+  (add-hook 'mail-citation-hook 'sc-cite-original)
+
+  (defun sc-remove-existing-signature ()
+    (save-excursion
+      (goto-char (region-beginning))
+      (when (re-search-forward message-signature-separator (region-end) t)
+        (delete-region (match-beginning 0) (region-end)))))
+
+  (add-hook 'mail-citation-hook 'sc-remove-existing-signature)
+
+  (defun sc-remove-if-not-mailing-list ()
+    (unless (assoc "list-id" sc-mail-info)
+      (setq attribution sc-default-attribution
+            citation (concat sc-citation-delimiter
+                             sc-citation-separator))))
+
+  (add-hook 'sc-attribs-postselect-hook 'sc-remove-if-not-mailing-list)
+
+  :config
+  (defun sc-fill-if-different (&optional prefix)
+    "Fill the region bounded by `sc-fill-begin' and point.
+Only fill if optional PREFIX is different than
+`sc-fill-line-prefix'.  If `sc-auto-fill-region-p' is nil, do not
+fill region.  If PREFIX is not supplied, initialize fill
+variables.  This is useful for a regi `begin' frame-entry."
+    (if (not prefix)
+        (setq sc-fill-line-prefix ""
+              sc-fill-begin (line-beginning-position))
+      (if (and sc-auto-fill-region-p
+               (not (string= prefix sc-fill-line-prefix)))
+          (let ((fill-prefix sc-fill-line-prefix))
+            (unless (or (string= fill-prefix "")
+                        (save-excursion
+                          (goto-char sc-fill-begin)
+                          (or (looking-at ">+  +")
+                              (< (length
+                                  (buffer-substring (point)
+                                                    (line-end-position)))
+                                 65))))
+              (fill-region sc-fill-begin (line-beginning-position)))
+            (setq sc-fill-line-prefix prefix
+                  sc-fill-begin (line-beginning-position)))))
+nil))
+#+end_src
+
 * Post initialization
 :PROPERTIES:
 :CUSTOM_ID: post-initialization
