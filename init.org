@@ -651,8 +651,12 @@ In short, my favourite way of life.
 (setq org-src-tab-acts-natively t
       org-src-preserve-indentation nil
       org-edit-src-content-indentation 0
+      org-html-divs '((preamble  "header" "preamble")
+                      (content   "main"   "content")
+                      (postamble "footer" "postamble"))
       org-html-doctype "html5"
-      org-html-html5-fancy t)
+      org-html-html5-fancy t
+      org-html-postamble nil)
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package htmlize)
 #+end_src
