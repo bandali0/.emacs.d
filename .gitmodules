@@ -42,6 +42,7 @@
 [submodule "eink-theme"]
 	path = lib/eink-theme
 	url = git@github.com:maio/eink-emacs.git
+	remote = aminb git@github.com:aminb/eink-emacs.git
 [submodule "eldoc-eval"]
 	path = lib/eldoc-eval
 	url = git@github.com:thierryvolpiatto/eldoc-eval.git
