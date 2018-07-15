@@ -2137,21 +2137,48 @@ notmuch tag -new +sent -- from:amin@aminb.org or from:aminb@gnu.org or from:aban
 # initial tagging
 notmuch tag +inbox +unread -new -- tag:new
 
+
 # apply tags to lists
-notmuch tag -inbox +lists/haskell-weekly -- folder:amin/lists/haskell-weekly
+
+# <aminb>
+notmuch tag -inbox +lists/~sircmpwn/srht-admins   -- folder:amin/lists/~sircmpwn/srht-admins
+notmuch tag -inbox +lists/~sircmpwn/srht-announce -- folder:amin/lists/~sircmpwn/srht-announce
+notmuch tag -inbox +lists/~sircmpwn/srht-dev      -- folder:amin/lists/~sircmpwn/srht-dev
+notmuch tag -inbox +lists/~sircmpwn/srht-discuss  -- folder:amin/lists/~sircmpwn/srht-discuss
+
 notmuch tag -inbox +lists/hackernewsletter -- folder:amin/lists/hackernewsletter
-notmuch tag -inbox +lists/emacs-devel -- folder:gnu/l/emacs-devel
-notmuch tag -inbox +lists/guix-devel -- folder:gnu/l/guix-devel
-notmuch tag -inbox +lists/guile-devel -- folder:gnu/l/guile-devel
-notmuch tag -inbox +lists/info-gnu-emacs -- folder:gnu/l/info-gnu-emacs
-notmuch tag -inbox +lists/help-gnu-emacs -- folder:gnu/l/help-gnu-emacs
-notmuch tag -inbox +lists/www-commits -- folder:gnu/l/www-commits
-notmuch tag -inbox +lists/www-discuss -- folder:gnu/l/www-discuss
-notmuch tag -inbox +lists/fencepost-users -- folder:gnu/l/fencepost-users
-notmuch tag -inbox +webmasters -- folder:gnu/webmasters
-notmuch tag -inbox +lists/deepspec -- folder:gnu/l/deepspec
-notmuch tag -inbox +lists/haskell-cafe -- folder:gnu/l/haskell-cafe
-notmuch tag -inbox +lists/notmuch -- folder:gnu/l/notmuch
+notmuch tag -inbox +lists/haskell-weekly   -- folder:amin/lists/haskell-weekly
+# </aminb>
+
+# <uw>
+notmuch tag -inbox +lists/cs136 -- folder:uwaterloo/lists/cs136
+notmuch tag -inbox +lists/se463 -- folder:uwaterloo/lists/se463
+
+notmuch tag -inbox +lists/clvsingle        -- folder:uwaterloo/lists/Clvsingle
+notmuch tag -inbox +lists/gsa              -- folder:uwaterloo/lists/GSA
+notmuch tag -inbox +lists/math-grad        -- folder:uwaterloo/lists/Math-grad
+notmuch tag -inbox +lists/scs-grads        -- folder:uwaterloo/lists/scs-grads
+notmuch tag -inbox +lists/watform-students -- folder:uwaterloo/lists/Watform-students
+# </uw>
+
+# <gnu>
+notmuch tag -inbox +lists/emacs-devel       -- folder:gnu/l/emacs-devel
+notmuch tag -inbox +lists/emacs-orgmode     -- folder:gnu/l/emacs-orgmode
+notmuch tag -inbox +lists/emacsconf-discuss -- folder:gnu/l/emacsconf-discuss
+notmuch tag -inbox +lists/fencepost-users   -- folder:gnu/l/fencepost-users
+notmuch tag -inbox +lists/guix-devel        -- folder:gnu/l/guix-devel
+notmuch tag -inbox +lists/guile-devel       -- folder:gnu/l/guile-devel
+notmuch tag -inbox +lists/help-gnu-emacs    -- folder:gnu/l/help-gnu-emacs
+notmuch tag -inbox +lists/info-gnu-emacs    -- folder:gnu/l/info-gnu-emacs
+notmuch tag -inbox +lists/www-commits       -- folder:gnu/l/www-commits
+notmuch tag -inbox +lists/www-discuss       -- folder:gnu/l/www-discuss
+notmuch tag -inbox +webmasters              -- folder:gnu/webmasters
+
+notmuch tag -inbox +lists/deepspec          -- folder:gnu/l/deepspec
+notmuch tag -inbox +lists/haskell-cafe      -- folder:gnu/l/haskell-cafe
+notmuch tag -inbox +lists/haskell-art       -- folder:gnu/l/haskell-art
+notmuch tag -inbox +lists/notmuch           -- folder:gnu/l/notmuch
+#</gnu>
 #+end_src
 
 *** notmuch.service
@@ -2312,15 +2339,18 @@ require [ "regex", "variables", "fileinto", "envelope", "mailbox", "imap4flags",
 
 if anyof (
     header :contains "list-id" "<emacs-devel.gnu.org>",
+    header :contains "list-id" "<emacs-orgmode.gnu.org>",
+    header :contains "list-id" "<emacsconf-discuss.gnu.org>",
+    header :contains "list-id" "<fencepost-users.gnu.org>",
     header :contains "list-id" "<guix-devel.gnu.org>",
     header :contains "list-id" "<guile-devel.gnu.org>",
     header :contains "list-id" "<help-gnu-emacs.gnu.org>",
     header :contains "list-id" "<info-gnu-emacs.gnu.org>",
     header :contains "list-id" "<www-commits.gnu.org>",
     header :contains "list-id" "<www-discuss.gnu.org>",
-    header :contains "list-id" "<fencepost-users.gnu.org>",
     header :contains "list-id" "<deepspec.lists.cs.princeton.edu>",
     header :contains "list-id" "<haskell-cafe.haskell.org>",
+    header :contains "list-id" "<haskell-art.we.lurk.org>",
     header :contains "list-id" "<notmuch.notmuchmail.org>") {
     if header :regex "list-id" "<([a-z_0-9-]+)[.@]" {
         set :lower "listname" "${1}";
