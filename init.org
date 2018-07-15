@@ -1094,10 +1094,16 @@ Emacs package that displays available keybindings in popup
 
 ** [[https://github.com/11111000000/tao-theme-emacs][tao-theme]]
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package tao-theme
   :demand t
   :config (load-theme 'tao-yang t))
+#+end_src
+
+** [[https://github.com/maio/eink-emacs][eink-theme]]
+
+#+begin_src emacs-lisp
+(load-theme 'eink t)
 #+end_src
 
 * Email

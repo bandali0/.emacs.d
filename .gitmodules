@@ -39,6 +39,9 @@
 [submodule "doom-modeline"]
 	path = lib/doom-modeline
 	url = git@github.com:seagle0128/doom-modeline.git
+[submodule "eink-theme"]
+	path = lib/eink-theme
+	url = git@github.com:maio/eink-emacs.git
 [submodule "eldoc-eval"]
 	path = lib/eldoc-eval
 	url = git@github.com:thierryvolpiatto/eldoc-eval.git
