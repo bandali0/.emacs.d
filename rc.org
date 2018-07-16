@@ -1405,7 +1405,8 @@ passwordeval gpg2 --no-tty -q -d ~/.passwd/amin.gpg
 # gnu
 account gnu
 host fencepost.gnu.org
-tls_fingerprint 95:B7:AC:05:37:97:F8:BE:0B:C0:71:4A:8A:4C:0B:A7:59:FD:2F:B8:93:C8:CC:B6:FF:82:83:90:CF:03:91:93
+# use `msmtp -a gnu --serverinfo --tls --tls-certcheck=off --tls-fingerprint=` to get the current fingerprint
+tls_fingerprint 28:70:42:76:1C:EC:91:5F:D1:B3:27:A1:CD:3B:32:A4:8B:0B:DC:3A:CD:CA:F6:6F:E4:61:BA:69:D7:4D:0D:0B
 tls_starttls on
 from aminb@gnu.org
 user aminb
