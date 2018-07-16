@@ -1111,6 +1111,8 @@ Emacs package that displays available keybindings in popup
 * Email
 ** [[https://notmuchmail.org][notmuch]]
 
+See [[notmuch:id:87muuqsvci.fsf@fencepost.gnu.org][bug follow-up]].
+
 #+begin_src emacs-lisp
 (defun ab/notmuch ()
   "Delete other windows, then launch `notmuch'."
@@ -1180,6 +1182,8 @@ Emacs package that displays available keybindings in popup
           notmuch-hello-insert-alltags)
         notmuch-search-oldest-first nil
         notmuch-show-all-tags-list t
+        notmuch-message-headers  ; see bug follow-up above
+        '("Subject" "To" "Cc" "Date" "List-Id" "X-RT-Originator")
         notmuch-hello-thousands-separator ","
         notmuch-fcc-dirs
         '(("amin@aminb.org"            . "amin/Sent")
