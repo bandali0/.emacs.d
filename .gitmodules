@@ -134,6 +134,16 @@
 	build-step = make
 	build-step = make sphinx-texinfo
 	build-step = borg-makeinfo
+[submodule "org"]
+	path = lib/org
+	url = git@code.orgmode.org:bzg/org-mode.git
+	load-path = lisp
+	info-path = doc
+	build-step = make compile autoloads info ORG_ADD_CONTRIB="org-notmuch"
+	# setting ORG_ADD_CONTRIB results in copying of files from contrib/
+	# into lisp/, which git will pick up.  so, let's ignore untracked files
+	# from org's submodule; at least for now
+	ignore = untracked
 [submodule "ox-hugo"]
 	path = lib/ox-hugo
 	url = git@github.com:kaushalmodi/ox-hugo.git

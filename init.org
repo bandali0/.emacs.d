@@ -659,6 +659,8 @@ In short, my favourite way of life.
       org-html-postamble nil)
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package htmlize)
+(use-package org-notmuch
+  :after (:any org notmuch))
 #+end_src
 
 *** [[https://magit.vc/][Magit]]
