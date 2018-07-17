@@ -1318,6 +1318,14 @@ variables.  This is useful for a regi `begin' frame-entry."
 nil))
 #+end_src
 
+* Blogging
+** [[https://ox-hugo.scripter.co][ox-hugo]]
+
+#+begin_src emacs-lisp
+(use-package ox-hugo
+  :after ox)
+#+end_src
+
 * Post initialization
 :PROPERTIES:
 :CUSTOM_ID: post-initialization
