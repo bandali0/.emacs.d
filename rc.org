@@ -644,13 +644,13 @@ timeout = 0
 [user]
     name = Amin Bandali
     email = amin@aminb.org
-    # signingkey = 4E05246AB0BF7FFB
+    signingkey = 4E05246AB0BF7FFB
 #+end_src
 
 **** signing
 #+begin_src conf
-# [commit]
-#     gpgsign = true
+[commit]
+    gpgsign = true
 # [format]
 #     signoff = true
 #+end_src
@@ -716,6 +716,16 @@ timeout = 0
 #+begin_src conf
 [github]
 	user = aminb
+#+end_src
+
+**** send-email
+#+begin_src conf
+[sendemail]
+	smtpuser = amin@aminb.org
+	smtpserver = nix.aminb.org
+	smtpserverport = 587
+	smtpencryption = tls
+	annotate = yes
 #+end_src
 
 *** gitignore
