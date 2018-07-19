@@ -188,6 +188,13 @@ but for now I've decided to keep them enabled. See documentation for
 ;;       '(not free-vars unresolved noruntime lexical make-local))
 #+end_src
 
+** whoami
+
+#+begin_src emacs-lisp
+(setq user-full-name "Amin Bandali"
+      user-mail-address "amin@aminb.org")
+#+end_src
+
 ** Package management
 
 *** No =package.el=
@@ -1150,7 +1157,7 @@ See [[notmuch:id:87muuqsvci.fsf@fencepost.gnu.org][bug follow-up]].
         message-send-mail-function 'message-send-mail-with-sendmail
         message-sendmail-envelope-from 'header
         message-directory "drafts"
-        message-user-fqdn "fencepost.gnu.org")
+        message-user-fqdn "aminb.org")
   (add-hook 'message-mode-hook
             (lambda () (setq fill-column 65
                         message-fill-column 65)))
