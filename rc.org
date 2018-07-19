@@ -2146,7 +2146,8 @@ sieve-filter -eW -o postmaster_address=postmaster@aminb.org \
 notmuch tag -new +sent -- from:amin@aminb.org or from:aminb@gnu.org or from:abandali@uwaterloo.ca or from:amin.bandali@uwaterloo.ca
 
 # initial tagging
-notmuch tag +inbox +unread -new -- tag:new
+notmuch tag -latest -- tag:latest
+notmuch tag +inbox +unread +latest -new -- tag:new
 
 
 # apply tags to lists

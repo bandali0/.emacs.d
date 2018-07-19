@@ -1215,6 +1215,10 @@ See [[notmuch:id:87muuqsvci.fsf@fencepost.gnu.org][bug follow-up]].
 		 "Search for `unread' tagged messages"
 		 (interactive)
 		 (notmuch-hello-search "tag:unread")))
+	("l" . (lambda ()
+		 "Search for `latest tagged messages"
+		 (interactive)
+		 (notmuch-hello-search "tag:latest")))
 	("M" . (lambda ()
 		 "Compose new mail and prompt for sender"
 		 (interactive)
