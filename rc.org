@@ -2160,11 +2160,13 @@ notmuch tag -inbox +lists/~sircmpwn/srht-discuss  -- folder:amin/lists/~sircmpwn
 
 notmuch tag -inbox +lists/hackernewsletter -- folder:amin/lists/hackernewsletter
 notmuch tag -inbox +lists/haskell-weekly   -- folder:amin/lists/haskell-weekly
+
+notmuch tag -inbox +pay -- folder:amin/pay
 # </aminb>
 
 # <uw>
-notmuch tag -inbox +lists/cs136 -- folder:uwaterloo/lists/cs136
-notmuch tag -inbox +lists/se463 -- folder:uwaterloo/lists/se463
+notmuch tag -inbox +uw/cs136 -- folder:uwaterloo/lists/cs136
+notmuch tag -inbox +uw/se463 -- folder:uwaterloo/lists/se463
 
 notmuch tag -inbox +lists/clvsingle        -- folder:uwaterloo/lists/Clvsingle
 notmuch tag -inbox +lists/gsa              -- folder:uwaterloo/lists/GSA
@@ -2190,7 +2192,7 @@ notmuch tag -inbox +lists/deepspec          -- folder:gnu/l/deepspec
 notmuch tag -inbox +lists/haskell-cafe      -- folder:gnu/l/haskell-cafe
 notmuch tag -inbox +lists/haskell-art       -- folder:gnu/l/haskell-art
 notmuch tag -inbox +lists/notmuch           -- folder:gnu/l/notmuch
-#</gnu>
+# </gnu>
 #+end_src
 
 *** notmuch.service
