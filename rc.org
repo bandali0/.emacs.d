@@ -2193,6 +2193,9 @@ notmuch tag -inbox +lists/haskell-cafe      -- folder:gnu/l/haskell-cafe
 notmuch tag -inbox +lists/haskell-art       -- folder:gnu/l/haskell-art
 notmuch tag -inbox +lists/notmuch           -- folder:gnu/l/notmuch
 # </gnu>
+
+notmuch tag -inbox -unread +archive/notmuch     -- path:archive/notmuch/**
+notmuch tag -inbox -unread +archive/emacs-devel -- path:archive/emacs-devel/**
 #+end_src
 
 *** notmuch.service
