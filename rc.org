@@ -3698,11 +3698,11 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym XF86MonBrightnessUp exec light -A 5    # increase screen brightness
     bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
 
-    bindsym $mod+bracketleft workspace prev
-    bindsym $mod+bracketright workspace next
+    bindsym $mod+bracketleft exec sway-ws-util switch prev
+    bindsym $mod+bracketright exec sway-ws-util switch next
 
-    bindsym $mod+braceleft move container to workspace prev
-    bindsym $mod+braceright move container to workspace next
+    bindsym $mod+braceleft exec sway-ws-util move prev follow
+    bindsym $mod+braceright exec sway-ws-util move next follow
 #
 # Moving around:
 #
@@ -4839,6 +4839,43 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 light -Scrs "intel_backlight" 2
 source $HOME/.zprofile
 sway
+#+end_src
+
+** sway-ws-util
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/sway-ws-util :shebang "#!/bin/bash"
+:END:
+
+#+begin_src bash
+curr_ws=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
+prev_ws=$((curr_ws-1))
+next_ws=$((curr_ws+1))
+dest_ws=-1
+op=-1
+
+if [ "$1" = "switch" ] || [ "$1" = "move" ]; then
+  op="$1"
+  if [ "$2" = "prev" ]; then
+    dest_ws="$prev_ws"
+  elif [ "$2" = "next" ]; then
+    dest_ws="$next_ws"
+  else
+    echo "Usage: $0 $1 {prev|next}"
+    exit 1
+  fi
+else
+  echo "Usage: $0 {switch|move} {prev|next} [follow]"
+  exit 1
+fi
+
+if [ "$op" = "switch" ]; then
+  sway workspace "$dest_ws"
+elif [ "$op" = "move" ]; then
+  sway move container to workspace "$dest_ws"
+  if [ "$3" = "follow" ]; then
+    sway workspace "$dest_ws"
+  fi
+fi
 #+end_src
 
 ** toggle-layout
