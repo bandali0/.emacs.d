@@ -3616,25 +3616,17 @@ insert_pass="Alt+n"
 :END:
 
 #+begin_src conf
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
+exec xrdb .Xresources
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
 set $term urxvt
-# Your preferred application launcher
-set $menu dmenu_run
+set $menu rofi -show run -display-run '> ' -display-window ' 🗔 '
 
 ### Output configuration
 #
@@ -3700,6 +3692,16 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # exit sway (logs you out of your wayland session)
     bindsym $mod+Shift+e exit
+
+    bindsym $mod+apostrophe exec rofi-light        # rofi-based brightness chooser
+    bindsym XF86MonBrightnessUp exec light -A 5    # increase screen brightness
+    bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
+
+    bindsym $mod+bracketleft workspace prev
+    bindsym $mod+bracketright workspace next
+
+    bindsym $mod+braceleft move container to workspace prev
+    bindsym $mod+braceright move container to workspace next
 #
 # Moving around:
 #
@@ -3818,12 +3820,13 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    position bottom
     colors {
         statusline #ffffff
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
+    status_command i3blocks
 }
 
 include /etc/sway/config.d/*
