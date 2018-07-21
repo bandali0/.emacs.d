@@ -4848,8 +4848,8 @@ sway
 
 #+begin_src bash
 curr_ws=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
-prev_ws=$((curr_ws-1))
-next_ws=$((curr_ws+1))
+[[ $curr_ws -eq 1 ]] && prev_ws=10 || prev_ws=$((curr_ws-1))
+[[ $curr_ws -eq 10 ]] && next_ws=1 || next_ws=$((curr_ws+1))
 dest_ws=-1
 op=-1
 
