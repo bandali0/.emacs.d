@@ -774,6 +774,7 @@ borders_color=#01FF70
 
 [battery]
 preset=BAT
+command=battery-percentage-time
 title=<span weight='heavy' fgcolor='#39CCCC'> </span>
 borders_color=#39CCCC
 
@@ -784,7 +785,7 @@ borders_color=#01FF70
 
 [date]
 preset=DATE
-command=date '+%I:%M, %a %b %d'
+command=date '+%-I:%M, %a %b %d'
 title=<span weight='heavy' fgcolor='#FFDC00'> </span>
 borders_color=#FFDC00
 separator_width=0
@@ -4871,6 +4872,17 @@ from tablet mode on my X220T, =toggle-presentation-mode= for toggling
 Xfce's presentation mode which keeps the screen awake, and
 =rofi-light= a small utility that uses [[https://github.com/DaveDavenport/rofi][Rofi]] to ask and [[https://github.com/haikarainen/light][light]] to set an
 exact brightness value.
+
+** battery-percentage-time
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/battery-percentage-time :shebang "#!/bin/bash"
+:END:
+
+#+begin_src bash
+pct=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{print $2}')
+time=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep time | awk '{print $4,$5}')
+echo "$pct ($time)"
+#+end_src
 
 ** rofi-light
 :PROPERTIES:
