@@ -627,6 +627,7 @@ Roll your own modal mode
    ("n" next-line)
    ("p" previous-line)
    ("f" forward-char)
+   ("/" undo)
    ("SPC" (("b" (("b" ibuffer-list-buffers)
                  ("k" kill-this-buffer)
                  ("o" other-window)
@@ -848,13 +849,14 @@ TODO: break this giant source block down into individual org sections.
 
 (use-package undo-tree
   :ryo
-  ("/" undo-tree-undo)
+  ("?" undo-tree-undo)
   ("_" undo-tree-redo)
-  :bind (("C-/" . undo-tree-undo)
+  :bind (("C-?" . undo-tree-undo)
          ("M-_" . undo-tree-redo))
   :config
   (global-undo-tree-mode)
-  (setq undo-tree-mode-lighter ""))
+  (setq undo-tree-mode-lighter ""
+        undo-tree-auto-save-history t))
 #+end_src
 
 * Editing
