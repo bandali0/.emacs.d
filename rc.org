@@ -3618,9 +3618,10 @@ insert_pass="Alt+n"
 #+begin_src conf
 exec xrdb .Xresources
 ### Variables
-#
-# Logo key. Use Mod1 for Alt.
+# super
 set $mod Mod4
+# alt
+set $mod2 Mod1
 set $left h
 set $down j
 set $up k
@@ -3698,11 +3699,17 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym XF86MonBrightnessUp exec light -A 5    # increase screen brightness
     bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
 
+    # bspwm-esque workspace switch and window move
     bindsym $mod+bracketleft exec sway-ws-util switch prev
     bindsym $mod+bracketright exec sway-ws-util switch next
-
     bindsym $mod+braceleft exec sway-ws-util move prev follow
     bindsym $mod+braceright exec sway-ws-util move next follow
+
+    # original sway workspace switch and window move
+    bindsym $mod2+bracketleft workspace prev
+    bindsym $mod2+bracketright workspace next
+    bindsym $mod2+braceleft move container to workspace prev
+    bindsym $mod2+braceright move container to workspace next
 #
 # Moving around:
 #
