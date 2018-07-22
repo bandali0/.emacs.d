@@ -4860,7 +4860,7 @@ if [ "$1" = "switch" ] || [ "$1" = "move" ]; then
   elif [ "$2" = "next" ]; then
     dest_ws="$next_ws"
   else
-    echo "Usage: $0 $1 {prev|next}"
+    echo "Usage: $0 $1 {prev|next} [follow]"
     exit 1
   fi
 else
