@@ -743,6 +743,52 @@ timeout = 0
 *-autoloads.el
 #+end_src
 
+** [[https://github.com/Leinnan/i3gs][i3gs]]
+:PROPERTIES:
+:header-args+: :tangle ~/.config/i3gs/config
+:END:
+
+#+begin_src conf :comments none
+borders_width=0 0 2 0
+separator_width=10
+
+[mpd]
+preset=MPD
+title=<span weight='heavy' fgcolor='#7FDBFF'> </span>
+borders_color=#7FDBFF
+
+[ram]
+preset=RAM
+title=<span weight='heavy' fgcolor='#3D9970'> </span>
+borders_color=#3D9970
+
+[cpu]
+preset=CPU
+title=<span weight='heavy' fgcolor='#2ECC40'> </span>
+borders_color=#2ECC40
+
+[hdd]
+preset=HDD
+title=<span weight='heavy' fgcolor='#01FF70'> </span>
+borders_color=#01FF70
+
+[battery]
+preset=BAT
+title=<span weight='heavy' fgcolor='#39CCCC'> </span>
+borders_color=#39CCCC
+
+[wifi]
+preset=WIFI
+title=<span weight='heavy' fgcolor='#01FF70'> </span>
+borders_color=#01FF70
+
+[date]
+preset=DATE
+command=date '+%I:%M, %a %b %d'
+title=<span weight='heavy' fgcolor='#FFDC00'> </span>
+borders_color=#FFDC00
+separator_width=0
+#+end_src
 ** Latexmk
 :PROPERTIES:
 :header-args+: :tangle ~/.latexmkrc
@@ -3837,7 +3883,7 @@ bar {
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
-    status_command i3blocks
+    status_command i3gs ~/.config/i3gs/config
 }
 
 include /etc/sway/config.d/*
