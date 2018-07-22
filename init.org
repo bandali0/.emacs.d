@@ -604,11 +604,22 @@ Roll your own modal mode
   (push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
   (ryo-modal-keys
    ("," ryo-modal-repeat)
-   ("q" ryo-modal-mode)
    ("b" backward-char)
    ("n" next-line)
    ("p" previous-line)
-   ("f" forward-char))
+   ("f" forward-char)
+   ("a" move-beginning-of-line)
+   ("e" move-end-of-line)
+   ("SPC" (("b b" ibuffer-list-buffers)
+           ("b k" kill-this-buffer)
+           ("b o" other-window)
+           ("b s" save-buffer)
+           ("q q" save-buffers-kill-terminal)))
+   ("d" (("w" kill-word)
+         ("d" kill-whole-line)
+         ("b" backward-kill-word)))
+   ("c" (("w" kill-word :exit t)
+         ("c" kill-whole-line :exit t))))
 
   (ryo-modal-keys
    ;; First argyment to ryo-modal-keys may be a list of keywords.
@@ -639,17 +650,21 @@ system.
 In short, my favourite way of life.
 
 #+begin_src emacs-lisp
-(setq org-src-tab-acts-natively t
-      org-src-preserve-indentation nil
-      org-edit-src-content-indentation 0
-      org-html-divs '((preamble  "header" "preamble")
-                      (content   "main"   "content")
-                      (postamble "footer" "postamble"))
-      org-html-doctype "html5"
-      org-html-html5-fancy t
-      org-html-postamble nil)
-(add-hook 'org-mode-hook 'org-indent-mode)
-(use-package htmlize)
+(use-package org
+  :ryo ("SPC b t" org-babel-tangle)
+  :config
+  (setq org-src-tab-acts-natively t
+        org-src-preserve-indentation nil
+        org-edit-src-content-indentation 0
+        org-html-divs '((preamble  "header" "preamble")
+                        (content   "main"   "content")
+                        (postamble "footer" "postamble"))
+        org-html-doctype "html5"
+        org-html-html5-fancy t
+        org-html-postamble nil)
+  :hook (org-mode . org-indent-mode))
+(use-package htmlize
+  :after org)
 (use-package org-notmuch
   :after (:any org notmuch))
 #+end_src
@@ -708,7 +723,9 @@ There's no way I could top that, so I won't attempt to.
 
 #+begin_src emacs-lisp
 (use-package swiper
-  :ryo ("/" swiper)
+  :ryo
+  ("SPC /" swiper)
+  ("s" swiper)
   :bind (([remap isearch-forward]  . swiper)
          ([remap isearch-backward] . swiper)))
 #+end_src
@@ -808,6 +825,9 @@ TODO: break this giant source block down into individual org sections.
                (list (regexp-quote (system-name)) nil nil)))
 
 (use-package undo-tree
+  :ryo
+  ("/" undo-tree-undo)
+  ("_" undo-tree-redo)
   :config
   (global-undo-tree-mode)
   (setq undo-tree-mode-lighter ""))
@@ -830,16 +850,6 @@ TODO: break this giant source block down into individual org sections.
   (company-dabbrev-char-regexp "\\sw\\|\\s_\\|[-_]")
   :config
   (global-company-mode t))
-#+end_src
-
-** Customizations
-
-#+begin_src emacs-lisp
-(ryo-modal-key
- "SPC" '(("b b" ibuffer-list-buffers)
-         ("b k" kill-this-buffer)
-         ("b s" save-buffer)
-         ("q q" save-buffers-kill-terminal)))
 #+end_src
 
 * Syntax and spell checking
