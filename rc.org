@@ -3661,11 +3661,14 @@ input "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" {
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
+    click_method clickfinger
 }
 
 input "1:1:AT_Translated_Set_2_keyboard" {
     repeat_delay 200
     repeat_rate 45
+    xkb_layout us,ir
+    xkb_options ctrl:nocaps,altwin:swap_alt_win,ctrl:rctrl_ralt,grp:shifts_toggle
 }
 
 
@@ -4840,7 +4843,6 @@ light -S $val
 :END:
 
 #+begin_src bash
-export XKB_DEFAULT_OPTIONS=ctrl:nocaps,altwin:swap_alt_win,ctrl:rctrl_ralt
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 light -Scrs "intel_backlight" 2
