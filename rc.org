@@ -3749,6 +3749,11 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym XF86MonBrightnessUp exec light -A 5    # increase screen brightness
     bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
 
+    bindsym XF86AudioRaiseVolume exec pamixer --allow-boost --increase 5
+    bindsym XF86AudioLowerVolume exec pamixer --allow-boost --decrease 5
+    bindsym XF86AudioMute exec pamixer --toggle-mute
+    bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
+
     # bspwm-esque workspace switch and window move
     bindsym $mod+bracketleft exec sway-ws-util switch prev
     bindsym $mod+bracketright exec sway-ws-util switch next
