@@ -627,8 +627,6 @@ Roll your own modal mode
    ("n" next-line)
    ("p" previous-line)
    ("f" forward-char)
-   ("a" move-beginning-of-line)
-   ("e" move-end-of-line)
    ("SPC" (("b" (("b" ibuffer-list-buffers)
                  ("k" kill-this-buffer)
                  ("o" other-window)
@@ -642,10 +640,8 @@ Roll your own modal mode
                  ("v" describe-variable)))
            ("q" (("q" save-buffers-kill-terminal)))))
    ("d" (("w" kill-word)
-         ("d" kill-whole-line)
          ("b" backward-kill-word)))
-   ("c" (("w" kill-word :exit t)
-         ("c" kill-whole-line :exit t))))
+   ("c w" kill-word :exit t))
 
   (ryo-modal-keys
    ;; First argyment to ryo-modal-keys may be a list of keywords.
@@ -1135,6 +1131,36 @@ Emacs package that displays available keybindings in popup
 
 #+begin_src emacs-lisp
 (load-theme 'eink t)
+#+end_src
+
+** [[https://github.com/bbatsov/crux][crux]]
+
+#+begin_src emacs-lisp
+(use-package crux
+  :bind (("C-c d"    . crux-duplicate-current-line-or-region)
+         ("C-c M-d"  . crux-duplicate-and-comment-current-line-or-region))
+  :ryo
+  ("o" crux-smart-open-line :exit t)
+  ("O" crux-smart-open-line-above :exit t)
+  ("SPC b K" crux-kill-other-buffers)
+  ("d d" crux-kill-whole-line)
+  ("c c" crux-kill-whole-line :then '(crux-smart-open-line-above) :exit t)
+  ("SPC f" (("c" crux-copy-file-preserve-attributes)
+            ("D" crux-delete-file-and-buffer)
+            ("R" crux-rename-file-and-buffer))))
+#+end_src
+
+** [[https://github.com/alezost/mwim.el][mwim]]
+
+#+begin_src emacs-lisp
+(use-package mwim
+  :bind (("C-a"    . mwim-beginning-of-code-or-line)
+         ("C-e"    . mwim-end-of-code-or-line)
+         ("<home>" . mwim-beginning-of-line-or-code)
+         ("<end>"  . mwim-end-of-line-or-code))
+  :ryo
+  ("a" mwim-beginning-of-code-or-line)
+  ("e" mwim-end-of-code-or-line))
 #+end_src
 
 * Email
