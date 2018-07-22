@@ -248,7 +248,7 @@ and without compromising on performance.
 
 #+begin_src emacs-lisp
 (require 'use-package)
-(if nil				    ; set to t when need to debug init
+(if nil  ; set to t when need to debug init
     (setq use-package-verbose t
           use-package-expand-minimally nil
           use-package-compute-statistics t
@@ -426,7 +426,7 @@ compilation."
                  (setq body `(after! ,next ,@body)))
                body)
               ((listp features)
-	       `(after! (:all ,@features) ,@body)))))
+               `(after! (:all ,@features) ,@body)))))
 #+end_src
 
 * Core
@@ -581,67 +581,51 @@ customizing it.
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode)
   (setq auto-compile-display-buffer               nil
-	auto-compile-mode-line-counter            t
-	auto-compile-source-recreate-deletes-dest t
-	auto-compile-toggle-deletes-nonlib-dest   t
-	auto-compile-update-autoloads             t)
+        auto-compile-mode-line-counter            t
+        auto-compile-source-recreate-deletes-dest t
+        auto-compile-toggle-deletes-nonlib-dest   t
+        auto-compile-update-autoloads             t)
   (add-hook 'auto-compile-inhibit-compile-hook
             'auto-compile-inhibit-compile-detached-git-head))
 #+end_src
 
-*** [[https://github.com/noctuid/general.el][general]]
+*** [[https://github.com/Kungsgeten/ryo-modal][ryo-modal]]
 
 #+begin_quote
 Roll your own modal mode
 #+end_quote
 
 #+begin_src emacs-lisp
-(use-package general
-  :demand t
+(use-package ryo-modal
+  :commands ryo-modal-mode
+  :bind ("M-m" . ryo-modal-mode)
+  :after which-key
   :config
-  (general-evil-setup t)
+  (push '((nil . "ryo:.*:") . (nil . "")) which-key-replacement-alist)
+  (ryo-modal-keys
+   ("," ryo-modal-repeat)
+   ("q" ryo-modal-mode)
+   ("b" backward-char)
+   ("n" next-line)
+   ("p" previous-line)
+   ("f" forward-char))
 
-  (general-override-mode)
-
-  (general-create-definer
-    ab--mode-leader-keys
-    :keymaps 'override
-    :states '(emacs normal visual motion insert)
-    :non-normal-prefix "C-,"
-    :prefix ",")
-
-  (general-create-definer
-    ab--leader-keys
-    :keymaps 'override
-    :states '(emacs normal visual motion insert)
-    :non-normal-prefix "M-m"
-    :prefix "SPC"))
-#+end_src
-
-*** evil
-
-#+begin_src emacs-lisp
-(use-package evil
-  :demand t
-  :hook (view-mode . evil-motion-state)
-  :config (evil-mode 1))
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package evil-escape
-  :demand t
-  :init
-  (setq evil-escape-excluded-states '(normal visual multiedit emacs motion)
-        evil-escape-excluded-major-modes '(neotree-mode)
-        evil-escape-key-sequence "jk"
-        evil-escape-delay 0.25)
-  :general
-  (:states '(insert replace visual operator)
-    "C-g" #'evil-escape)
-  :config
-  (evil-escape-mode 1)
-  ;; no `evil-escape' in minibuffer
-  (push #'minibufferp evil-escape-inhibit-functions))
+  (ryo-modal-keys
+   ;; First argyment to ryo-modal-keys may be a list of keywords.
+   ;; These keywords will be applied to all keybindings.
+   (:norepeat t)
+   ("0" "M-0")
+   ("1" "M-1")
+   ("2" "M-2")
+   ("3" "M-3")
+   ("4" "M-4")
+   ("5" "M-5")
+   ("6" "M-6")
+   ("7" "M-7")
+   ("8" "M-8")
+   ("9" "M-9"))
+  :hook ((text-mode . ryo-modal-mode)
+         (prog-mode . ryo-modal-mode)))
 #+end_src
 
 *** [[https://orgmode.org/][Org mode]]
@@ -680,10 +664,10 @@ Not just how I do git, but /the/ way to do git.
 
 #+begin_src emacs-lisp
 (use-package magit
-  :general (ab--leader-keys "g s" 'magit-status)
+  :ryo ("SPC" (("g s" magit-status)))
   :defer t
   :bind (("s-g"     . magit-status)
-	 ("C-x g"   . magit-status)
+         ("C-x g"   . magit-status)
          ("C-x M-g" . magit-dispatch-popup))
   :config
   (magit-add-section-hook 'magit-status-sections-hook
@@ -714,6 +698,7 @@ There's no way I could top that, so I won't attempt to.
         ([S-up]   . ivy-previous-history-element)
         ([S-down] . ivy-next-history-element)
         ("DEL"    . ivy-backward-delete-char))
+  :ryo ("SPC ," ivy-switch-buffer)
   :config
   (setq ivy-wrap t)
   (ivy-mode 1))
@@ -723,9 +708,9 @@ There's no way I could top that, so I won't attempt to.
 
 #+begin_src emacs-lisp
 (use-package swiper
-  :general (:states 'normal "/" 'swiper)
+  :ryo ("/" swiper)
   :bind (([remap isearch-forward]  . swiper)
-	 ([remap isearch-backward] . swiper)))
+         ([remap isearch-backward] . swiper)))
 #+end_src
 
 **** Counsel
@@ -733,15 +718,15 @@ There's no way I could top that, so I won't attempt to.
 #+begin_src emacs-lisp
 (use-package counsel
   :defer 1
-  :general (ab--leader-keys
-    "f r" 'counsel-recentf
-    "SPC" 'counsel-M-x
-    "."   'counsel-find-file)
+  :ryo
+  ("SPC" (("f r" counsel-recentf)
+          ("SPC" counsel-M-x)
+          ("."   counsel-find-file)))
   :bind (([remap execute-extended-command] . counsel-M-x)
          ([remap find-file] . counsel-find-file)
          ("s-r"     . counsel-recentf)
          :map minibuffer-local-map
-	 ("C-r" . counsel-minibuffer-history))
+         ("C-r" . counsel-minibuffer-history))
   :config
   (counsel-mode 1)
   (defalias 'locate #'counsel-locate))
@@ -837,7 +822,7 @@ TODO: break this giant source block down into individual org sections.
   :defer 5
   :bind
   (:map company-active-map
-	([tab] . company-complete-common-or-cycle))
+        ([tab] . company-complete-common-or-cycle))
   :custom
   (company-idle-delay 0.3)
   (company-minimum-prefix-length 1)
@@ -850,12 +835,11 @@ TODO: break this giant source block down into individual org sections.
 ** Customizations
 
 #+begin_src emacs-lisp
-(ab--leader-keys
-  "b s" 'save-buffer
-  "b b" 'ivy-switch-buffer
-  ","   'ivy-switch-buffer
-  "b k" 'kill-this-buffer
-  "q q" 'evil-save-and-quit)
+(ryo-modal-key
+ "SPC" '(("b b" ibuffer-list-buffers)
+         ("b k" kill-this-buffer)
+         ("b s" save-buffer)
+         ("q q" save-buffers-kill-terminal)))
 #+end_src
 
 * Syntax and spell checking
@@ -890,7 +874,7 @@ TODO: break this giant source block down into individual org sections.
 #+begin_src emacs-lisp
 (use-package lean-mode
   :bind (:map lean-mode-map
-	      ("S-SPC" . company-complete)))
+              ("S-SPC" . company-complete)))
 #+end_src
 
 ** Haskell
@@ -902,8 +886,8 @@ TODO: break this giant source block down into individual org sections.
   :config
   (setq haskell-indentation-layout-offset 4
         haskell-indentation-left-offset 4
-	flycheck-checker 'haskell-hlint
-	flycheck-disabled-checkers '(haskell-stack-ghc haskell-ghc)))
+        flycheck-checker 'haskell-hlint
+        flycheck-disabled-checkers '(haskell-stack-ghc haskell-ghc)))
 #+end_src
 
 *** [[https://github.com/jyp/dante][dante]]
@@ -923,8 +907,8 @@ executable from [[https://github.com/mpickering/apply-refact][apply-refact]].
 #+begin_src emacs-lisp
 (use-package hlint-refactor
   :bind (:map hlint-refactor-mode-map
-	      ("C-c l b" . hlint-refactor-refactor-buffer)
-	      ("C-c l r" . hlint-refactor-refactor-at-point))
+              ("C-c l b" . hlint-refactor-refactor-buffer)
+              ("C-c l r" . hlint-refactor-refactor-at-point))
   :hook (haskell-mode . hlint-refactor-mode))
 #+end_src
 
@@ -1025,8 +1009,8 @@ instead.
           (new-old-code ""))
       (save-excursion
         (switch-to-buffer (get-file-buffer fname))
-	(goto-char (point-min))
-	(forward-line (1- fline))
+        (goto-char (point-min))
+        (forward-line (1- fline))
         (beginning-of-line)
         (setf bline (point))
         (when (or hs-lint-replace-without-ask
@@ -1128,11 +1112,6 @@ See [[notmuch:id:87muuqsvci.fsf@fencepost.gnu.org][bug follow-up]].
   (delete-other-windows)
   (notmuch))
 
-;; (ab--leader-keys
-;;   "m"   'ab/notmuch
-;;   "s"   'save-buffer
-;;   "SPC" 'counsel-M-x)
-
 ;; (map!
 ;;  :leader
 ;;  :desc "notmuch" :n "m" #'ab/notmuch
@@ -1180,7 +1159,7 @@ See [[notmuch:id:87muuqsvci.fsf@fencepost.gnu.org][bug follow-up]].
         mml-secure-openpgp-sign-with-sender t))
 
 (use-package notmuch
-  :general (ab--leader-keys "m" 'ab/notmuch)
+  :ryo ("SPC m" ab/notmuch)
   :config
   (setq notmuch-hello-sections
         '(notmuch-hello-insert-header
@@ -1213,53 +1192,53 @@ See [[notmuch:id:87muuqsvci.fsf@fencepost.gnu.org][bug follow-up]].
   ;;             :override #'kill-this-buffer)
   :bind
   (:map notmuch-hello-mode-map
-	("g" . notmuch-poll-and-refresh-this-buffer)
-	("i" . (lambda ()
-		 "Search for `inbox' tagged messages"
-		 (interactive)
-		 (notmuch-hello-search "tag:inbox")))
-	("u" . (lambda ()
-		 "Search for `unread' tagged messages"
-		 (interactive)
-		 (notmuch-hello-search "tag:unread")))
-	("l" . (lambda ()
-		 "Search for `latest tagged messages"
-		 (interactive)
-		 (notmuch-hello-search "tag:latest")))
-	("M" . (lambda ()
-		 "Compose new mail and prompt for sender"
-		 (interactive)
-		 (let ((current-prefix-arg t))
-		   (call-interactively #'notmuch-mua-new-mail)))))
+        ("g" . notmuch-poll-and-refresh-this-buffer)
+        ("i" . (lambda ()
+                 "Search for `inbox' tagged messages"
+                 (interactive)
+                 (notmuch-hello-search "tag:inbox")))
+        ("u" . (lambda ()
+                 "Search for `unread' tagged messages"
+                 (interactive)
+                 (notmuch-hello-search "tag:unread")))
+        ("l" . (lambda ()
+                 "Search for `latest tagged messages"
+                 (interactive)
+                 (notmuch-hello-search "tag:latest")))
+        ("M" . (lambda ()
+                 "Compose new mail and prompt for sender"
+                 (interactive)
+                 (let ((current-prefix-arg t))
+                   (call-interactively #'notmuch-mua-new-mail)))))
   (:map notmuch-search-mode-map
-	("g" . notmuch-poll-and-refresh-this-buffer)
-	("k" . (lambda ()
-		 "Mark message read"
-		 (interactive)
-		 (notmuch-search-tag '("-unread"))
-		 ;; (notmuch-search-archive-thread)
-		 (notmuch-search-next-thread)))
-	("u" . (lambda ()
-		 "Mark message unread"
-		 (interactive)
-		 (notmuch-search-tag '("+unread"))
-		 (notmuch-search-next-thread)))
-	("K" . (lambda ()
-		 "Mark message deleted"
-		 (interactive)
-		 (notmuch-search-tag '("-unread" "-inbox" "+deleted"))
-		 (notmuch-search-archive-thread)))
-	("S" . (lambda ()
-		 "Mark message as spam"
-		 (interactive)
-		 (notmuch-search-tag '("-unread" "-inbox" "-webmasters" "+spam"))
-		 (notmuch-search-archive-thread))))
+        ("g" . notmuch-poll-and-refresh-this-buffer)
+        ("k" . (lambda ()
+                 "Mark message read"
+                 (interactive)
+                 (notmuch-search-tag '("-unread"))
+                 ;; (notmuch-search-archive-thread)
+                 (notmuch-search-next-thread)))
+        ("u" . (lambda ()
+                 "Mark message unread"
+                 (interactive)
+                 (notmuch-search-tag '("+unread"))
+                 (notmuch-search-next-thread)))
+        ("K" . (lambda ()
+                 "Mark message deleted"
+                 (interactive)
+                 (notmuch-search-tag '("-unread" "-inbox" "+deleted"))
+                 (notmuch-search-archive-thread)))
+        ("S" . (lambda ()
+                 "Mark message as spam"
+                 (interactive)
+                 (notmuch-search-tag '("-unread" "-inbox" "-webmasters" "+spam"))
+                 (notmuch-search-archive-thread))))
   (:map notmuch-tree-mode-map  ; TODO: additional bindings
-	("S" . (lambda ()
-		 "Mark message as spam"
-		 (interactive)
-		 (notmuch-tree-tag '("-unread" "-inbox" "-webmasters" "+spam"))
-		 (notmuch-tree-archive-thread))))
+        ("S" . (lambda ()
+                 "Mark message as spam"
+                 (interactive)
+                 (notmuch-tree-tag '("-unread" "-inbox" "-webmasters" "+spam"))
+                 (notmuch-tree-archive-thread))))
 )
 
 ;; (use-package counsel-notmuch

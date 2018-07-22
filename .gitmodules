@@ -56,12 +56,6 @@
 [submodule "epl"]
 	path = lib/epl
 	url = git@github.com:cask/epl.git
-[submodule "evil"]
-	path = lib/evil
-	url = git@github.com:emacs-evil/evil.git
-[submodule "evil-escape"]
-	path = lib/evil-escape
-	url = git@github.com:syl20bnr/evil-escape.git
 [submodule "exec-path-from-shell"]
 	path = lib/exec-path-from-shell
 	url = git@github.com:purcell/exec-path-from-shell.git
@@ -162,6 +156,9 @@
 [submodule "proof-site"]  # Proof General
 	path = lib/proof-site
 	url = git@github.com:ProofGeneral/PG.git
+[submodule "ryo-modal"]
+	path = lib/ryo-modal
+	url = git@github.com:Kungsgeten/ryo-modal.git
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git
