@@ -565,6 +565,25 @@ variable.
       version-control t)
 #+end_src
 
+*** Auto revert
+
+Enable automatic reloading of changed buffers and files.
+
+#+begin_src emacs-lisp
+(global-auto-revert-mode 1)
+(setq auto-revert-verbose nil
+      global-auto-revert-non-file-buffers t)
+#+end_src
+
+*** Always use space for indentation
+
+#+begin_src emacs-lisp
+(setq-default
+ indent-tabs-mode nil
+ require-final-newline t
+ tab-width 4)
+#+end_src
+
 ** Packages
 
 The packages in this section are absolutely essential to my everyday
