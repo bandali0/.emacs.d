@@ -99,6 +99,12 @@
 	path = lib/ivy
 	url = git@github.com:abo-abo/swiper.git
 	info-path = doc
+[submodule "key-chord"]
+	path = lib/key-chord
+	url = git@github.com:emacsorphanage/key-chord.git
+[submodule "key-seq"]
+	path = lib/key-seq
+	url = git@github.com:vlevit/key-seq.el.git
 [submodule "lcr"]
 	path = lib/lcr
 	url = git@github.com:jyp/lcr.git

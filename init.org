@@ -1175,6 +1175,21 @@ Emacs package that displays available keybindings in popup
   ("e" mwim-end-of-code-or-line))
 #+end_src
 
+** [[https://github.com/vlevit/key-seq.el][key-seq]] (uses [[https://www.emacswiki.org/emacs/KeyChord][key-chord]])
+
+#+begin_src emacs-lisp
+(use-package key-chord
+  :demand t
+  :config
+  (key-chord-mode 1)
+  (setq key-chord-one-key-delay 0 ; i don't need one-key chords for now
+        key-chord-two-keys-delay 0.075))
+(use-package key-seq
+  :after key-chord
+  :config
+  (key-seq-define-global "jk" 'ryo-modal-mode))
+#+end_src
+
 * Email
 ** [[https://notmuchmail.org][notmuch]]
 
