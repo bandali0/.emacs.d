@@ -3664,6 +3664,7 @@ insert_pass="Alt+n"
 
 #+begin_src conf
 exec xrdb .Xresources
+exec dunst
 ### Variables
 # super
 set $mod Mod4
@@ -3751,17 +3752,17 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym XF86AudioMute exec pamixer --toggle-mute
     bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 
-    # bspwm-esque workspace switch and window move
-    bindsym $mod+bracketleft exec sway-ws-util switch prev
-    bindsym $mod+bracketright exec sway-ws-util switch next
-    bindsym $mod+braceleft exec sway-ws-util move prev follow
-    bindsym $mod+braceright exec sway-ws-util move next follow
-
     # original sway workspace switch and window move
-    bindsym $mod2+bracketleft workspace prev
-    bindsym $mod2+bracketright workspace next
-    bindsym $mod2+braceleft move container to workspace prev
-    bindsym $mod2+braceright move container to workspace next
+    bindsym $mod+bracketleft workspace prev
+    bindsym $mod+bracketright workspace next
+    bindsym $mod+braceleft move container to workspace prev
+    bindsym $mod+braceright move container to workspace next
+
+    # bspwm-esque workspace switch and window move
+    bindsym $mod2+bracketleft exec sway-ws-util switch prev
+    bindsym $mod2+bracketright exec sway-ws-util switch next
+    bindsym $mod2+braceleft exec sway-ws-util move prev follow
+    bindsym $mod2+braceright exec sway-ws-util move next follow
 #
 # Moving around:
 #
