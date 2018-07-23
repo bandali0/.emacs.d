@@ -3734,10 +3734,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    #floating_modifier $mod normal
+    floating_modifier $mod
 
     # reload the configuration file
     bindsym $mod+Shift+c reload
