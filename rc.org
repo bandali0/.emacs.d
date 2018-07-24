@@ -772,6 +772,11 @@ borders_color=#3D9970
 #title=<span weight='heavy' fgcolor='#01FF70'> </span>
 #borders_color=#01FF70
 
+[volume]
+command=volume-info
+title=<span weight='heavy' fgcolor='#7FDBFF'></span>
+borders_color=#7FDBFF
+
 [battery]
 preset=BAT
 command=battery-percentage-time
@@ -5037,6 +5042,21 @@ esac
 import gnomekeyring as gk
 # list_item_ids_sync('login')[0] == 1L
 gk.unlock_sync('Default_keyring',gk.item_get_info_sync('login',1L).get_secret())
+#+end_src
+
+** volume-info
+:PROPERTIES:
+:header-args+: :tangle ~/.local/bin/volume-info :shebang "#!/bin/sh"
+:END:
+
+#+begin_src sh
+cur_vol=$(pamixer --get-volume)
+
+if [ $(pamixer --get-mute) = true ]; then
+  printf 'mt \n' "$cur_vol"
+else
+  printf '%02d \n' "$cur_vol"
+fi
 #+end_src
 
 ** wp
