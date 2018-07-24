@@ -4878,41 +4878,30 @@ exact brightness value.
 
 ** battery-percentage-time
 :PROPERTIES:
-:header-args+: :tangle ~/.local/bin/battery-percentage-time :shebang "#!/bin/bash"
+:header-args+: :tangle ~/.local/bin/battery-percentage-time :shebang "#!/bin/sh"
 :END:
 
-#+begin_src bash
-perc=$(dbus-send --print-reply=literal --system \
-        --dest=org.freedesktop.UPower \
-        /org/freedesktop/UPower/devices/battery_BAT0 \
-        org.freedesktop.DBus.Properties.Get \
-        string:org.freedesktop.UPower.Device \
-        string:'Percentage' | awk '{print $3}')
+#+begin_src sh
+dbus_send() {
+	label=$1
+	dbus-send --print-reply=literal --system \
+		--dest=org.freedesktop.UPower \
+		/org/freedesktop/UPower/devices/battery_BAT0 \
+		org.freedesktop.DBus.Properties.Get \
+		string:org.freedesktop.UPower.Device \
+		string:"${label}" | awk '{print $3}'
+}
 
-state=$(dbus-send --print-reply=literal --system \
-        --dest=org.freedesktop.UPower \
-        /org/freedesktop/UPower/devices/battery_BAT0 \
-        org.freedesktop.DBus.Properties.Get \
-        string:org.freedesktop.UPower.Device \
-        string:'State' | awk '{print $3}')
+perc=$(dbus_send 'Percentage')
+state=$(dbus_send 'State')
 
 if [ "$state" -eq 2 ]; then  # Discharging
-  secs=$(dbus-send --print-reply=literal --system \
-            --dest=org.freedesktop.UPower \
-            /org/freedesktop/UPower/devices/battery_BAT0 \
-            org.freedesktop.DBus.Properties.Get \
-            string:org.freedesktop.UPower.Device \
-            string:'TimeToEmpty' | awk '{print $3}')
-  printf '%s%%%%%2dh%02dm\n' "$perc" $((secs/3600)) $((secs%3600/60))
+	secs=$(dbus_send 'TimeToEmpty')
 elif [ "$state" -eq 1 ]; then  # Charging
-  secs=$(dbus-send --print-reply=literal --system \
-            --dest=org.freedesktop.UPower \
-            /org/freedesktop/UPower/devices/battery_BAT0 \
-            org.freedesktop.DBus.Properties.Get \
-            string:org.freedesktop.UPower.Device \
-            string:'TimeToFull' | awk '{print $3}')
-  printf '%s%%%%%2dh%02dm\n' "$perc" $((secs/3600)) $((secs%3600/60))
+	secs=$(dbus_send 'TimeToFull')
 fi
+
+printf '%s%%%%%2dh%02dm\n' "$perc" $((secs / 3600)) $((secs % 3600 / 60))
 #+end_src
 
 ** rofi-light
