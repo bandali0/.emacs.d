@@ -752,25 +752,25 @@ timeout = 0
 borders_width=0 0 2 0
 separator_width=10
 
-[mpd]
-preset=MPD
-title=<span weight='heavy' fgcolor='#7FDBFF'> </span>
-borders_color=#7FDBFF
+#[mpd]
+#preset=MPD
+#title=<span weight='heavy' fgcolor='#7FDBFF'> </span>
+#borders_color=#7FDBFF
 
 [ram]
 preset=RAM
 title=<span weight='heavy' fgcolor='#3D9970'> </span>
 borders_color=#3D9970
 
-[cpu]
-preset=CPU
-title=<span weight='heavy' fgcolor='#2ECC40'> </span>
-borders_color=#2ECC40
+#[cpu]
+#preset=CPU
+#title=<span weight='heavy' fgcolor='#2ECC40'> </span>
+#borders_color=#2ECC40
 
-[hdd]
-preset=HDD
-title=<span weight='heavy' fgcolor='#01FF70'> </span>
-borders_color=#01FF70
+#[hdd]
+#preset=HDD
+#title=<span weight='heavy' fgcolor='#01FF70'> </span>
+#borders_color=#01FF70
 
 [battery]
 preset=BAT
@@ -4882,9 +4882,37 @@ exact brightness value.
 :END:
 
 #+begin_src bash
-pct=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{print $2}')
-time=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep time | awk '{print $4,$5}')
-echo "$pct ($time)"
+perc=$(dbus-send --print-reply=literal --system \
+        --dest=org.freedesktop.UPower \
+        /org/freedesktop/UPower/devices/battery_BAT0 \
+        org.freedesktop.DBus.Properties.Get \
+        string:org.freedesktop.UPower.Device \
+        string:'Percentage' | awk '{print $3}')
+
+state=$(dbus-send --print-reply=literal --system \
+        --dest=org.freedesktop.UPower \
+        /org/freedesktop/UPower/devices/battery_BAT0 \
+        org.freedesktop.DBus.Properties.Get \
+        string:org.freedesktop.UPower.Device \
+        string:'State' | awk '{print $3}')
+
+if [ "$state" -eq 2 ]; then  # Discharging
+  secs=$(dbus-send --print-reply=literal --system \
+            --dest=org.freedesktop.UPower \
+            /org/freedesktop/UPower/devices/battery_BAT0 \
+            org.freedesktop.DBus.Properties.Get \
+            string:org.freedesktop.UPower.Device \
+            string:'TimeToEmpty' | awk '{print $3}')
+  printf '%s%%%%%2dh%02dm\n' "$perc" $((secs/3600)) $((secs%3600/60))
+elif [ "$state" -eq 1 ]; then  # Charging
+  secs=$(dbus-send --print-reply=literal --system \
+            --dest=org.freedesktop.UPower \
+            /org/freedesktop/UPower/devices/battery_BAT0 \
+            org.freedesktop.DBus.Properties.Get \
+            string:org.freedesktop.UPower.Device \
+            string:'TimeToFull' | awk '{print $3}')
+  printf '%s%%%%%2dh%02dm\n' "$perc" $((secs/3600)) $((secs%3600/60))
+fi
 #+end_src
 
 ** rofi-light
