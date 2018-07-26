@@ -790,7 +790,7 @@ borders_color=#01FF70
 
 [date]
 preset=DATE
-command=date '+%-I:%M, %a %b %d'
+command=date '+%-I:%M, %a %b %d '
 title=<span weight='heavy' fgcolor='#FFDC00'> </span>
 borders_color=#FFDC00
 separator_width=0
@@ -4906,7 +4906,7 @@ elif [ "$state" -eq 1 ]; then  # Charging
 	secs=$(dbus_send 'TimeToFull')
 fi
 
-printf '%s%%%%%2dh%02dm\n' "$perc" $((secs / 3600)) $((secs % 3600 / 60))
+printf '%s%%%%%2dh%02dm \n' "$perc" $((secs / 3600)) $((secs % 3600 / 60))
 #+end_src
 
 ** rofi-light
